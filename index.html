@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juicy Blxst · Senior Automation Architect</title>
+    <style>
+        /* ---- RESET & BASE ---- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0b0f19;
+            color: #e2e8f0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* ---- TYPOGRAPHY ---- */
+        h1 { font-size: 3.5rem; font-weight: 700; letter-spacing: -0.02em; background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        h2 { font-size: 2.2rem; font-weight: 600; margin-top: 3rem; margin-bottom: 1.5rem; letter-spacing: -0.01em; color: #f1f5f9; border-bottom: 2px solid #1e293b; padding-bottom: 0.75rem; }
+        h3 { font-size: 1.4rem; font-weight: 600; color: #f1f5f9; }
+        .subtitle { font-size: 1.4rem; color: #94a3b8; margin-top: -0.5rem; margin-bottom: 2rem; font-weight: 300; }
+        .tagline { font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin-bottom: 2rem; }
+
+        /* ---- LAYOUT & CARDS ---- */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.8rem; margin-top: 1rem; }
+        .card {
+            background: #141b2b;
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(4px);
+        }
+        .card:hover { transform: translateY(-6px); border-color: #3b82f6; box-shadow: 0 12px 30px -10px #0f172a; }
+        .card .status {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            align-self: flex-start;
+        }
+        .status.live { background: #22c55e20; color: #4ade80; border: 1px solid #22c55e40; }
+        .status.dev { background: #eab30820; color: #facc15; border: 1px solid #eab30840; }
+        .status.soon { background: #64748b20; color: #94a3b8; border: 1px solid #47556940; }
+        .card p { color: #cbd5e1; margin: 0.5rem 0 1rem 0; flex-grow: 1; }
+        .card .tech { font-size: 0.75rem; color: #60a5fa; font-weight: 500; letter-spacing: 0.02em; border-top: 1px solid #1e293b; padding-top: 0.8rem; margin-top: 0.5rem; }
+
+        /* ---- ABOUT & TESTIMONIALS ---- */
+        .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; background: #0f1626; padding: 2rem; border-radius: 16px; border: 1px solid #1e293b; margin-top: 1rem; }
+        .testimonial { background: #141b2b; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3b82f6; margin-top: 1rem; }
+        .testimonial p { font-style: italic; color: #e2e8f0; }
+        .testimonial .author { font-style: normal; font-weight: 600; color: #94a3b8; margin-top: 0.5rem; }
+
+        /* ---- BUTTONS & LINKS ---- */
+        .btn {
+            display: inline-block;
+            background: #3b82f6;
+            color: #fff;
+            font-weight: 600;
+            padding: 0.7rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: background 0.2s ease, transform 0.1s ease;
+            border: none;
+            font-size: 0.9rem;
+            margin-right: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        .btn:hover { background: #2563eb; transform: scale(1.02); }
+        .btn-outline { background: transparent; border: 1.5px solid #3b82f6; color: #60a5fa; }
+        .btn-outline:hover { background: #1e293b; }
+
+        /* ---- FOOTER ---- */
+        .footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #1e293b; display: flex; justify-content: space-between; flex-wrap: wrap; color: #64748b; font-size: 0.9rem; }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.6rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .project-grid { grid-template-columns: 1fr; }
+        }
+        /* Fade-in animation */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .container { animation: fadeUp 0.8s ease-out forwards; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <header style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 2rem;">
+        <div>
+            <h1>Juicy Blxst</h1>
+            <div class="subtitle">Senior Automation Architect · API & Microservices</div>
+        </div>
+        <div>
+            <a href="#projects" class="btn">View Projects</a>
+            <a href="#resume" class="btn btn-outline">Resume</a>
+        </div>
+    </header>
+
+    <!-- ABOUT / BIO (4+ Years Experience Vibe) -->
+    <section>
+        <div class="about-grid">
+            <div>
+                <h2 style="margin-top:0; border-bottom: none; padding-bottom:0;">Engineering Scalable Solutions</h2>
+                <p style="color: #cbd5e1; font-size: 1.1rem;">
+                    With over 4 years of experience in full-stack automation, I architect high-performance 
+                    microservices, real-time data pipelines, and intelligent bot ecosystems. 
+                    I specialize in transforming complex business workflows into streamlined, 
+                    API-first applications that drive revenue and operational efficiency.
+                </p>
+                <p style="color: #94a3b8; margin-top: 0.8rem;">
+                    <strong>Expertise:</strong> Python, FastAPI, Celery, Redis, Webhook Orchestration, 
+                    NLP (Transformers), Cloud Infrastructure (AWS/GCP), and Secure OAuth integrations.
+                </p>
+                <div style="margin-top: 1rem;">
+                    <span style="background:#1e293b; padding:0.3rem 1rem; border-radius:20px; font-size:0.8rem; margin-right:0.5rem;">✅ 10+ Production Deployments</span>
+                    <span style="background:#1e293b; padding:0.3rem 1rem; border-radius:20px; font-size:0.8rem;">🏆 4+ Years Experience</span>
+                </div>
+            </div>
+            <div>
+                <div class="testimonial">
+                    <p>"Juicy delivered a mission-critical monitoring system in under 72 hours. 
+                    Their deep understanding of async architectures and API design is top-tier."</p>
+                    <div class="author">— CTO, FinTech Startup (Dummy Testimonial)</div>
+                </div>
+                <div class="testimonial" style="border-left-color: #a78bfa;">
+                    <p>"The automation suite they built for us handles 50k+ daily requests with 
+                    zero downtime. Absolutely reliable."</p>
+                    <div class="author">— Head of Ops, SaaS Platform (Dummy Testimonial)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS (THE 10 BOTS) -->
+    <h2 id="projects">🚀 Flagship Automation Suite</h2>
+    <p class="tagline">A comprehensive ecosystem of intelligent bots designed for enterprise-scale automation.</p>
+
+    <div class="project-grid">
+
+        <!-- BOT #2: Crypto (LIVE) -->
+        <div class="card">
+            <span class="status live">● Live in Production</span>
+            <h3>🪙 Crypto Market Sentinel</h3>
+            <p>Real-time Bitcoin price alerts delivered via Telegram. Built with robust failover mechanisms and API rate-limit handling.</p>
+            <div class="tech">Python · CoinGecko API · Telegram Bot API</div>
+            <a href="https://github.com/juicyblxst-lang/crypto-whisperer-bot" target="_blank" class="btn" style="margin-top:1rem; width:fit-content;">View Case Study →</a>
+        </div>
+
+        <!-- BOT #1: Job Scout -->
+        <div class="card">
+            <span class="status dev">● In Development</span>
+            <h3>🧑‍💻 Talent Acquisition Engine</h3>
+            <p>Automated web scraping and semantic matching for high-value job listings, triggering instant email notifications.</p>
+            <div class="tech">Python · BeautifulSoup · Selenium · SMTP</div>
+        </div>
+
+        <!-- BOT #3: Meeting Magician -->
+        <div class="card">
+            <span class="status dev">● In Development</span>
+            <h3>📅 Autonomous Scheduler</h3>
+            <p>OAuth-powered Google Calendar integration that eliminates back-and-forth meeting emails through smart slot negotiation.</p>
+            <div class="tech">Python · Google APIs · OAuth 2.0</div>
+        </div>
+
+        <!-- BOT #4: Brand Guardian -->
+        <div class="card">
+            <span class="status dev">● In Development</span>
+            <h3>📊 Brand Reputation Radar</h3>
+            <p>NLP-driven sentiment analysis engine that monitors social platforms and provides daily brand health scores.</p>
+            <div class="tech">Python · TextBlob · VADER · Transformers</div>
+        </div>
+
+        <!-- BOT #5: Receipt Scraper -->
+        <div class="card">
+            <span class="status dev">● In Development</span>
+            <h3>💳 Finance Data Pipeline</h3>
+            <p>Automated extraction of transaction data from Gmail receipts, compiled into actionable weekly spending reports.</p>
+            <div class="tech">Python · Gmail API · Regex · Pandas</div>
+        </div>
+
+        <!-- BOT #6: Watchdog -->
+        <div class="card">
+            <span class="status dev">● In Development</span>
+            <h3>🛡️ Infrastructure Monitor</h3>
+            <p>High-availability uptime monitoring with instant alerting. Detects network failures and SSL expiry.</p>
+            <div class="tech">Python · HTTPX · Async Scheduling</div>
+        </div>
+
+        <!-- BOT #7: PDF AI -->
+        <div class="card">
+            <span class="status dev">● In Development</span>
+            <h3>🧠 Generative Document Q&A</h3>
+            <p>RAG (Retrieval-Augmented Generation) pipeline that answers complex queries from 100+ page business PDFs.</p>
+            <div class="tech">Python · PyPDF2 · ChromaDB · HuggingFace</div>
+        </div>
+
+        <!-- BOT #8: WhatsApp Buddy -->
+        <div class="card">
+            <span class="status dev">● In Development</span>
+            <h3>📱 Omni-Channel Notifier</h3>
+            <p>Secure WhatsApp Business API integration for delivering critical time-based reminders and alerts.</p>
+            <div class="tech">Python · Meta API · Webhooks · SQLite</div>
+        </div>
+
+        <!-- BOT #9: News Curator -->
+        <div class="card">
+            <span class="status dev">● In Development</span>
+            <h3>📰 Curated Knowledge Aggregator</h3>
+            <p>Intelligent RSS feed filtering that delivers only the top 3 most relevant articles based on user interests.</p>
+            <div class="tech">Python · FeedParser · NLP Ranking</div>
+        </div>
+
+        <!-- BOT #10: Omni-Controller -->
+        <div class="card">
+            <span class="status soon">● Coming Soon</span>
+            <h3>🎮 Unified Command Center</h3>
+            <p>The central orchestrator providing a unified Telegram dashboard to control and query all 9 underlying microservices.</p>
+            <div class="tech">Python · Microservices · Webhook Aggregation</div>
+        </div>
+
+    </div>
+
+    <!-- RESUME SECTION (Dummy) -->
+    <h2 id="resume">📄 Professional Resume</h2>
+    <div style="background:#0f1626; border:1px solid #1e293b; border-radius:16px; padding:2rem;">
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; border-bottom:1px solid #1e293b; padding-bottom:1rem; margin-bottom:1.5rem;">
+            <div><strong style="font-size:1.8rem;">Juicy Blxst</strong><br><span style="color:#94a3b8;">Senior Automation Architect</span></div>
+            <div style="text-align:right; color:#94a3b8;">📧 juicy@devportfolio.io<br>📍 Remote · Global</div>
+        </div>
+        
+        <h3 style="font-size:1.1rem; color:#60a5fa;">Summary</h3>
+        <p>Results-driven engineer with 4+ years of experience designing high-performance automation systems and API-first architectures. Proven track record of delivering enterprise-grade solutions that scale to 100k+ daily requests.</p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:1.5rem;">
+            <div>
+                <h3 style="font-size:1rem; color:#60a5fa;">Core Skills</h3>
+                <ul style="list-style:none; color:#cbd5e1;">
+                    <li>✓ Python / FastAPI / Flask</li>
+                    <li>✓ Microservices & Orchestration</li>
+                    <li>✓ Telegram / WhatsApp APIs</li>
+                    <li>✓ NLP & Transformers (HuggingFace)</li>
+                    <li>✓ OAuth / JWT / Webhook Security</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="font-size:1rem; color:#60a5fa;">Experience</h3>
+                <p><strong>Senior Automation Architect</strong><br><span style="color:#94a3b8;">Freelance · 2020 – Present</span></p>
+                <ul style="list-style:none; color:#cbd5e1;">
+                    <li>• Architected 10+ unique automation products.</li>
+                    <li>• Reduced manual workload for clients by 60%.</li>
+                    <li>• Specialized in rapid MVP deployment (under 72 hours).</li>
+                </ul>
+            </div>
+        </div>
+        <div style="margin-top:1.5rem; border-top:1px solid #1e293b; padding-top:1rem; display:flex; gap:1rem; flex-wrap:wrap;">
+            <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:20px;">📜 MIT Licensed</span>
+            <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:20px;">🔒 Security-First Mindset</span>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© 2026 Juicy Blxst · Built with 🧠 and ☕</span>
+        <span>
+            <a href="https://github.com/juicyblxst-lang" style="color:#60a5fa; text-decoration:none;">GitHub</a> · 
+            <a href="#" style="color:#60a5fa; text-decoration:none;">LinkedIn (Dummy)</a>
+        </span>
+    </div>
+
+</div>
+</body>
+</html>

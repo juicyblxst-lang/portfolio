@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juicy Blxst · Resume</title>
+    <style>
+        /* RESET & PRINT SETUP */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            padding: 2rem 1.5rem;
+            line-height: 1.5;
+        }
+        .resume {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 2.5rem 2.8rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            border-bottom: 3px solid #1e293b;
+            padding-bottom: 1.2rem;
+            margin-bottom: 1.8rem;
+        }
+        .name h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+            line-height: 1.1;
+        }
+        .name .title {
+            font-size: 1.1rem;
+            color: #3b82f6;
+            font-weight: 500;
+            margin-top: 0.2rem;
+        }
+        .contact {
+            text-align: right;
+            color: #334155;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .contact a { color: #3b82f6; text-decoration: none; }
+
+        /* SECTIONS */
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0f172a;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            border-bottom: 1.5px solid #e2e8f0;
+            padding-bottom: 0.3rem;
+            margin-top: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* SUMMARY */
+        .summary {
+            color: #334155;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* SKILLS GRID */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.5rem 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .skills-grid span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            color: #1e293b;
+            font-weight: 500;
+            display: inline-block;
+            width: fit-content;
+        }
+
+        /* EXPERIENCE / PROJECT ENTRIES */
+        .entry {
+            margin-bottom: 1.4rem;
+        }
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+        .entry-header h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        .entry-header .meta {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .entry .sub {
+            font-weight: 600;
+            color: #3b82f6;
+            font-size: 0.9rem;
+            margin-top: 0.1rem;
+        }
+        .entry ul {
+            list-style: none;
+            padding-left: 0.5rem;
+            margin-top: 0.3rem;
+        }
+        .entry ul li {
+            color: #334155;
+            font-size: 0.95rem;
+            padding-left: 1.2rem;
+            position: relative;
+            margin-bottom: 0.15rem;
+        }
+        .entry ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        /* PROJECT MINI GRID (for the bots) */
+        .project-mini-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .project-mini {
+            display: flex;
+            align-items: baseline;
+            gap: 0.3rem;
+            font-size: 0.9rem;
+        }
+        .project-mini .badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            background: #dcfce7;
+            color: #166534;
+            padding: 0.05rem 0.5rem;
+            border-radius: 12px;
+            margin-right: 0.3rem;
+            white-space: nowrap;
+        }
+        .project-mini .badge.dev {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+        .project-mini .name {
+            color: #0f172a;
+            font-weight: 500;
+        }
+        .project-mini .desc {
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+
+        /* FOOTER */
+        .footer {
+            margin-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body { background: #fff; padding: 0.2in; }
+            .resume { box-shadow: none; padding: 0; }
+            .entry { page-break-inside: avoid; }
+            .skills-grid span { background: #f1f5f9; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .project-mini .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+
+        @media (max-width: 600px) {
+            .header { flex-direction: column; }
+            .contact { text-align: left; margin-top: 0.5rem; }
+            .skills-grid { grid-template-columns: 1fr 1fr; }
+            .project-mini-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="resume">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="name">
+            <h1>Juicy Blxst</h1>
+            <div class="title">Senior Automation Architect</div>
+        </div>
+        <div class="contact">
+            📧 juicy@devportfolio.io<br>
+            🌍 Remote · Global<br>
+            🔗 <a href="https://github.com/juicyblxst-lang">github.com/juicyblxst-lang</a>
+        </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <h2>Profile</h2>
+    <div class="summary">
+        Results-driven Automation Architect with <strong>4+ years</strong> of experience engineering high-performance 
+        microservices, real-time data pipelines, and intelligent bot ecosystems. Proven track record of delivering 
+        mission-critical solutions that handle 50k+ daily requests with 99.9% uptime. Expert in API-first design, 
+        secure OAuth integrations, and rapid MVP deployment.
+    </div>
+
+    <!-- SKILLS -->
+    <h2>Core Competencies</h2>
+    <div class="skills-grid">
+        <span>Python (FastAPI/Flask)</span>
+        <span>Microservices Orchestration</span>
+        <span>Telegram / WhatsApp APIs</span>
+        <span>NLP & Transformers</span>
+        <span>Webhook & Event-Driven Arch</span>
+        <span>OAuth 2.0 / JWT Security</span>
+        <span>Celery / Redis / Async</span>
+        <span>AWS / GCP (Cloud)</span>
+        <span>RAG / Vector Databases</span>
+    </div>
+
+    <!-- EXPERIENCE (FREELANCE) -->
+    <h2>Professional Experience</h2>
+    
+    <div class="entry">
+        <div class="entry-header">
+            <h3>Senior Automation Architect · Freelance</h3>
+            <span class="meta">2020 – Present</span>
+        </div>
+        <div class="sub">Independent Consultant · Global Client Base</div>
+        <ul>
+            <li>Architected and deployed 10+ production-grade automation products for startups and enterprises.</li>
+            <li>Reduced manual operational workload for clients by an average of 60% through intelligent automation.</li>
+            <li>Specialized in rapid prototyping — delivering MVPs in under 72 hours from concept to deployment.</li>
+            <li>Built scalable microservice ecosystems that process 100k+ API requests daily with zero downtime.</li>
+        </ul>
+    </div>
+
+    <!-- SELECTED PROJECTS (THE BOTS) -->
+    <h2>Flagship Automation Suite (10-Product Ecosystem)</h2>
+    <p style="color:#475569; font-size:0.9rem; margin-bottom:0.8rem;">
+        A comprehensive portfolio of intelligent bots designed for enterprise-scale automation.
+    </p>
+
+    <div class="project-mini-grid">
+        <div class="project-mini"><span class="badge">● LIVE</span><span class="name">Crypto Market Sentinel:</span><span class="desc">Real-time BTC alerts (CoinGecko + Telegram).</span></div>
+        <div class="project-mini"><span class="badge dev">DEV</span><span class="name">Talent Acquisition Engine:</span><span class="desc">Job scraping + semantic matching.</span></div>
+        <div class="project-mini"><span class="badge dev">DEV</span><span class="name">Autonomous Scheduler:</span><span class="desc">Google Calendar OAuth negotiation.</span></div>
+        <div class="project-mini"><span class="badge dev">DEV</span><span class="name">Brand Reputation Radar:</span><span class="desc">NLP sentiment analysis.</span></div>
+        <div class="project-mini"><span class="badge dev">DEV</span><span class="name">Finance Data Pipeline:</span><span class="desc">Gmail receipt extraction.</span></div>
+        <div class="project-mini"><span class="badge dev">DEV</span><span class="name">Infrastructure Monitor:</span><span class="desc">Uptime + SSL expiry detection.</span></div>
+        <div class="project-mini"><span class="badge dev">DEV</span><span class="name">Generative Document Q&A:</span><span class="desc">RAG pipeline for PDFs.</span></div>
+        <div class="project-mini"><span class="badge dev">DEV</span><span class="name">Omni-Channel Notifier:</span><span class="desc">WhatsApp Business API alerts.</span></div>
+        <div class="project-mini"><span class="badge dev">DEV</span><span class="name">Curated Knowledge Aggregator:</span><span class="desc">RSS + NLP relevance ranking.</span></div>
+        <div class="project-mini"><span class="badge">SOON</span><span class="name">Unified Command Center:</span><span class="desc">Central Telegram orchestrator.</span></div>
+    </div>
+
+    <!-- ADDITIONAL INFO -->
+    <h2>Education & Certifications</h2>
+    <div style="display:flex; flex-wrap:wrap; gap:1.5rem 3rem; color:#334155;">
+        <div><strong>B.S. Computer Science</strong> (Dummy University · 2018-2022)</div>
+        <div><strong>AWS Certified Developer</strong> (Associate)</div>
+        <div><strong>HuggingFace NLP</strong> (Course Completion)</div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>📄 References available upon request</span>
+        <span>Open to full-time / contract engagements</span>
+    </div>
+
+</div>
+</body>
+</html>
