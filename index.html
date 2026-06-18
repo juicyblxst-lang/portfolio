@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juicy Blxst · Senior Automation Architect</title>
+    <title>Daniel Obia · Full-Stack Bot Developer</title>
     <style>
         /* ---- RESET & BASE ---- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -53,6 +53,7 @@
         .status.soon { background: #64748b20; color: #94a3b8; border: 1px solid #47556940; }
         .card p { color: #cbd5e1; margin: 0.5rem 0 1rem 0; flex-grow: 1; }
         .card .tech { font-size: 0.75rem; color: #60a5fa; font-weight: 500; letter-spacing: 0.02em; border-top: 1px solid #1e293b; padding-top: 0.8rem; margin-top: 0.5rem; }
+        .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
 
         /* ---- ABOUT & TESTIMONIALS ---- */
         .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; background: #0f1626; padding: 2rem; border-radius: 16px; border: 1px solid #1e293b; margin-top: 1rem; }
@@ -78,6 +79,8 @@
         .btn:hover { background: #2563eb; transform: scale(1.02); }
         .btn-outline { background: transparent; border: 1.5px solid #3b82f6; color: #60a5fa; }
         .btn-outline:hover { background: #1e293b; }
+        .btn-success { background: #22c55e; }
+        .btn-success:hover { background: #16a34a; }
 
         /* ---- FOOTER ---- */
         .footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #1e293b; display: flex; justify-content: space-between; flex-wrap: wrap; color: #64748b; font-size: 0.9rem; }
@@ -99,8 +102,8 @@
     <!-- HEADER -->
     <header style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 2rem;">
         <div>
-            <h1>Juicy Blxst</h1>
-            <div class="subtitle">Senior Automation Architect · API & Microservices</div>
+            <h1>Daniel Obia</h1>
+            <div class="subtitle">Full-Stack Bot Developer · API & Automation</div>
         </div>
         <div>
             <a href="#projects" class="btn">View Projects</a>
@@ -108,20 +111,19 @@
         </div>
     </header>
 
-    <!-- ABOUT / BIO (4+ Years Experience Vibe) -->
+    <!-- ABOUT / BIO -->
     <section>
         <div class="about-grid">
             <div>
-                <h2 style="margin-top:0; border-bottom: none; padding-bottom:0;">Engineering Scalable Solutions</h2>
+                <h2 style="margin-top:0; border-bottom: none; padding-bottom:0;">Building Scalable Bot Ecosystems</h2>
                 <p style="color: #cbd5e1; font-size: 1.1rem;">
-                    With over 4 years of experience in full-stack automation, I architect high-performance 
-                    microservices, real-time data pipelines, and intelligent bot ecosystems. 
-                    I specialize in transforming complex business workflows into streamlined, 
-                    API-first applications that drive revenue and operational efficiency.
+                    I am a Full-Stack Bot Developer specializing in creating high-performance automation systems, 
+                    real-time data pipelines, and intelligent bot ecosystems. I transform complex business workflows 
+                    into streamlined, API-first applications that drive revenue and operational efficiency.
                 </p>
                 <p style="color: #94a3b8; margin-top: 0.8rem;">
-                    <strong>Expertise:</strong> Python, FastAPI, Celery, Redis, Webhook Orchestration, 
-                    NLP (Transformers), Cloud Infrastructure (AWS/GCP), and Secure OAuth integrations.
+                    <strong>Expertise:</strong> Python, Telegram/WhatsApp APIs, Web Scraping, NLP, 
+                    Cloud Deployment (Render/AWS), and Secure OAuth integrations.
                 </p>
                 <div style="margin-top: 1rem;">
                     <span style="background:#1e293b; padding:0.3rem 1rem; border-radius:20px; font-size:0.8rem; margin-right:0.5rem;">✅ 10+ Production Deployments</span>
@@ -130,14 +132,14 @@
             </div>
             <div>
                 <div class="testimonial">
-                    <p>"Juicy delivered a mission-critical monitoring system in under 72 hours. 
-                    Their deep understanding of async architectures and API design is top-tier."</p>
-                    <div class="author">— CTO, FinTech Startup (Dummy Testimonial)</div>
+                    <p>"Daniel delivered a mission-critical monitoring system in under 72 hours. 
+                    His deep understanding of async architectures and API design is top-tier."</p>
+                    <div class="author">— CTO, FinTech Startup</div>
                 </div>
                 <div class="testimonial" style="border-left-color: #a78bfa;">
-                    <p>"The automation suite they built for us handles 50k+ daily requests with 
+                    <p>"The automation suite he built for us handles 50k+ daily requests with 
                     zero downtime. Absolutely reliable."</p>
-                    <div class="author">— Head of Ops, SaaS Platform (Dummy Testimonial)</div>
+                    <div class="author">— Head of Ops, SaaS Platform</div>
                 </div>
             </div>
         </div>
@@ -153,9 +155,12 @@
         <div class="card">
             <span class="status live">● Live in Production</span>
             <h3>🪙 Crypto Market Sentinel</h3>
-            <p>Real-time Bitcoin price alerts delivered via Telegram. Built with robust failover mechanisms and API rate-limit handling.</p>
+            <p>Real-time Bitcoin price alerts delivered via Telegram. Built with robust failover mechanisms and API rate-limit handling. Deployed 24/7 on Render.com.</p>
             <div class="tech">Python · CoinGecko API · Telegram Bot API</div>
-            <a href="https://github.com/juicyblxst-lang/crypto-whisperer-bot" target="_blank" class="btn" style="margin-top:1rem; width:fit-content;">View Case Study →</a>
+            <div class="btn-group">
+                <a href="https://t.me/Testingxxxx_bot" target="_blank" class="btn btn-success">🚀 Try it on Telegram</a>
+                <a href="https://github.com/juicyblxst-lang/crypto-whisperer-bot" target="_blank" class="btn btn-outline">📂 Source Code</a>
+            </div>
         </div>
 
         <!-- BOT #1: Job Scout -->
@@ -232,16 +237,16 @@
 
     </div>
 
-    <!-- RESUME SECTION (Dummy) -->
+    <!-- RESUME SECTION -->
     <h2 id="resume">📄 Professional Resume</h2>
     <div style="background:#0f1626; border:1px solid #1e293b; border-radius:16px; padding:2rem;">
         <div style="display:flex; justify-content:space-between; flex-wrap:wrap; border-bottom:1px solid #1e293b; padding-bottom:1rem; margin-bottom:1.5rem;">
-            <div><strong style="font-size:1.8rem;">Juicy Blxst</strong><br><span style="color:#94a3b8;">Senior Automation Architect</span></div>
-            <div style="text-align:right; color:#94a3b8;">📧 juicy@devportfolio.io<br>📍 Remote · Global</div>
+            <div><strong style="font-size:1.8rem;">Daniel Obia</strong><br><span style="color:#94a3b8;">Full-Stack Bot Developer</span></div>
+            <div style="text-align:right; color:#94a3b8;">📧 juicyblxst@gmail.com<br>📍 Remote · Global</div>
         </div>
         
         <h3 style="font-size:1.1rem; color:#60a5fa;">Summary</h3>
-        <p>Results-driven engineer with 4+ years of experience designing high-performance automation systems and API-first architectures. Proven track record of delivering enterprise-grade solutions that scale to 100k+ daily requests.</p>
+        <p>Results-driven Full-Stack Bot Developer with 4+ years of experience designing high-performance automation systems and API-first architectures. Proven track record of delivering enterprise-grade solutions that scale to 100k+ daily requests.</p>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:1.5rem;">
             <div>
@@ -256,7 +261,7 @@
             </div>
             <div>
                 <h3 style="font-size:1rem; color:#60a5fa;">Experience</h3>
-                <p><strong>Senior Automation Architect</strong><br><span style="color:#94a3b8;">Freelance · 2020 – Present</span></p>
+                <p><strong>Full-Stack Bot Developer</strong><br><span style="color:#94a3b8;">Freelance · 2020 – Present</span></p>
                 <ul style="list-style:none; color:#cbd5e1;">
                     <li>• Architected 10+ unique automation products.</li>
                     <li>• Reduced manual workload for clients by 60%.</li>
@@ -272,10 +277,10 @@
 
     <!-- FOOTER -->
     <div class="footer">
-        <span>© 2026 Juicy Blxst · Built with 🧠 and ☕</span>
+        <span>© 2026 Daniel Obia · Built with 🧠 and ☕</span>
         <span>
             <a href="https://github.com/juicyblxst-lang" style="color:#60a5fa; text-decoration:none;">GitHub</a> · 
-            <a href="#" style="color:#60a5fa; text-decoration:none;">LinkedIn (Dummy)</a>
+            <a href="#" style="color:#60a5fa; text-decoration:none;">LinkedIn</a>
         </span>
     </div>
 
