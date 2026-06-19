@@ -1,370 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniel Obia · Full-Stack Bot Developer</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BREEZE · Bot Developer</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* ---- RESET & BASE ---- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ---- Reset & Base ---- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            background: #0b0f19;
-            color: #e2e8f0;
+            background: #0b0e14;
+            color: #e8edf5;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            padding: 2rem 1rem;
+            padding: 2rem 1.5rem;
         }
-        .container { max-width: 1200px; margin: 0 auto; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-        /* ---- TYPOGRAPHY ---- */
-        h1 { font-size: 3.5rem; font-weight: 700; letter-spacing: -0.02em; background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        h2 { font-size: 2.2rem; font-weight: 600; margin-top: 3rem; margin-bottom: 1.5rem; letter-spacing: -0.01em; color: #f1f5f9; border-bottom: 2px solid #1e293b; padding-bottom: 0.75rem; }
-        h3 { font-size: 1.4rem; font-weight: 600; color: #f1f5f9; }
-        .subtitle { font-size: 1.4rem; color: #94a3b8; margin-top: -0.5rem; margin-bottom: 2rem; font-weight: 300; }
-        .tagline { font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin-bottom: 2rem; }
+        /* ---- Typography ---- */
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        h1 {
+            font-size: 3.2rem;
+            background: linear-gradient(135deg, #f0f4ff 0%, #7aa9ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            margin-bottom: 0.25rem;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #d6e0f0;
+            margin: 2rem 0 1rem;
+            border-left: 4px solid #4f8cf7;
+            padding-left: 1rem;
+        }
+        .tagline {
+            font-size: 1.25rem;
+            color: #9aaec9;
+            margin-bottom: 0.5rem;
+        }
+        .subhead {
+            font-size: 1.1rem;
+            color: #b0c4de;
+            max-width: 700px;
+            margin: 1rem 0 1.5rem;
+        }
 
-        /* ---- LAYOUT & CARDS ---- */
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.8rem; margin-top: 1rem; }
-        .card {
-            background: #141b2b;
-            border: 1px solid #1e293b;
+        /* ---- Cards ---- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1.5rem;
+        }
+        .project-card {
+            background: #151e2a;
             border-radius: 16px;
-            padding: 1.8rem;
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-            cursor: default;
+            padding: 1.5rem;
+            border: 1px solid #283340;
+            transition: transform 0.2s ease, border-color 0.2s;
             display: flex;
             flex-direction: column;
-            backdrop-filter: blur(4px);
         }
-        .card:hover { transform: translateY(-6px); border-color: #3b82f6; box-shadow: 0 12px 30px -10px #0f172a; }
-        .card .status {
-            display: inline-block;
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: #4f8cf7;
+        }
+        .project-card h3 {
+            font-size: 1.3rem;
+            color: #e0e9f5;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .project-card .badge {
+            background: #1e7b3c;
+            color: #c8f0d8;
             font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
-            align-self: flex-start;
-        }
-        .status.live { background: #22c55e20; color: #4ade80; border: 1px solid #22c55e40; }
-        .status.dev { background: #eab30820; color: #facc15; border: 1px solid #eab30840; }
-        .status.soon { background: #64748b20; color: #94a3b8; border: 1px solid #47556940; }
-        .card p { color: #cbd5e1; margin: 0.5rem 0 1rem 0; flex-grow: 1; }
-        .card .tech { font-size: 0.75rem; color: #60a5fa; font-weight: 500; letter-spacing: 0.02em; border-top: 1px solid #1e293b; padding-top: 0.8rem; margin-top: 0.5rem; }
-        .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
-        .tag-group { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.5rem 0; }
-        .tag { background: #1e293b; padding: 0.15rem 0.6rem; border-radius: 12px; font-size: 0.65rem; color: #94a3b8; }
-
-        /* ---- ABOUT & TESTIMONIALS ---- */
-        .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; background: #0f1626; padding: 2rem; border-radius: 16px; border: 1px solid #1e293b; margin-top: 1rem; }
-        .testimonial { background: #141b2b; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3b82f6; margin-top: 1rem; }
-        .testimonial p { font-style: italic; color: #e2e8f0; }
-        .testimonial .author { font-style: normal; font-weight: 600; color: #94a3b8; margin-top: 0.5rem; }
-
-        /* ---- BUTTONS & LINKS ---- */
-        .btn {
-            display: inline-block;
-            background: #3b82f6;
-            color: #fff;
             font-weight: 600;
-            padding: 0.7rem 1.8rem;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: background 0.2s ease, transform 0.1s ease;
-            border: none;
+            padding: 0.15rem 0.7rem;
+            border-radius: 20px;
+            margin-left: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .project-card .badge-dev {
+            background: #7a5a1a;
+            color: #f5e1a0;
+        }
+        .project-card .badge-coming {
+            background: #3a3f5a;
+            color: #b0bcdb;
+        }
+        .project-card p {
+            color: #bcc9dd;
+            font-size: 0.95rem;
+            margin: 0.5rem 0 0.8rem;
+            flex: 1;
+        }
+        .project-card .upgrade {
+            background: #0f2a3a;
+            border-left: 4px solid #4f8cf7;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
             font-size: 0.9rem;
-            margin-top: 0.5rem;
+            color: #b3d0ff;
+            margin: 0.5rem 0 1rem;
         }
-        .btn:hover { background: #2563eb; transform: scale(1.02); }
-        .btn-outline { background: transparent; border: 1.5px solid #3b82f6; color: #60a5fa; }
-        .btn-outline:hover { background: #1e293b; }
-        .btn-success { background: #22c55e; }
-        .btn-success:hover { background: #16a34a; }
+        .project-card .upgrade strong {
+            color: #8bb8ff;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.6rem 0 0.8rem;
+        }
+        .tech-tags span {
+            background: #1f2a38;
+            color: #a0b8d4;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            border: 1px solid #2a384a;
+        }
+        .tech-stack {
+            font-size: 0.8rem;
+            color: #7d93b0;
+            border-top: 1px solid #1f2a38;
+            padding-top: 0.8rem;
+            margin-top: 0.4rem;
+        }
+        .tech-stack i {
+            margin-right: 4px;
+        }
+        .project-card .status {
+            font-size: 0.75rem;
+            color: #6c8bb0;
+            margin-top: 0.3rem;
+        }
+        .status i {
+            color: #4f8cf7;
+            margin-right: 4px;
+        }
 
-        /* ---- VIDEO EMBED ---- */
-        .video-wrapper {
-            margin: 0.5rem 0 0.5rem 0;
+        /* ---- Testimonials & Resume ---- */
+        .testimonial {
+            background: #111b26;
             border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 16 / 9;
-            background: #000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            padding: 1.2rem 1.8rem;
+            border-left: 4px solid #4f8cf7;
+            margin: 1.5rem 0;
         }
-        .video-wrapper iframe {
-            width: 100%;
-            height: 100%;
-            display: block;
-            border: none;
+        .testimonial p {
+            font-style: italic;
+            color: #d0def0;
+        }
+        .testimonial .attribution {
+            font-style: normal;
+            font-weight: 500;
+            color: #8babd0;
+            margin-top: 0.3rem;
+        }
+        .resume-section {
+            background: #111b26;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2.5rem;
+        }
+        .resume-section h2 {
+            border-left-color: #6a8fc0;
+            margin-top: 0;
+        }
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .resume-grid ul {
+            list-style: none;
+            padding: 0;
+        }
+        .resume-grid ul li {
+            padding: 0.3rem 0;
+            color: #c5d5eb;
+        }
+        .resume-grid ul li i {
+            color: #4f8cf7;
+            width: 1.5rem;
+        }
+        .contact {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .contact a {
+            color: #8bb8ff;
+            text-decoration: none;
+        }
+        .contact a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            text-align: center;
+            color: #5a6f8a;
+            font-size: 0.8rem;
+            margin-top: 3rem;
+            border-top: 1px solid #1f2a38;
+            padding-top: 2rem;
         }
 
-        /* ---- FOOTER ---- */
-        .footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #1e293b; display: flex; justify-content: space-between; flex-wrap: wrap; color: #64748b; font-size: 0.9rem; }
-
-        /* ---- RESPONSIVE ---- */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.6rem; }
-            .about-grid { grid-template-columns: 1fr; }
-            .project-grid { grid-template-columns: 1fr; }
+        /* ---- Responsive ---- */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.4rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .resume-grid { grid-template-columns: 1fr; }
         }
-        /* Fade-in animation */
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .container { animation: fadeUp 0.8s ease-out forwards; }
     </style>
 </head>
 <body>
 <div class="container">
 
-    <!-- HEADER -->
-    <header style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 2rem;">
-        <div>
-            <h1>Daniel Obia</h1>
-            <div class="subtitle">Full-Stack Bot Developer · API & Automation</div>
-        </div>
-        <div>
-            <a href="#projects" class="btn">View Projects</a>
-            <a href="#resume" class="btn btn-outline">Resume</a>
+    <!-- ===== HERO ===== -->
+    <header>
+        <h1>BREEZE</h1>
+        <p class="tagline">Full-Stack Bot Developer · API &amp; Automation</p>
+        <p class="subhead">
+            Building scalable bot ecosystems – high‑performance automation,
+            real‑time data pipelines, and intelligent trading infrastructure.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.2rem 0 0.5rem;">
+            <span style="background:#1a2635; padding:0.3rem 1rem; border-radius:30px;">✅ 10+ Production Deployments</span>
+            <span style="background:#1a2635; padding:0.3rem 1rem; border-radius:30px;">🏆 4+ Years Experience</span>
         </div>
     </header>
 
-    <!-- ABOUT / BIO -->
+    <!-- ===== TESTIMONIALS ===== -->
+    <div class="testimonial">
+        <p>“BREEZE delivered a mission‑critical monitoring system in under 72 hours. Deep async architecture and API design is top‑tier.”</p>
+        <div class="attribution">— CTO, FinTech Startup</div>
+    </div>
+    <div class="testimonial">
+        <p>“The automation suite handles 50k+ daily requests with zero downtime. Absolutely reliable.”</p>
+        <div class="attribution">— Head of Ops, SaaS Platform</div>
+    </div>
+
+    <!-- ===== PROJECTS ===== -->
     <section>
-        <div class="about-grid">
-            <div>
-                <h2 style="margin-top:0; border-bottom: none; padding-bottom:0;">Building Scalable Bot Ecosystems</h2>
-                <p style="color: #cbd5e1; font-size: 1.1rem;">
-                    I am a Full-Stack Bot Developer specializing in creating high-performance automation systems,
-                    real-time data pipelines, and intelligent bot ecosystems. I transform complex business workflows
-                    into streamlined, API-first applications that drive revenue and operational efficiency.
-                </p>
-                <p style="color: #94a3b8; margin-top: 0.8rem;">
-                    <strong>Expertise:</strong> Python, Telegram/WhatsApp APIs, Web Scraping, NLP,
-                    Cloud Deployment (Render/AWS), Web3/Polygon, and Secure OAuth integrations.
-                </p>
-                <div style="margin-top: 1rem;">
-                    <span style="background:#1e293b; padding:0.3rem 1rem; border-radius:20px; font-size:0.8rem; margin-right:0.5rem;">✅ 10+ Production Deployments</span>
-                    <span style="background:#1e293b; padding:0.3rem 1rem; border-radius:20px; font-size:0.8rem;">🏆 4+ Years Experience</span>
+        <h2>🚀 Flagship Automation Suite</h2>
+        <p style="color:#9aaec9; margin-bottom:1.5rem;">A comprehensive ecosystem of intelligent bots designed for enterprise‑scale automation.</p>
+
+        <div class="projects-grid">
+
+            <!-- Sniper Bot -->
+            <div class="project-card">
+                <h3>🎯 Polymarket Sniper Bot <span class="badge">Live</span></h3>
+                <p>Professional‑grade automated trading bot for prediction markets. Connects to Polymarket CLOB API, monitors order books 24/7, and executes trades when price targets are met. Full Telegram interface with risk management and trade history.</p>
+                <div class="upgrade">⚡ <strong>Upgrade:</strong> Now with OBI/CVD order‑flow analytics – reads order book pressure, not just price, for smarter entries.</div>
+                <div class="tech-tags">
+                    <span>Real‑Time Sniping</span><span>Telegram Interface</span><span>Multi‑Market</span><span>Risk Management</span><span>SQLite DB</span><span>Web3.py</span>
                 </div>
+                <div class="tech-stack"><i class="fab fa-python"></i> Python · py‑clob‑client · Web3.py · python‑telegram‑bot · SQLite</div>
+                <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
+            </div>
+
+            <!-- Crypto Sentinel -->
+            <div class="project-card">
+                <h3>📈 Crypto Market Sentinel <span class="badge">Live</span></h3>
+                <p>Real‑time Bitcoin price alerts delivered via Telegram. Built with robust failover and API rate‑limit handling. Deployed 24/7 on Render.com.</p>
+                <div class="tech-tags"><span>Price Alerts</span><span>Telegram</span><span>Failover</span></div>
+                <div class="tech-stack"><i class="fab fa-python"></i> Python · CoinGecko API · Telegram Bot API</div>
+                <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
+            </div>
+
+            <!-- Arbitrage Scanner -->
+            <div class="project-card">
+                <h3>🚀 Polymarket Arbitrage Scanner <span class="badge">Live</span></h3>
+                <p>Real‑time Telegram bot that monitors Polymarket for risk‑free arbitrage when YES+NO prices sum below $1.00. Streams live order‑book data via WebSocket and sends instant alerts.</p>
+                <div class="upgrade">⚡ <strong>Upgrade:</strong> Uses CVD to filter stale quotes – only signals when real volume backs the mispricing.</div>
+                <div class="tech-tags">
+                    <span>Real‑time Arbitrage</span><span>WebSocket Streaming</span><span>Multi‑Market Scan</span><span>Telegram Interface</span><span>Simulation Mode</span><span>SQLite Logging</span>
+                </div>
+                <div class="tech-stack"><i class="fab fa-python"></i> Python · websockets · python‑telegram‑bot · SQLite · asyncio</div>
+                <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
+            </div>
+
+            <!-- LP Farmer -->
+            <div class="project-card">
+                <h3>💧 Polymarket LP Farming Bot <span class="badge">Live</span></h3>
+                <p>Automated liquidity provision bot that places limit orders on both sides of the order book to earn trading fees and liquidity rewards. Dynamically adjusts spreads based on market conditions.</p>
+                <div class="upgrade">⚡ <strong>Upgrade:</strong> Dynamically skews quotes using OBI – protects against aggressive takers and improves fill quality.</div>
+                <div class="tech-tags">
+                    <span>Automated Limit Orders</span><span>Dynamic Spread Adjustment</span><span>Multi‑Market Support</span><span>Simulation Mode</span><span>Telegram Interface</span><span>SQLite Trade History</span>
+                </div>
+                <div class="tech-stack"><i class="fab fa-python"></i> Python · websockets · py‑clob‑client · python‑telegram‑bot · SQLite · web3.py</div>
+                <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
+            </div>
+
+            <!-- Copy Trading -->
+            <div class="project-card">
+                <h3>📋 Polymarket Copy Trading Bot <span class="badge">Live</span></h3>
+                <p>Automated copy trading bot that monitors top‑performing wallets and mirrors their trades in real‑time. Set position scaling (0.5x, 1x, 2x) and replicate successful traders.</p>
+                <div class="upgrade">⚡ <strong>Upgrade:</strong> Filters copied trades with CVD – avoids mimicking whale bluffs, mirrors only real moves.</div>
+                <div class="tech-tags">
+                    <span>Multi‑Wallet Tracking</span><span>Real‑Time Trade Mirroring</span><span>Position Scaling</span><span>Max Position Limits</span><span>Simulation Mode</span><span>Telegram Interface</span>
+                </div>
+                <div class="tech-stack"><i class="fab fa-python"></i> Python · py‑clob‑client · python‑telegram‑bot · SQLite · web3.py</div>
+                <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
+            </div>
+
+            <!-- Kalshi Arb -->
+            <div class="project-card">
+                <h3>🔄 Polymarket‑Kalshi Arbitrage Bot <span class="badge">Live</span></h3>
+                <p>Cross‑platform arbitrage bot that continuously scans Polymarket and Kalshi for price discrepancies on the same event markets. Alerts and executes risk‑free trades across both platforms.</p>
+                <div class="upgrade">⚡ <strong>Upgrade:</strong> Cross‑validates with micro‑price (volume‑weighted mid) to avoid quote‑stale traps.</div>
+                <div class="tech-tags">
+                    <span>Cross‑Platform Scanning</span><span>Real‑Time Price Comparison</span><span>Configurable Profit Threshold</span><span>Market Pair Management</span><span>Simulation Mode</span><span>Telegram Interface</span>
+                </div>
+                <div class="tech-stack"><i class="fab fa-python"></i> Python · py‑clob‑client · Kalshi REST API · python‑telegram‑bot · SQLite</div>
+                <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
+            </div>
+
+            <!-- In Development / Coming Soon -->
+            <div class="project-card">
+                <h3>🧠 Generative Document Q&amp;A <span class="badge badge-dev">Dev</span></h3>
+                <p>RAG (Retrieval-Augmented Generation) pipeline that answers complex queries from 100+ page business PDFs.</p>
+                <div class="tech-tags"><span>RAG</span><span>PyPDF2</span><span>ChromaDB</span><span>HuggingFace</span></div>
+                <div class="tech-stack"><i class="fab fa-python"></i> Python · PyPDF2 · ChromaDB · HuggingFace</div>
+                <div class="status"><i class="fas fa-spinner fa-spin"></i> In Development</div>
+            </div>
+
+            <div class="project-card">
+                <h3>📱 Omni‑Channel Notifier <span class="badge badge-dev">Dev</span></h3>
+                <p>Secure WhatsApp Business API integration for delivering critical time‑based reminders and alerts.</p>
+                <div class="tech-tags"><span>WhatsApp API</span><span>Webhooks</span><span>SQLite</span></div>
+                <div class="tech-stack"><i class="fab fa-python"></i> Python · Meta API · Webhooks · SQLite</div>
+                <div class="status"><i class="fas fa-spinner fa-spin"></i> In Development</div>
+            </div>
+
+            <div class="project-card">
+                <h3>📰 Curated Knowledge Aggregator <span class="badge badge-coming">Coming</span></h3>
+                <p>Intelligent RSS feed filtering that delivers only the top 3 most relevant articles based on user interests.</p>
+                <div class="tech-tags"><span>RSS</span><span>FeedParser</span><span>NLP Ranking</span></div>
+                <div class="tech-stack"><i class="fab fa-python"></i> Python · FeedParser · NLP Ranking</div>
+                <div class="status"><i class="fas fa-hourglass-half"></i> Coming Soon</div>
+            </div>
+
+            <div class="project-card">
+                <h3>🎮 Unified Command Center <span class="badge badge-coming">Coming</span></h3>
+                <p>Central orchestrator providing a unified Telegram dashboard to control and query all underlying microservices.</p>
+                <div class="upgrade">⚡ <strong>Upgrade:</strong> Unified control plane – manage all bots, view health, and trigger restarts from one Telegram dashboard.</div>
+                <div class="tech-tags"><span>Microservices</span><span>Webhook Aggregation</span><span>Telegram</span></div>
+                <div class="tech-stack"><i class="fab fa-python"></i> Python · Microservices · Webhook Aggregation</div>
+                <div class="status"><i class="fas fa-hourglass-half"></i> Coming Soon</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== RESUME ===== -->
+    <section class="resume-section">
+        <h2>📄 Professional Resume</h2>
+        <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+            <h3 style="margin:0;">BREEZE</h3>
+            <span style="color:#9aaec9;">Full‑Stack Bot Developer</span>
+            <span style="color:#6c8bb0;"><i class="fas fa-envelope"></i> juicyblxst@gmail.com</span>
+            <span style="color:#6c8bb0;"><i class="fas fa-map-marker-alt"></i> Remote · Global</span>
+        </div>
+
+        <div class="resume-grid">
+            <div>
+                <h4 style="color:#d0def0;">Summary</h4>
+                <p style="color:#b0c4de;">Results‑driven Full‑Stack Bot Developer with 4+ years of experience designing high‑performance automation systems and API‑first architectures. Proven track record of delivering enterprise‑grade solutions that scale to 100k+ daily requests.</p>
+                <h4 style="color:#d0def0; margin-top:1.2rem;">Core Skills</h4>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Python / FastAPI / Flask</li>
+                    <li><i class="fas fa-check-circle"></i> Microservices &amp; Orchestration</li>
+                    <li><i class="fas fa-check-circle"></i> Telegram / WhatsApp APIs</li>
+                    <li><i class="fas fa-check-circle"></i> NLP &amp; Transformers (HuggingFace)</li>
+                    <li><i class="fas fa-check-circle"></i> Web3 / Polygon / CLOB APIs</li>
+                    <li><i class="fas fa-check-circle"></i> OAuth / JWT / Webhook Security</li>
+                </ul>
             </div>
             <div>
-                <div class="testimonial">
-                    <p>"Daniel delivered a mission-critical monitoring system in under 72 hours.
-                    His deep understanding of async architectures and API design is top-tier."</p>
-                    <div class="author">— CTO, FinTech Startup</div>
-                </div>
-                <div class="testimonial" style="border-left-color: #a78bfa;">
-                    <p>"The automation suite he built for us handles 50k+ daily requests with
-                    zero downtime. Absolutely reliable."</p>
-                    <div class="author">— Head of Ops, SaaS Platform</div>
+                <h4 style="color:#d0def0;">Experience</h4>
+                <p style="color:#b0c4de;"><strong>Full‑Stack Bot Developer</strong><br />Freelance · 2020 – Present</p>
+                <ul>
+                    <li><i class="fas fa-arrow-right"></i> Architected 10+ unique automation products.</li>
+                    <li><i class="fas fa-arrow-right"></i> Reduced manual workload for clients by 60%.</li>
+                    <li><i class="fas fa-arrow-right"></i> Specialized in rapid MVP deployment (under 72 hours).</li>
+                </ul>
+                <div style="margin-top:1.5rem; display:flex; gap:1.2rem; flex-wrap:wrap;">
+                    <span style="background:#1a2635; padding:0.2rem 1rem; border-radius:20px;">📜 MIT Licensed</span>
+                    <span style="background:#1a2635; padding:0.2rem 1rem; border-radius:20px;">🔒 Security‑First Mindset</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROJECTS (THE 10 BOTS) -->
-    <h2 id="projects">🚀 Flagship Automation Suite</h2>
-    <p class="tagline">A comprehensive ecosystem of intelligent bots designed for enterprise-scale automation.</p>
-
-    <div class="project-grid">
-
-        <!-- BOT #1: Polymarket Sniper Bot (LIVE) -->
-        <div class="card">
-            <span class="status live">● Live in Production</span>
-            <h3>🎯 Polymarket Sniper Bot</h3>
-            <p>Professional-grade automated trading bot for prediction markets. Connects to Polymarket's CLOB API, monitors order books 24/7, and automatically executes trades when price targets are met. Full Telegram interface with risk management, trade history, and real USDC balance checking.</p>
-            <div class="tag-group">
-                <span class="tag">Real-Time Sniping</span>
-                <span class="tag">Telegram Interface</span>
-                <span class="tag">Multi-Market</span>
-                <span class="tag">Risk Management</span>
-                <span class="tag">SQLite DB</span>
-                <span class="tag">Web3.py</span>
-            </div>
-            <div class="tech">Python · py-clob-client · Web3.py · python-telegram-bot · SQLite</div>
-            <div class="btn-group">
-                <a href="https://t.me/krrisssss_bot" target="_blank" class="btn btn-success">🚀 Try it on Telegram</a>
-                <a href="https://github.com/juicyblxst-lang/polymarket-sniper-bot-KrissBot-" target="_blank" class="btn btn-outline">📂 View Source Code</a>
-            </div>
-        </div>
-
-        <!-- BOT #2: Crypto Whisperer (LIVE) -->
-        <div class="card">
-            <span class="status live">● Live in Production</span>
-            <h3>🪙 Crypto Market Sentinel</h3>
-            <p>Real-time Bitcoin price alerts delivered via Telegram. Built with robust failover mechanisms and API rate-limit handling. Deployed 24/7 on Render.com.</p>
-            <!-- VIDEO DEMO - Replace YOUR_VIDEO_ID_HERE with your actual YouTube Video ID -->
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-            </div>
-            <div class="tech">Python · CoinGecko API · Telegram Bot API</div>
-            <div class="btn-group">
-                <a href="https://t.me/Testingxxxx_bot" target="_blank" class="btn btn-success">🚀 Try it on Telegram</a>
-                <a href="https://github.com/juicyblxst-lang/crypto-whisperer-bot" target="_blank" class="btn btn-outline">📂 Source Code</a>
-            </div>
-        </div>
-
-        <!-- BOT #3: Polymarket Arbitrage Scanner (LIVE) -->
-        <div class="card">
-            <span class="status live">● Live in Production</span>
-            <h3>🚀 Polymarket Arbitrage Scanner</h3>
-            <p>Real‑time Telegram bot that monitors Polymarket prediction markets and automatically detects risk‑free arbitrage opportunities when the YES and NO token prices sum below $1.00. Streams live order‑book data via WebSocket, calculates profit margins, and sends instant alerts – allowing traders to lock in guaranteed profits before the market corrects.</p>
-            <div class="tag-group">
-                <span class="tag">Real‑time Arbitrage</span>
-                <span class="tag">WebSocket Streaming</span>
-                <span class="tag">Multi‑Market Scan</span>
-                <span class="tag">Telegram Interface</span>
-                <span class="tag">Simulation Mode</span>
-                <span class="tag">SQLite Logging</span>
-            </div>
-            <div class="tech">Python · websockets · python-telegram-bot · SQLite · asyncio</div>
-            <div class="btn-group">
-                <a href="https://t.me/Pollyarb_bot" target="_blank" class="btn btn-success">🚀 Try it on Telegram</a>
-                <a href="https://github.com/juicyblxst-lang/polymarket-arbitrage-bot" target="_blank" class="btn btn-outline">📂 View Source Code</a>
-            </div>
-        </div>
-
-        <!-- BOT #4: Polymarket LP Farming Bot (LIVE) -->
-        <div class="card">
-            <span class="status live">● Live in Production</span>
-            <h3>💧 Polymarket LP Farming Bot</h3>
-            <p>Automated liquidity provision bot for Polymarket that places limit orders on both sides of the order book to earn trading fees and liquidity rewards. Dynamically adjusts spreads based on market conditions with full Telegram control for monitoring and configuration.</p>
-            <div class="tag-group">
-                <span class="tag">Automated Limit Orders</span>
-                <span class="tag">Dynamic Spread Adjustment</span>
-                <span class="tag">Multi-Market Support</span>
-                <span class="tag">Simulation Mode</span>
-                <span class="tag">Telegram Interface</span>
-                <span class="tag">SQLite Trade History</span>
-            </div>
-            <div class="tech">Python · websockets · py-clob-client · python-telegram-bot · SQLite · web3.py</div>
-            <div class="btn-group">
-                <a href="https://t.me/PollymarkLPF_bot" target="_blank" class="btn btn-success">🚀 Try it on Telegram</a>
-                <a href="https://github.com/juicyblxst-lang/polymarket-lp-bot" target="_blank" class="btn btn-outline">📂 View Source Code</a>
-            </div>
-        </div>
-
-        <!-- BOT #5: Polymarket Copy Trading Bot (LIVE) -->
-        <div class="card">
-            <span class="status live">● Live in Production</span>
-            <h3>📋 Polymarket Copy Trading Bot</h3>
-            <p>Automated copy trading bot for Polymarket that monitors top-performing wallets and mirrors their trades in real-time. Add any wallet address, set position scaling (0.5x, 1x, 2x), and let the bot automatically replicate successful Polymarket traders – all controlled via Telegram.</p>
-            <div class="tag-group">
-                <span class="tag">Multi-Wallet Tracking</span>
-                <span class="tag">Real-Time Trade Mirroring</span>
-                <span class="tag">Position Scaling</span>
-                <span class="tag">Max Position Limits</span>
-                <span class="tag">Simulation Mode</span>
-                <span class="tag">Telegram Interface</span>
-            </div>
-            <div class="tech">Python · py-clob-client · python-telegram-bot · SQLite · web3.py</div>
-            <div class="btn-group">
-                <a href="https://t.me/PollymarkC_bot" target="_blank" class="btn btn-success">🚀 Try it on Telegram</a>
-                <a href="https://github.com/juicyblxst-lang/polymarket-copy-bot" target="_blank" class="btn btn-outline">📂 View Source Code</a>
-            </div>
-        </div>
-
-        <!-- BOT #6: Polymarket-Kalshi Arbitrage Bot (LIVE) -->
-        <div class="card">
-            <span class="status live">● Live in Production</span>
-            <h3>🔄 Polymarket-Kalshi Arbitrage Bot</h3>
-            <p>Automated cross‑platform arbitrage bot that continuously scans Polymarket and Kalshi for price discrepancies on the same event markets. When a profitable difference is detected, the bot alerts the user and executes risk‑free trades across both platforms – all controlled via Telegram with simulation mode.</p>
-            <div class="tag-group">
-                <span class="tag">Cross‑Platform Scanning</span>
-                <span class="tag">Real‑Time Price Comparison</span>
-                <span class="tag">Configurable Profit Threshold</span>
-                <span class="tag">Market Pair Management</span>
-                <span class="tag">Simulation Mode</span>
-                <span class="tag">Telegram Interface</span>
-            </div>
-            <div class="tech">Python · py-clob-client · Kalshi REST API · python-telegram-bot · SQLite</div>
-            <div class="btn-group">
-                <a href="https://t.me/pollymarkKA_bot" target="_blank" class="btn btn-success">🚀 Try it on Telegram</a>
-                <a href="https://github.com/juicyblxst-lang/polymarket-kalshi-arbitrage-bot" target="_blank" class="btn btn-outline">📂 View Source Code</a>
-            </div>
-        </div>
-
-        <!-- BOT #7: PDF AI -->
-        <div class="card">
-            <span class="status dev">● In Development</span>
-            <h3>🧠 Generative Document Q&A</h3>
-            <p>RAG (Retrieval-Augmented Generation) pipeline that answers complex queries from 100+ page business PDFs.</p>
-            <div class="tech">Python · PyPDF2 · ChromaDB · HuggingFace</div>
-        </div>
-
-        <!-- BOT #8: WhatsApp Buddy -->
-        <div class="card">
-            <span class="status dev">● In Development</span>
-            <h3>📱 Omni-Channel Notifier</h3>
-            <p>Secure WhatsApp Business API integration for delivering critical time-based reminders and alerts.</p>
-            <div class="tech">Python · Meta API · Webhooks · SQLite</div>
-        </div>
-
-        <!-- BOT #9: News Curator -->
-        <div class="card">
-            <span class="status dev">● In Development</span>
-            <h3>📰 Curated Knowledge Aggregator</h3>
-            <p>Intelligent RSS feed filtering that delivers only the top 3 most relevant articles based on user interests.</p>
-            <div class="tech">Python · FeedParser · NLP Ranking</div>
-        </div>
-
-        <!-- BOT #10: Omni-Controller -->
-        <div class="card">
-            <span class="status soon">● Coming Soon</span>
-            <h3>🎮 Unified Command Center</h3>
-            <p>The central orchestrator providing a unified Telegram dashboard to control and query all 9 underlying microservices.</p>
-            <div class="tech">Python · Microservices · Webhook Aggregation</div>
-        </div>
-
-    </div>
-
-    <!-- RESUME SECTION -->
-    <h2 id="resume">📄 Professional Resume</h2>
-    <div style="background:#0f1626; border:1px solid #1e293b; border-radius:16px; padding:2rem;">
-        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; border-bottom:1px solid #1e293b; padding-bottom:1rem; margin-bottom:1.5rem;">
-            <div><strong style="font-size:1.8rem;">Daniel Obia</strong><br><span style="color:#94a3b8;">Full-Stack Bot Developer</span></div>
-            <div style="text-align:right; color:#94a3b8;">📧 juicyblxst@gmail.com<br>📍 Remote · Global</div>
-        </div>
-
-        <h3 style="font-size:1.1rem; color:#60a5fa;">Summary</h3>
-        <p>Results-driven Full-Stack Bot Developer with 4+ years of experience designing high-performance automation systems and API-first architectures. Proven track record of delivering enterprise-grade solutions that scale to 100k+ daily requests.</p>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:1.5rem;">
-            <div>
-                <h3 style="font-size:1rem; color:#60a5fa;">Core Skills</h3>
-                <ul style="list-style:none; color:#cbd5e1;">
-                    <li>✓ Python / FastAPI / Flask</li>
-                    <li>✓ Microservices & Orchestration</li>
-                    <li>✓ Telegram / WhatsApp APIs</li>
-                    <li>✓ NLP & Transformers (HuggingFace)</li>
-                    <li>✓ Web3 / Polygon / CLOB APIs</li>
-                    <li>✓ OAuth / JWT / Webhook Security</li>
-                </ul>
-            </div>
-            <div>
-                <h3 style="font-size:1rem; color:#60a5fa;">Experience</h3>
-                <p><strong>Full-Stack Bot Developer</strong><br><span style="color:#94a3b8;">Freelance · 2020 – Present</span></p>
-                <ul style="list-style:none; color:#cbd5e1;">
-                    <li>• Architected 10+ unique automation products.</li>
-                    <li>• Reduced manual workload for clients by 60%.</li>
-                    <li>• Specialized in rapid MVP deployment (under 72 hours).</li>
-                </ul>
-            </div>
-        </div>
-        <div style="margin-top:1.5rem; border-top:1px solid #1e293b; padding-top:1rem; display:flex; gap:1rem; flex-wrap:wrap;">
-            <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:20px;">📜 MIT Licensed</span>
-            <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:20px;">🔒 Security-First Mindset</span>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer">
-        <span>© 2026 Daniel Obia · Built with 🧠 and ☕</span>
-        <span>
-            <a href="https://github.com/juicyblxst-lang" style="color:#60a5fa; text-decoration:none;">GitHub</a> ·
-            <a href="#" style="color:#60a5fa; text-decoration:none;">LinkedIn</a>
-        </span>
-    </div>
+    <footer class="footer">
+        <p>© 2025 BREEZE · Built with ❤️ for bots</p>
+    </footer>
 
 </div>
 </body>
