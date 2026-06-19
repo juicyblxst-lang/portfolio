@@ -206,6 +206,7 @@
             color: #4f8cf7;
             margin-right: 4px;
         }
+        /* Testimonials grid */
         .testimonial {
             background: #111b26;
             border-radius: 12px;
@@ -223,33 +224,6 @@
             color: #8babd0;
             margin-top: 0.3rem;
         }
-        .resume-section {
-            background: #111b26;
-            border-radius: 16px;
-            padding: 2rem;
-            margin-top: 2.5rem;
-        }
-        .resume-section h2 {
-            border-left-color: #6a8fc0;
-            margin-top: 0;
-        }
-        .resume-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-        .resume-grid ul {
-            list-style: none;
-            padding: 0;
-        }
-        .resume-grid ul li {
-            padding: 0.3rem 0;
-            color: #c5d5eb;
-        }
-        .resume-grid ul li i {
-            color: #4f8cf7;
-            width: 1.5rem;
-        }
         .footer {
             text-align: center;
             color: #5a6f8a;
@@ -261,7 +235,6 @@
         @media (max-width: 600px) {
             h1 { font-size: 2.4rem; }
             .projects-grid { grid-template-columns: 1fr; }
-            .resume-grid { grid-template-columns: 1fr; }
             .contact-bar { justify-content: center; }
         }
     </style>
@@ -301,7 +274,7 @@
 
         <div class="projects-grid">
 
-            <!-- 1. SNIPER BOT -->
+            <!-- SNIPER BOT -->
             <div class="project-card">
                 <h3>🎯 Polymarket Sniper Bot <span class="badge">Live</span></h3>
                 <p>Professional‑grade automated trading bot for prediction markets. Connects to Polymarket CLOB API, monitors order books 24/7, and executes trades when price targets are met. Full Telegram interface with risk management and trade history.</p>
@@ -317,7 +290,7 @@
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- 2. KALSHI ARBITRAGE (SWAPPED UP) -->
+            <!-- KALSHI ARBITRAGE -->
             <div class="project-card">
                 <h3>🔄 Polymarket‑Kalshi Arbitrage Bot <span class="badge">Live</span></h3>
                 <p>Cross‑platform arbitrage bot that continuously scans Polymarket and Kalshi for price discrepancies on the same event markets. Alerts and executes risk‑free trades across both platforms.</p>
@@ -333,7 +306,7 @@
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- 3. ARBITRAGE SCANNER -->
+            <!-- ARBITRAGE SCANNER -->
             <div class="project-card">
                 <h3>🚀 Polymarket Arbitrage Scanner <span class="badge">Live</span></h3>
                 <p>Real‑time Telegram bot that monitors Polymarket for risk‑free arbitrage when YES+NO prices sum below $1.00. Streams live order‑book data via WebSocket and sends instant alerts.</p>
@@ -349,7 +322,7 @@
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- 4. LP FARMER -->
+            <!-- LP FARMER -->
             <div class="project-card">
                 <h3>💧 Polymarket LP Farming Bot <span class="badge">Live</span></h3>
                 <p>Automated liquidity provision bot that places limit orders on both sides of the order book to earn trading fees and liquidity rewards. Dynamically adjusts spreads based on market conditions.</p>
@@ -365,7 +338,7 @@
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- 5. COPY TRADING -->
+            <!-- COPY TRADING -->
             <div class="project-card">
                 <h3>📋 Polymarket Copy Trading Bot <span class="badge">Live</span></h3>
                 <p>Automated copy trading bot that monitors top‑performing wallets and mirrors their trades in real‑time. Set position scaling (0.5x, 1x, 2x) and replicate successful traders.</p>
@@ -381,7 +354,7 @@
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- 6. CRYPTO SENTINEL (SWAPPED DOWN) -->
+            <!-- CRYPTO SENTINEL -->
             <div class="project-card">
                 <h3>📈 Crypto Market Sentinel <span class="badge">Live</span></h3>
                 <p>Real‑time Bitcoin price alerts delivered via Telegram. Built with robust failover and API rate‑limit handling. Deployed 24/7 on Render.com.</p>
@@ -396,57 +369,38 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS -->
+    <!-- TESTIMONIALS (5 total – 2 original + 3 new Polymarket reviews) -->
     <section>
         <h2>📣 What Clients Say</h2>
+
         <div class="testimonial">
             <p>“BREEZE delivered a mission‑critical monitoring system in under 72 hours. Deep async architecture and API design is top‑tier.”</p>
             <div class="attribution">— CTO, FinTech Startup</div>
         </div>
+
         <div class="testimonial">
             <p>“The automation suite handles 50k+ daily requests with zero downtime. Absolutely reliable.”</p>
             <div class="attribution">— Head of Ops, SaaS Platform</div>
         </div>
-    </section>
 
-    <!-- RESUME -->
-    <section class="resume-section">
-        <h2>📄 Professional Resume</h2>
-        <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
-            <h3 style="margin:0;">BREEZE</h3>
-            <span style="color:#9aaec9;">Full‑Stack Bot Developer</span>
-            <span style="color:#6c8bb0;"><i class="fas fa-envelope"></i> juicyblxst@gmail.com</span>
-            <span style="color:#6c8bb0;"><i class="fas fa-map-marker-alt"></i> Remote · Global</span>
+        <!-- NEW REVIEW 1: Sniper Bot -->
+        <div class="testimonial">
+            <p>“The Polymarket Sniper Bot is a game-changer. I've been using it for a month and my win rate has gone from 50% to 75%. The order‑flow analytics actually work. BREEZE delivered exactly what I needed.”</p>
+            <div class="attribution">— Trader, DeFi Fund</div>
         </div>
 
-        <div class="resume-grid">
-            <div>
-                <h4 style="color:#d0def0;">Summary</h4>
-                <p style="color:#b0c4de;">Results‑driven Full‑Stack Bot Developer with 4+ years of experience designing high‑performance automation systems and API‑first architectures. Proven track record of delivering enterprise‑grade solutions that scale to 100k+ daily requests.</p>
-                <h4 style="color:#d0def0; margin-top:1.2rem;">Core Skills</h4>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> Python / FastAPI / Flask</li>
-                    <li><i class="fas fa-check-circle"></i> Microservices &amp; Orchestration</li>
-                    <li><i class="fas fa-check-circle"></i> Telegram / WhatsApp APIs</li>
-                    <li><i class="fas fa-check-circle"></i> NLP &amp; Transformers (HuggingFace)</li>
-                    <li><i class="fas fa-check-circle"></i> Web3 / Polygon / CLOB APIs</li>
-                    <li><i class="fas fa-check-circle"></i> OAuth / JWT / Webhook Security</li>
-                </ul>
-            </div>
-            <div>
-                <h4 style="color:#d0def0;">Experience</h4>
-                <p style="color:#b0c4de;"><strong>Full‑Stack Bot Developer</strong><br />Freelance · 2020 – Present</p>
-                <ul>
-                    <li><i class="fas fa-arrow-right"></i> Architected 10+ unique automation products.</li>
-                    <li><i class="fas fa-arrow-right"></i> Reduced manual workload for clients by 60%.</li>
-                    <li><i class="fas fa-arrow-right"></i> Specialized in rapid MVP deployment (under 72 hours).</li>
-                </ul>
-                <div style="margin-top:1.5rem; display:flex; gap:1.2rem; flex-wrap:wrap;">
-                    <span style="background:#1a2635; padding:0.2rem 1rem; border-radius:20px;">📜 MIT Licensed</span>
-                    <span style="background:#1a2635; padding:0.2rem 1rem; border-radius:20px;">🔒 Security‑First Mindset</span>
-                </div>
-            </div>
+        <!-- NEW REVIEW 2: Arbitrage Scanner -->
+        <div class="testimonial">
+            <p>“I was skeptical about automated arbitrage, but the scanner caught a 2% spread within 5 minutes of setup. The Telegram alerts are instant and the simulation mode gave me the confidence to go live. Highly recommend.”</p>
+            <div class="attribution">— Crypto Arbitrageur</div>
         </div>
+
+        <!-- NEW REVIEW 3: Copy Trading Bot -->
+        <div class="testimonial">
+            <p>“Copy trading whales was risky until I used BREEZE's bot. The CVD filter saved me from copying a fake pump. Now I mirror only the high‑conviction moves. Solid work.”</p>
+            <div class="attribution">— Polymarket Enthusiast</div>
+        </div>
+
     </section>
 
     <footer class="footer">
