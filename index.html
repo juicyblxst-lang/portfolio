@@ -7,13 +7,77 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        /* ===== BASE ===== */
+        /* ===== RESET ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
             background: #0a0a0f;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== SPLASH OVERLAY ===== */
+        #splash {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #0a0a0f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 1.2s ease, visibility 1.2s ease;
+            pointer-events: none;
+        }
+        #splash.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .splash-logo {
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, #f0f4ff 0%, #7aa9ff 50%, #4f8cf7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: breeze-in 1.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            transform: scale(0.8) rotate(-2deg);
+            opacity: 0;
+        }
+        .splash-sub {
+            color: #666688;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            margin-top: 0.5rem;
+            opacity: 0;
+            animation: fade-up 1.2s 0.6s forwards;
+        }
+        /* Wind ripple effect */
+        .splash-logo::after {
+            content: '';
+            position: absolute;
+            inset: -20px -40px;
+            background: radial-gradient(circle at 30% 50%, rgba(79, 140, 247, 0.08), transparent 70%);
+            filter: blur(30px);
+            z-index: -1;
+            animation: wind-glow 3s ease-in-out infinite alternate;
+        }
+        .splash-logo {
+            position: relative;
+        }
+
+        @keyframes breeze-in {
+            0% { transform: scale(0.7) rotate(-4deg) translateY(20px); opacity: 0; }
+            60% { transform: scale(1.05) rotate(1deg) translateY(-4px); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg) translateY(0); opacity: 1; }
+        }
+        @keyframes fade-up {
+            0% { opacity: 0; transform: translateY(12px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes wind-glow {
+            0% { transform: translateX(-10px) scale(1); opacity: 0.6; }
+            100% { transform: translateX(10px) scale(1.2); opacity: 1; }
         }
 
         /* ===== NAVBAR ===== */
@@ -39,13 +103,12 @@
             opacity: 1;
         }
 
-        /* ===== PROJECT CARDS – 2026 EDITION ===== */
+        /* ===== PROJECT CARDS ===== */
         .card-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
         }
-
         .project-card {
             position: relative;
             background: linear-gradient(145deg, #12121e, #0e0e18);
@@ -58,8 +121,6 @@
             isolation: isolate;
             overflow: hidden;
         }
-
-        /* Glass-morphism glow ring */
         .project-card::before {
             content: '';
             position: absolute;
@@ -74,11 +135,7 @@
             transition: opacity 0.5s ease;
             opacity: 0;
         }
-        .project-card:hover::before {
-            opacity: 1;
-        }
-
-        /* Glow on hover */
+        .project-card:hover::before { opacity: 1; }
         .project-card::after {
             content: '';
             position: absolute;
@@ -89,18 +146,13 @@
             opacity: 0;
             transition: opacity 0.6s ease;
         }
-        .project-card:hover::after {
-            opacity: 1;
-        }
-
+        .project-card:hover::after { opacity: 1; }
         .project-card:hover {
             transform: translateY(-6px) scale(1.005);
             border-color: rgba(79, 140, 247, 0.15);
             box-shadow: 0 20px 60px -12px rgba(0, 0, 0, 0.8),
                         0 0 0 1px rgba(79, 140, 247, 0.05) inset;
         }
-
-        /* Card header with icon + title + badge */
         .card-header {
             display: flex;
             align-items: flex-start;
@@ -114,20 +166,8 @@
             gap: 0.6rem;
             flex-wrap: wrap;
         }
-        .card-icon {
-            font-size: 1.4rem;
-            line-height: 1;
-            flex-shrink: 0;
-            filter: drop-shadow(0 0 8px rgba(79, 140, 247, 0.15));
-        }
-        .card-title {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #f0f2f8;
-            letter-spacing: -0.01em;
-        }
-
-        /* Status badge – premium pill */
+        .card-icon { font-size: 1.4rem; line-height: 1; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(79, 140, 247, 0.15)); }
+        .card-title { font-size: 1.15rem; font-weight: 600; color: #f0f2f8; letter-spacing: -0.01em; }
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -155,17 +195,7 @@
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.4; transform: scale(0.8); }
         }
-
-        /* Description */
-        .card-desc {
-            color: #9898b0;
-            font-size: 0.92rem;
-            line-height: 1.7;
-            margin: 0.25rem 0 0.75rem;
-            flex: 1;
-        }
-
-        /* Upgrade highlight – subtle glow */
+        .card-desc { color: #9898b0; font-size: 0.92rem; line-height: 1.7; margin: 0.25rem 0 0.75rem; flex: 1; }
         .upgrade-block {
             background: rgba(79, 140, 247, 0.04);
             border-left: 2px solid rgba(79, 140, 247, 0.3);
@@ -176,14 +206,7 @@
             margin: 0.5rem 0 0.75rem;
             line-height: 1.5;
         }
-
-        /* Tech tags – modern chips */
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin: 0.5rem 0 0.75rem;
-        }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 0.75rem; }
         .tech-tag {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -195,13 +218,7 @@
             letter-spacing: 0.02em;
             transition: all 0.25s ease;
         }
-        .tech-tag:hover {
-            border-color: rgba(79, 140, 247, 0.2);
-            color: #c0c0e0;
-            background: rgba(79, 140, 247, 0.04);
-        }
-
-        /* Tech stack line */
+        .tech-tag:hover { border-color: rgba(79, 140, 247, 0.2); color: #c0c0e0; background: rgba(79, 140, 247, 0.04); }
         .tech-stack {
             font-size: 0.72rem;
             color: #666688;
@@ -213,12 +230,7 @@
             gap: 0.4rem;
             flex-wrap: wrap;
         }
-        .tech-stack i {
-            color: #4f8cf7;
-            margin-right: 0.15rem;
-        }
-
-        /* Bot actions – Telegram link + disclaimer */
+        .tech-stack i { color: #4f8cf7; margin-right: 0.15rem; }
         .bot-actions {
             display: flex;
             flex-direction: column;
@@ -239,43 +251,15 @@
             transition: all 0.25s ease;
             width: fit-content;
         }
-        .tg-link i {
-            font-size: 1rem;
-            transition: transform 0.25s ease;
-        }
-        .tg-link:hover {
-            color: #8bb8ff;
-        }
-        .tg-link:hover i {
-            transform: translateX(2px);
-        }
-        .disclaimer {
-            font-size: 0.65rem;
-            color: #555577;
-            font-style: italic;
-        }
-
-        /* Status line */
-        .card-status {
-            font-size: 0.65rem;
-            color: #555577;
-            margin-top: 0.3rem;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-        .card-status .live-dot {
-            display: inline-block;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: #34d399;
-        }
+        .tg-link i { font-size: 1rem; transition: transform 0.25s ease; }
+        .tg-link:hover { color: #8bb8ff; }
+        .tg-link:hover i { transform: translateX(2px); }
+        .disclaimer { font-size: 0.65rem; color: #555577; font-style: italic; }
+        .card-status { font-size: 0.65rem; color: #555577; margin-top: 0.3rem; display: flex; align-items: center; gap: 0.3rem; }
+        .card-status .live-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #34d399; }
 
         /* ===== RESPONSIVE ===== */
-        @media (min-width: 640px) {
-            .card-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-        }
+        @media (min-width: 640px) { .card-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
         @media (min-width: 1024px) {
             .card-grid { grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
             .project-card { padding: 2rem 1.75rem; }
@@ -290,6 +274,7 @@
             .tech-tag { font-size: 0.55rem; padding: 0.15rem 0.6rem; }
             .tg-link { font-size: 0.8rem; }
             .status-badge { font-size: 0.5rem; padding: 0.15rem 0.6rem 0.15rem 0.5rem; }
+            .splash-logo { font-size: 3rem; }
         }
 
         /* ===== TESTIMONIALS ===== */
@@ -300,24 +285,9 @@
             border-radius: 14px;
             transition: all 0.4s ease;
         }
-        .testimonial-card:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-left-color: #4f8cf7;
-            transform: translateX(2px);
-        }
-        .testimonial-card p {
-            font-style: italic;
-            color: #c8c8e0;
-            font-size: 0.92rem;
-            line-height: 1.7;
-        }
-        .testimonial-card .attribution {
-            font-style: normal;
-            font-weight: 500;
-            color: #6a6a8a;
-            font-size: 0.8rem;
-            margin-top: 0.4rem;
-        }
+        .testimonial-card:hover { background: rgba(255, 255, 255, 0.04); border-left-color: #4f8cf7; transform: translateX(2px); }
+        .testimonial-card p { font-style: italic; color: #c8c8e0; font-size: 0.92rem; line-height: 1.7; }
+        .testimonial-card .attribution { font-style: normal; font-weight: 500; color: #6a6a8a; font-size: 0.8rem; margin-top: 0.4rem; }
 
         /* ===== SKILL TAGS ===== */
         .skill-tag {
@@ -329,13 +299,9 @@
             color: #8888aa;
             transition: all 0.25s ease;
         }
-        .skill-tag:hover {
-            border-color: rgba(79, 140, 247, 0.15);
-            color: #c0c0e0;
-            background: rgba(79, 140, 247, 0.03);
-        }
+        .skill-tag:hover { border-color: rgba(79, 140, 247, 0.15); color: #c0c0e0; background: rgba(79, 140, 247, 0.03); }
 
-        /* ===== CONTACT BUTTONS ===== */
+        /* ===== CONTACT LINKS ===== */
         .contact-link {
             display: inline-flex;
             align-items: center;
@@ -350,18 +316,9 @@
             font-size: 0.9rem;
             transition: all 0.3s ease;
         }
-        .contact-link:hover {
-            background: rgba(79, 140, 247, 0.06);
-            border-color: rgba(79, 140, 247, 0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-        }
-        .contact-link i {
-            color: #4f8cf7;
-            font-size: 1.1rem;
-        }
+        .contact-link:hover { background: rgba(79, 140, 247, 0.06); border-color: rgba(79, 140, 247, 0.15); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .contact-link i { color: #4f8cf7; font-size: 1.1rem; }
 
-        /* ===== HIRE ME BUTTON ===== */
         .hire-btn {
             background: linear-gradient(135deg, #4f8cf7, #6a5af7);
             color: #fff;
@@ -376,15 +333,9 @@
             align-items: center;
             gap: 0.4rem;
         }
-        .hire-btn:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 30px rgba(79, 140, 247, 0.3);
-        }
-        .hire-btn:active {
-            transform: scale(0.97);
-        }
+        .hire-btn:hover { transform: scale(1.03); box-shadow: 0 8px 30px rgba(79, 140, 247, 0.3); }
+        .hire-btn:active { transform: scale(0.97); }
 
-        /* Nav links */
         .nav-link {
             color: #8888aa;
             text-decoration: none;
@@ -404,15 +355,17 @@
             background: linear-gradient(90deg, #4f8cf7, #6a5af7);
             transition: width 0.3s ease;
         }
-        .nav-link:hover {
-            color: #f0f2f8;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
+        .nav-link:hover { color: #f0f2f8; }
+        .nav-link:hover::after { width: 100%; }
     </style>
 </head>
-<body class="bg-[#0a0a0f] text-[#e8eaf0] antialiased">
+<body>
+
+    <!-- ===== SPLASH OVERLAY ===== -->
+    <div id="splash">
+        <div class="splash-logo">BREEZE</div>
+        <div class="splash-sub">Full‑Stack Bot Developer</div>
+    </div>
 
     <!-- ===== NAVIGATION ===== -->
     <nav id="navbar" class="sticky top-0 z-50 border-b border-[#14141e] bg-[#0a0a0f]/80 backdrop-blur-xl transition-all duration-300">
@@ -673,9 +626,18 @@
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mt-1 text-white">Let's Build Something</h2>
             <p class="text-[#9898b0] mt-3 leading-relaxed text-sm sm:text-base">Ready to automate your trading or build a custom bot? Reach out directly – I respond within a few hours.</p>
             <div class="flex flex-wrap gap-3 sm:gap-4 mt-6">
-                <a href="discord://users/0xbreeze" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fa-brands fa-discord"></i> 0xbreeze</a>
-                <a href="https://t.me/breeze0x" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fa-brands fa-telegram"></i> @breeze0x</a>
-                <a href="mailto:juicyblxst@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fa-regular fa-envelope"></i> Email</a>
+                <!-- Discord: opens Discord profile (if app installed) -->
+                <a href="discord://users/0xbreeze" target="_blank" rel="noopener noreferrer" class="contact-link" title="Opens Discord profile (app required)">
+                    <i class="fa-brands fa-discord"></i> 0xbreeze
+                </a>
+                <!-- Telegram -->
+                <a href="https://t.me/breeze0x" target="_blank" rel="noopener noreferrer" class="contact-link">
+                    <i class="fa-brands fa-telegram"></i> @breeze0x
+                </a>
+                <!-- X (Twitter) -->
+                <a href="https://x.com/0xbreeze0x" target="_blank" rel="noopener noreferrer" class="contact-link">
+                    <i class="fa-brands fa-x-twitter"></i> @0xbreeze0x
+                </a>
             </div>
         </div>
     </section>
@@ -689,13 +651,26 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script>
-        // Navbar scroll effect
+        // --- Splash screen ---
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splash');
+            // Fade out after 2.5s
+            setTimeout(() => {
+                splash.classList.add('fade-out');
+                // Remove from DOM after transition to allow interaction
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 1200);
+            }, 2200);
+        });
+
+        // --- Navbar scroll ---
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', window.scrollY > 20);
         });
 
-        // Mobile menu toggle
+        // --- Mobile menu ---
         const toggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
         toggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
