@@ -2,327 +2,705 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>BREEZE · Bot Developer</title>
-    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
+        /* ===== BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+        body {
+            background: #0a0a0f;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== NAVBAR ===== */
         #navbar {
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            transition: background-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s ease,
+                        border-color 0.4s ease;
         }
         #navbar.scrolled {
-            background-color: #0b0e14;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-            border-color: #2a384a;
+            background-color: #0a0a0f;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
+            border-color: #1a1a2e;
         }
         #mobileMenu {
-            transition: max-height 0.3s ease;
             max-height: 0;
             overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        opacity 0.3s ease;
+            opacity: 0;
         }
         #mobileMenu.open {
-            max-height: 400px;
+            max-height: 500px;
+            opacity: 1;
         }
+
+        /* ===== PROJECT CARDS – 2026 EDITION ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
         .project-card {
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            background: linear-gradient(145deg, #12121e, #0e0e18);
+            border-radius: 24px;
+            padding: 1.75rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            flex-direction: column;
+            isolation: isolate;
+            overflow: hidden;
         }
+
+        /* Glass-morphism glow ring */
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 24px;
+            padding: 1px;
+            background: conic-gradient(from 0deg, transparent, rgba(79, 140, 247, 0.15), transparent, rgba(79, 140, 247, 0.05), transparent);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask-composite: xor;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Glow on hover */
+        .project-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            background: radial-gradient(circle at 30% 30%, rgba(79, 140, 247, 0.04), transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .project-card:hover::after {
+            opacity: 1;
+        }
+
         .project-card:hover {
-            transform: translateY(-4px);
-            border-color: #4f8cf7;
-            box-shadow: 0 8px 30px rgba(79, 140, 247, 0.08);
+            transform: translateY(-6px) scale(1.005);
+            border-color: rgba(79, 140, 247, 0.15);
+            box-shadow: 0 20px 60px -12px rgba(0, 0, 0, 0.8),
+                        0 0 0 1px rgba(79, 140, 247, 0.05) inset;
         }
-        .testimonial {
-            transition: background 0.3s, border-color 0.3s;
+
+        /* Card header with icon + title + badge */
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
         }
-        .testimonial:hover {
-            background: #16212e;
-            border-left-color: #7aa9ff;
+        .card-title-group {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .card-icon {
+            font-size: 1.4rem;
+            line-height: 1;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 8px rgba(79, 140, 247, 0.15));
+        }
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #f0f2f8;
+            letter-spacing: -0.01em;
+        }
+
+        /* Status badge – premium pill */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.2rem 0.8rem 0.2rem 0.6rem;
+            border-radius: 100px;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            flex-shrink: 0;
+        }
+        .status-badge .pulse {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #34d399;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+
+        /* Description */
+        .card-desc {
+            color: #9898b0;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin: 0.25rem 0 0.75rem;
+            flex: 1;
+        }
+
+        /* Upgrade highlight – subtle glow */
+        .upgrade-block {
+            background: rgba(79, 140, 247, 0.04);
+            border-left: 2px solid rgba(79, 140, 247, 0.3);
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            color: #8ab4ff;
+            margin: 0.5rem 0 0.75rem;
+            line-height: 1.5;
+        }
+
+        /* Tech tags – modern chips */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin: 0.5rem 0 0.75rem;
+        }
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 0.2rem 0.7rem;
+            border-radius: 100px;
+            font-size: 0.6rem;
+            font-weight: 500;
+            color: #8888aa;
+            letter-spacing: 0.02em;
+            transition: all 0.25s ease;
+        }
+        .tech-tag:hover {
+            border-color: rgba(79, 140, 247, 0.2);
+            color: #c0c0e0;
+            background: rgba(79, 140, 247, 0.04);
+        }
+
+        /* Tech stack line */
+        .tech-stack {
+            font-size: 0.72rem;
+            color: #666688;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 0.7rem;
+            margin-top: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        .tech-stack i {
+            color: #4f8cf7;
+            margin-right: 0.15rem;
+        }
+
+        /* Bot actions – Telegram link + disclaimer */
+        .bot-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            margin-top: 0.7rem;
+            padding-top: 0.7rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .tg-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6a9eff;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 0.3rem 0;
+            transition: all 0.25s ease;
+            width: fit-content;
+        }
+        .tg-link i {
+            font-size: 1rem;
+            transition: transform 0.25s ease;
+        }
+        .tg-link:hover {
+            color: #8bb8ff;
+        }
+        .tg-link:hover i {
+            transform: translateX(2px);
+        }
+        .disclaimer {
+            font-size: 0.65rem;
+            color: #555577;
+            font-style: italic;
+        }
+
+        /* Status line */
+        .card-status {
+            font-size: 0.65rem;
+            color: #555577;
+            margin-top: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .card-status .live-dot {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #34d399;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (min-width: 640px) {
+            .card-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        }
+        @media (min-width: 1024px) {
+            .card-grid { grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+            .project-card { padding: 2rem 1.75rem; }
+            .card-title { font-size: 1.25rem; }
+        }
+        @media (max-width: 480px) {
+            .project-card { padding: 1.25rem 1rem; border-radius: 18px; }
+            .card-title { font-size: 1rem; }
+            .card-icon { font-size: 1.2rem; }
+            .card-desc { font-size: 0.85rem; }
+            .upgrade-block { font-size: 0.75rem; padding: 0.4rem 0.6rem; }
+            .tech-tag { font-size: 0.55rem; padding: 0.15rem 0.6rem; }
+            .tg-link { font-size: 0.8rem; }
+            .status-badge { font-size: 0.5rem; padding: 0.15rem 0.6rem 0.15rem 0.5rem; }
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid rgba(79, 140, 247, 0.3);
+            padding: 1.2rem 1.5rem;
+            border-radius: 14px;
+            transition: all 0.4s ease;
+        }
+        .testimonial-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-left-color: #4f8cf7;
+            transform: translateX(2px);
+        }
+        .testimonial-card p {
+            font-style: italic;
+            color: #c8c8e0;
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+        .testimonial-card .attribution {
+            font-style: normal;
+            font-weight: 500;
+            color: #6a6a8a;
+            font-size: 0.8rem;
+            margin-top: 0.4rem;
+        }
+
+        /* ===== SKILL TAGS ===== */
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 0.25rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: #8888aa;
+            transition: all 0.25s ease;
+        }
+        .skill-tag:hover {
+            border-color: rgba(79, 140, 247, 0.15);
+            color: #c0c0e0;
+            background: rgba(79, 140, 247, 0.03);
+        }
+
+        /* ===== CONTACT BUTTONS ===== */
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1.4rem;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #c0c0e0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .contact-link:hover {
+            background: rgba(79, 140, 247, 0.06);
+            border-color: rgba(79, 140, 247, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+        .contact-link i {
+            color: #4f8cf7;
+            font-size: 1.1rem;
+        }
+
+        /* ===== HIRE ME BUTTON ===== */
+        .hire-btn {
+            background: linear-gradient(135deg, #4f8cf7, #6a5af7);
+            color: #fff;
+            padding: 0.6rem 1.6rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .hire-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 30px rgba(79, 140, 247, 0.3);
+        }
+        .hire-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Nav links */
+        .nav-link {
+            color: #8888aa;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.25s ease;
+            padding: 0.3rem 0;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: linear-gradient(90deg, #4f8cf7, #6a5af7);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #f0f2f8;
+        }
+        .nav-link:hover::after {
+            width: 100%;
         }
     </style>
 </head>
-<body class="bg-zinc-950 text-zinc-200 font-sans antialiased">
+<body class="bg-[#0a0a0f] text-[#e8eaf0] antialiased">
 
     <!-- ===== NAVIGATION ===== -->
-    <nav id="navbar" class="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-            <a href="#" class="text-2xl font-bold tracking-tighter text-white">BREEZE</a>
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#projects" class="text-zinc-400 hover:text-white transition-colors">Projects</a>
-                <a href="#about" class="text-zinc-400 hover:text-white transition-colors">About</a>
-                <a href="#testimonials" class="text-zinc-400 hover:text-white transition-colors">Testimonials</a>
-                <a href="#contact" class="text-zinc-400 hover:text-white transition-colors">Contact</a>
+    <nav id="navbar" class="sticky top-0 z-50 border-b border-[#14141e] bg-[#0a0a0f]/80 backdrop-blur-xl transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+            <a href="#" class="text-xl sm:text-2xl font-bold tracking-tighter text-white">BREEZE</a>
+            <div class="hidden md:flex items-center gap-6 lg:gap-8">
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
-            <div class="flex items-center gap-4">
-                <!-- "Hire Me" button now links directly to Telegram -->
-                <a href="https://t.me/breeze0x" target="_blank" rel="noopener noreferrer" 
-                   class="bg-white text-zinc-900 px-6 py-2.5 rounded-xl font-semibold hover:bg-zinc-200 transition-colors">
-                    Hire Me
+            <div class="flex items-center gap-3">
+                <a href="https://t.me/breeze0x" target="_blank" rel="noopener noreferrer" class="hire-btn text-sm sm:text-base">
+                    <i class="fa-brands fa-telegram"></i> Hire Me
                 </a>
-                <button id="menuToggle" class="md:hidden text-zinc-400 hover:text-white focus:outline-none" aria-label="Toggle menu">
+                <button id="menuToggle" class="md:hidden text-[#8888aa] hover:text-white focus:outline-none transition-colors" aria-label="Toggle menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" id="menuIcon"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
                 </button>
             </div>
         </div>
-        <div id="mobileMenu" class="md:hidden px-6 pb-4 bg-zinc-950/95 backdrop-blur-sm border-t border-zinc-800">
-            <div class="flex flex-col gap-4 pt-4">
-                <a href="#projects" class="text-zinc-400 hover:text-white transition-colors">Projects</a>
-                <a href="#about" class="text-zinc-400 hover:text-white transition-colors">About</a>
-                <a href="#testimonials" class="text-zinc-400 hover:text-white transition-colors">Testimonials</a>
-                <a href="#contact" class="text-zinc-400 hover:text-white transition-colors">Contact</a>
+        <div id="mobileMenu" class="md:hidden px-4 pb-4 bg-[#0a0a0f]/95 backdrop-blur-xl border-t border-[#14141e]">
+            <div class="flex flex-col gap-3 pt-4">
+                <a href="#projects" class="nav-link text-[#8888aa] hover:text-white py-2">Projects</a>
+                <a href="#about" class="nav-link text-[#8888aa] hover:text-white py-2">About</a>
+                <a href="#testimonials" class="nav-link text-[#8888aa] hover:text-white py-2">Testimonials</a>
+                <a href="#contact" class="nav-link text-[#8888aa] hover:text-white py-2">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- ===== HERO (Home) – removed Discord/Telegram links here ===== -->
-    <section id="home" class="max-w-6xl mx-auto px-6 pt-24 pb-16">
+    <!-- ===== HERO ===== -->
+    <section id="home" class="max-w-6xl mx-auto px-4 sm:px-6 pt-20 pb-12 sm:pt-28 sm:pb-16">
         <div class="flex flex-col items-start">
-            <span class="text-sm text-blue-400 font-semibold uppercase tracking-widest">✦ Full-Stack Bot Developer</span>
-            <h1 class="text-4xl md:text-6xl font-bold tracking-tight mt-2 bg-gradient-to-r from-white to-blue-400 text-transparent bg-clip-text">BREEZE</h1>
-            <p class="text-zinc-400 text-lg mt-1">API · Automation · Trading Infrastructure</p>
-            <p class="text-zinc-400 max-w-2xl mt-4 leading-relaxed">
-                Building high‑performance automation systems, real‑time data pipelines, 
-                and intelligent bot ecosystems. I turn complex workflows into streamlined, 
+            <span class="text-xs sm:text-sm text-[#4f8cf7] font-semibold uppercase tracking-[0.15em]">✦ Full-Stack Bot Developer</span>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mt-2 bg-gradient-to-r from-white via-[#e0e8ff] to-[#4f8cf7] text-transparent bg-clip-text">BREEZE</h1>
+            <p class="text-[#9898b0] text-base sm:text-lg mt-1">API · Automation · Trading Infrastructure</p>
+            <p class="text-[#9898b0] max-w-2xl mt-4 leading-relaxed text-sm sm:text-base">
+                Building high‑performance automation systems, real‑time data pipelines,
+                and intelligent bot ecosystems. I turn complex workflows into streamlined,
                 API‑first applications that drive revenue and efficiency.
             </p>
             <div class="flex flex-wrap gap-3 mt-6">
-                <span class="px-4 py-1.5 bg-zinc-800 rounded-full text-sm text-zinc-300 border border-zinc-700">✅ 10+ Deployments</span>
-                <span class="px-4 py-1.5 bg-zinc-800 rounded-full text-sm text-zinc-300 border border-zinc-700">🏆 4+ Years</span>
+                <span class="px-4 py-1.5 bg-[#14141e] rounded-full text-xs sm:text-sm text-[#8888aa] border border-[#1a1a2e]">✅ 10+ Deployments</span>
+                <span class="px-4 py-1.5 bg-[#14141e] rounded-full text-xs sm:text-sm text-[#8888aa] border border-[#1a1a2e]">🏆 4+ Years</span>
             </div>
-            <!-- No Discord/Telegram links here -->
         </div>
     </section>
 
-    <!-- ===== PROJECTS (unchanged) ===== -->
-    <section id="projects" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-800">
-        <div class="mb-10">
-            <span class="text-sm text-blue-400 font-semibold uppercase tracking-widest">🧰 Portfolio</span>
-            <h2 class="text-3xl md:text-4xl font-bold mt-1">Available Tools</h2>
-            <p class="text-zinc-400 max-w-2xl mt-2">Telegram‑controlled trading bots built for 24/7 operation, each with simulation mode, risk management, and order‑flow analytics.</p>
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 border-t border-[#14141e]">
+        <div class="mb-8 sm:mb-12">
+            <span class="text-xs sm:text-sm text-[#4f8cf7] font-semibold uppercase tracking-[0.15em]">🧰 Portfolio</span>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mt-1 text-white">Available Tools</h2>
+            <p class="text-[#8888aa] max-w-2xl mt-2 text-sm sm:text-base">Telegram‑controlled trading bots built for 24/7 operation, each with simulation mode, risk management, and order‑flow analytics.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="card-grid">
+
             <!-- SNIPER -->
-            <div class="project-card bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 flex flex-col">
-                <div class="flex items-start justify-between">
-                    <h3 class="text-xl font-semibold flex items-center gap-2">🎯 Sniper Bot</h3>
-                    <span class="text-xs font-medium px-3 py-1 bg-emerald-900/60 text-emerald-300 rounded-full border border-emerald-700">Live</span>
+            <div class="project-card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <span class="card-icon">🎯</span>
+                        <span class="card-title">Sniper Bot</span>
+                    </div>
+                    <span class="status-badge"><span class="pulse"></span> Live</span>
                 </div>
-                <p class="text-zinc-400 text-sm mt-3 flex-1">Automated sniping for Polymarket. Monitors order books and executes trades when price targets are met. Full Telegram interface with risk controls.</p>
-                <div class="mt-3 text-xs bg-blue-950/30 border-l-2 border-blue-400 pl-3 py-1 text-blue-300">⚡ <span class="font-medium">Upgrade:</span> OBI/CVD order‑flow analytics – reads book pressure, not just price.</div>
-                <div class="flex flex-wrap gap-2 mt-4">
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">Sniping</span>
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">Telegram</span>
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">Web3.py</span>
+                <p class="card-desc">Automated sniping for Polymarket. Monitors order books and executes trades when price targets are met. Full Telegram interface with risk controls.</p>
+                <div class="upgrade-block">⚡ <strong>Upgrade:</strong> OBI/CVD order‑flow analytics – reads book pressure, not just price.</div>
+                <div class="tech-tags">
+                    <span class="tech-tag">Sniping</span>
+                    <span class="tech-tag">Telegram</span>
+                    <span class="tech-tag">Web3.py</span>
                 </div>
-                <div class="mt-4 pt-4 border-t border-zinc-800 text-xs text-zinc-500"><i class="fab fa-python text-blue-400"></i> Python · py‑clob‑client · SQLite</div>
-                <div class="mt-3 flex flex-col gap-1">
-                    <a href="https://t.me/Krrisssss_bot" target="_blank" class="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1"><i class="fab fa-telegram"></i> View in Telegram</a>
-                    <span class="text-xs text-zinc-500 italic">⚠️ Demo version – fully customizable.</span>
+                <div class="tech-stack"><i class="fa-brands fa-python"></i> Python · py‑clob‑client · SQLite</div>
+                <div class="bot-actions">
+                    <a href="https://t.me/Krrisssss_bot" target="_blank" class="tg-link"><i class="fa-brands fa-telegram"></i> View in Telegram</a>
+                    <span class="disclaimer">⚠️ Demo version – fully customizable.</span>
                 </div>
-                <div class="mt-2 text-xs text-zinc-500"><i class="fas fa-circle text-emerald-500 text-[8px]"></i> Live in Production</div>
+                <div class="card-status"><span class="live-dot"></span> Live in Production</div>
             </div>
+
             <!-- KALSHI ARB -->
-            <div class="project-card bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 flex flex-col">
-                <div class="flex items-start justify-between">
-                    <h3 class="text-xl font-semibold flex items-center gap-2">🔄 Kalshi Arbitrage</h3>
-                    <span class="text-xs font-medium px-3 py-1 bg-emerald-900/60 text-emerald-300 rounded-full border border-emerald-700">Live</span>
+            <div class="project-card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <span class="card-icon">🔄</span>
+                        <span class="card-title">Kalshi Arbitrage</span>
+                    </div>
+                    <span class="status-badge"><span class="pulse"></span> Live</span>
                 </div>
-                <p class="text-zinc-400 text-sm mt-3 flex-1">Cross‑platform arbitrage scanning Polymarket and Kalshi for price discrepancies. Alerts and executes risk‑free trades across both platforms.</p>
-                <div class="mt-3 text-xs bg-blue-950/30 border-l-2 border-blue-400 pl-3 py-1 text-blue-300">⚡ <span class="font-medium">Upgrade:</span> Micro‑price validation avoids stale‑quote traps.</div>
-                <div class="flex flex-wrap gap-2 mt-4">
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">Cross‑Platform</span>
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">Arbitrage</span>
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">Kalshi API</span>
+                <p class="card-desc">Cross‑platform arbitrage scanning Polymarket and Kalshi for price discrepancies. Alerts and executes risk‑free trades across both platforms.</p>
+                <div class="upgrade-block">⚡ <strong>Upgrade:</strong> Micro‑price validation avoids stale‑quote traps.</div>
+                <div class="tech-tags">
+                    <span class="tech-tag">Cross‑Platform</span>
+                    <span class="tech-tag">Arbitrage</span>
+                    <span class="tech-tag">Kalshi API</span>
                 </div>
-                <div class="mt-4 pt-4 border-t border-zinc-800 text-xs text-zinc-500"><i class="fab fa-python text-blue-400"></i> Python · py‑clob‑client · SQLite</div>
-                <div class="mt-3 flex flex-col gap-1">
-                    <a href="https://t.me/pollymarkKA_bot" target="_blank" class="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1"><i class="fab fa-telegram"></i> View in Telegram</a>
-                    <span class="text-xs text-zinc-500 italic">⚠️ Demo version – fully customizable.</span>
+                <div class="tech-stack"><i class="fa-brands fa-python"></i> Python · py‑clob‑client · SQLite</div>
+                <div class="bot-actions">
+                    <a href="https://t.me/pollymarkKA_bot" target="_blank" class="tg-link"><i class="fa-brands fa-telegram"></i> View in Telegram</a>
+                    <span class="disclaimer">⚠️ Demo version – fully customizable.</span>
                 </div>
-                <div class="mt-2 text-xs text-zinc-500"><i class="fas fa-circle text-emerald-500 text-[8px]"></i> Live in Production</div>
+                <div class="card-status"><span class="live-dot"></span> Live in Production</div>
             </div>
+
             <!-- ARB SCANNER -->
-            <div class="project-card bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 flex flex-col">
-                <div class="flex items-start justify-between">
-                    <h3 class="text-xl font-semibold flex items-center gap-2">🚀 Arbitrage Scanner</h3>
-                    <span class="text-xs font-medium px-3 py-1 bg-emerald-900/60 text-emerald-300 rounded-full border border-emerald-700">Live</span>
+            <div class="project-card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <span class="card-icon">🚀</span>
+                        <span class="card-title">Arbitrage Scanner</span>
+                    </div>
+                    <span class="status-badge"><span class="pulse"></span> Live</span>
                 </div>
-                <p class="text-zinc-400 text-sm mt-3 flex-1">Real‑time Telegram bot that monitors Polymarket for risk‑free arbitrage when YES+NO prices sum below $1.00. WebSocket streaming.</p>
-                <div class="mt-3 text-xs bg-blue-950/30 border-l-2 border-blue-400 pl-3 py-1 text-blue-300">⚡ <span class="font-medium">Upgrade:</span> CVD filter – only signals when real volume backs the mispricing.</div>
-                <div class="flex flex-wrap gap-2 mt-4">
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">Arbitrage</span>
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">WebSocket</span>
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">asyncio</span>
+                <p class="card-desc">Real‑time Telegram bot that monitors Polymarket for risk‑free arbitrage when YES+NO prices sum below $1.00. WebSocket streaming.</p>
+                <div class="upgrade-block">⚡ <strong>Upgrade:</strong> CVD filter – only signals when real volume backs the mispricing.</div>
+                <div class="tech-tags">
+                    <span class="tech-tag">Arbitrage</span>
+                    <span class="tech-tag">WebSocket</span>
+                    <span class="tech-tag">asyncio</span>
                 </div>
-                <div class="mt-4 pt-4 border-t border-zinc-800 text-xs text-zinc-500"><i class="fab fa-python text-blue-400"></i> Python · websockets · SQLite</div>
-                <div class="mt-3 flex flex-col gap-1">
-                    <a href="https://t.me/PollymarkArb_bot" target="_blank" class="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1"><i class="fab fa-telegram"></i> View in Telegram</a>
-                    <span class="text-xs text-zinc-500 italic">⚠️ Demo version – fully customizable.</span>
+                <div class="tech-stack"><i class="fa-brands fa-python"></i> Python · websockets · SQLite</div>
+                <div class="bot-actions">
+                    <a href="https://t.me/PollymarkArb_bot" target="_blank" class="tg-link"><i class="fa-brands fa-telegram"></i> View in Telegram</a>
+                    <span class="disclaimer">⚠️ Demo version – fully customizable.</span>
                 </div>
-                <div class="mt-2 text-xs text-zinc-500"><i class="fas fa-circle text-emerald-500 text-[8px]"></i> Live in Production</div>
+                <div class="card-status"><span class="live-dot"></span> Live in Production</div>
             </div>
+
             <!-- LP FARMER -->
-            <div class="project-card bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 flex flex-col">
-                <div class="flex items-start justify-between">
-                    <h3 class="text-xl font-semibold flex items-center gap-2">💧 LP Farming Bot</h3>
-                    <span class="text-xs font-medium px-3 py-1 bg-emerald-900/60 text-emerald-300 rounded-full border border-emerald-700">Live</span>
+            <div class="project-card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <span class="card-icon">💧</span>
+                        <span class="card-title">LP Farming Bot</span>
+                    </div>
+                    <span class="status-badge"><span class="pulse"></span> Live</span>
                 </div>
-                <p class="text-zinc-400 text-sm mt-3 flex-1">Automated liquidity provision – places limit orders on both sides of the book to earn trading fees and liquidity rewards.</p>
-                <div class="mt-3 text-xs bg-blue-950/30 border-l-2 border-blue-400 pl-3 py-1 text-blue-300">⚡ <span class="font-medium">Upgrade:</span> OBI‑driven skew – adapts to market pressure, reduces adverse selection.</div>
-                <div class="flex flex-wrap gap-2 mt-4">
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">LP Farming</span>
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">Limit Orders</span>
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">web3.py</span>
+                <p class="card-desc">Automated liquidity provision – places limit orders on both sides of the book to earn trading fees and liquidity rewards.</p>
+                <div class="upgrade-block">⚡ <strong>Upgrade:</strong> OBI‑driven skew – adapts to market pressure, reduces adverse selection.</div>
+                <div class="tech-tags">
+                    <span class="tech-tag">LP Farming</span>
+                    <span class="tech-tag">Limit Orders</span>
+                    <span class="tech-tag">web3.py</span>
                 </div>
-                <div class="mt-4 pt-4 border-t border-zinc-800 text-xs text-zinc-500"><i class="fab fa-python text-blue-400"></i> Python · websockets · py‑clob‑client · web3.py</div>
-                <div class="mt-3 flex flex-col gap-1">
-                    <a href="https://t.me/PollymarkLPF_bot" target="_blank" class="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1"><i class="fab fa-telegram"></i> View in Telegram</a>
-                    <span class="text-xs text-zinc-500 italic">⚠️ Demo version – fully customizable.</span>
+                <div class="tech-stack"><i class="fa-brands fa-python"></i> Python · websockets · py‑clob‑client · web3.py</div>
+                <div class="bot-actions">
+                    <a href="https://t.me/PollymarkLPF_bot" target="_blank" class="tg-link"><i class="fa-brands fa-telegram"></i> View in Telegram</a>
+                    <span class="disclaimer">⚠️ Demo version – fully customizable.</span>
                 </div>
-                <div class="mt-2 text-xs text-zinc-500"><i class="fas fa-circle text-emerald-500 text-[8px]"></i> Live in Production</div>
+                <div class="card-status"><span class="live-dot"></span> Live in Production</div>
             </div>
+
             <!-- COPY TRADING -->
-            <div class="project-card bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 flex flex-col">
-                <div class="flex items-start justify-between">
-                    <h3 class="text-xl font-semibold flex items-center gap-2">📋 Copy Trading Bot</h3>
-                    <span class="text-xs font-medium px-3 py-1 bg-emerald-900/60 text-emerald-300 rounded-full border border-emerald-700">Live</span>
+            <div class="project-card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <span class="card-icon">📋</span>
+                        <span class="card-title">Copy Trading Bot</span>
+                    </div>
+                    <span class="status-badge"><span class="pulse"></span> Live</span>
                 </div>
-                <p class="text-zinc-400 text-sm mt-3 flex-1">Mirrors top Polymarket wallets in real‑time. Set position scaling (0.5x, 1x, 2x) and replicate successful traders automatically.</p>
-                <div class="mt-3 text-xs bg-blue-950/30 border-l-2 border-blue-400 pl-3 py-1 text-blue-300">⚡ <span class="font-medium">Upgrade:</span> CVD filter – mirrors only high‑conviction moves, avoids whale bluffs.</div>
-                <div class="flex flex-wrap gap-2 mt-4">
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">Copy Trading</span>
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">Wallet Tracking</span>
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">Telegram</span>
+                <p class="card-desc">Mirrors top Polymarket wallets in real‑time. Set position scaling (0.5x, 1x, 2x) and replicate successful traders automatically.</p>
+                <div class="upgrade-block">⚡ <strong>Upgrade:</strong> CVD filter – mirrors only high‑conviction moves, avoids whale bluffs.</div>
+                <div class="tech-tags">
+                    <span class="tech-tag">Copy Trading</span>
+                    <span class="tech-tag">Wallet Tracking</span>
+                    <span class="tech-tag">Telegram</span>
                 </div>
-                <div class="mt-4 pt-4 border-t border-zinc-800 text-xs text-zinc-500"><i class="fab fa-python text-blue-400"></i> Python · py‑clob‑client · SQLite</div>
-                <div class="mt-3 flex flex-col gap-1">
-                    <a href="https://t.me/PollymarkC_bot" target="_blank" class="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1"><i class="fab fa-telegram"></i> View in Telegram</a>
-                    <span class="text-xs text-zinc-500 italic">⚠️ Demo version – fully customizable.</span>
+                <div class="tech-stack"><i class="fa-brands fa-python"></i> Python · py‑clob‑client · SQLite</div>
+                <div class="bot-actions">
+                    <a href="https://t.me/PollymarkC_bot" target="_blank" class="tg-link"><i class="fa-brands fa-telegram"></i> View in Telegram</a>
+                    <span class="disclaimer">⚠️ Demo version – fully customizable.</span>
                 </div>
-                <div class="mt-2 text-xs text-zinc-500"><i class="fas fa-circle text-emerald-500 text-[8px]"></i> Live in Production</div>
+                <div class="card-status"><span class="live-dot"></span> Live in Production</div>
             </div>
+
             <!-- CRYPTO SENTINEL -->
-            <div class="project-card bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 flex flex-col">
-                <div class="flex items-start justify-between">
-                    <h3 class="text-xl font-semibold flex items-center gap-2">📈 Crypto Sentinel</h3>
-                    <span class="text-xs font-medium px-3 py-1 bg-emerald-900/60 text-emerald-300 rounded-full border border-emerald-700">Live</span>
+            <div class="project-card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <span class="card-icon">📈</span>
+                        <span class="card-title">Crypto Sentinel</span>
+                    </div>
+                    <span class="status-badge"><span class="pulse"></span> Live</span>
                 </div>
-                <p class="text-zinc-400 text-sm mt-3 flex-1">Real‑time Bitcoin price alerts via Telegram. Robust failover and API rate‑limit handling, deployed 24/7 on Render.com.</p>
-                <div class="flex flex-wrap gap-2 mt-4">
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">Alerts</span>
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">Telegram</span>
-                    <span class="px-2 py-1 bg-zinc-800 rounded-full text-xs text-zinc-400">CoinGecko</span>
+                <p class="card-desc">Real‑time Bitcoin price alerts via Telegram. Robust failover and API rate‑limit handling, deployed 24/7 on Render.com.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Alerts</span>
+                    <span class="tech-tag">Telegram</span>
+                    <span class="tech-tag">CoinGecko</span>
                 </div>
-                <div class="mt-4 pt-4 border-t border-zinc-800 text-xs text-zinc-500"><i class="fab fa-python text-blue-400"></i> Python · CoinGecko API · Telegram Bot API</div>
-                <div class="mt-3 flex flex-col gap-1">
-                    <span class="text-xs text-zinc-500 italic">⚠️ Demo version – fully customizable.</span>
+                <div class="tech-stack"><i class="fa-brands fa-python"></i> Python · CoinGecko API · Telegram Bot API</div>
+                <div class="bot-actions">
+                    <span class="disclaimer">⚠️ Demo version – fully customizable.</span>
                 </div>
-                <div class="mt-2 text-xs text-zinc-500"><i class="fas fa-circle text-emerald-500 text-[8px]"></i> Live in Production</div>
+                <div class="card-status"><span class="live-dot"></span> Live in Production</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section id="testimonials" class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 border-t border-[#14141e]">
+        <div class="mb-8 sm:mb-12">
+            <span class="text-xs sm:text-sm text-[#4f8cf7] font-semibold uppercase tracking-[0.15em]">📣 Social Proof</span>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mt-1 text-white">What Clients Say</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div class="testimonial-card">
+                <p>“BREEZE delivered a mission‑critical monitoring system in under 72 hours. Deep async architecture and API design is top‑tier.”</p>
+                <p class="attribution">— CTO, FinTech Startup</p>
+            </div>
+            <div class="testimonial-card">
+                <p>“The automation suite handles 50k+ daily requests with zero downtime. Absolutely reliable.”</p>
+                <p class="attribution">— Head of Ops, SaaS Platform</p>
+            </div>
+            <div class="testimonial-card">
+                <p>“The Sniper Bot is a game‑changer. My win rate went from 50% to 75% in a month.”</p>
+                <p class="attribution">— Trader, DeFi Fund</p>
+            </div>
+            <div class="testimonial-card">
+                <p>“Caught a 2% spread within 5 minutes of setup. Instant alerts and simulation mode gave me confidence.”</p>
+                <p class="attribution">— Crypto Arbitrageur</p>
+            </div>
+            <div class="testimonial-card">
+                <p>“Copy trading whales was risky until I used BREEZE's bot. The CVD filter saved me from a fake pump.”</p>
+                <p class="attribution">— Polymarket Enthusiast</p>
             </div>
         </div>
     </section>
 
-    <!-- ===== TESTIMONIALS (unchanged) ===== -->
-    <section id="testimonials" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-800">
-        <div class="mb-10">
-            <span class="text-sm text-blue-400 font-semibold uppercase tracking-widest">📣 Social Proof</span>
-            <h2 class="text-3xl md:text-4xl font-bold mt-1">What Clients Say</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="testimonial bg-zinc-900/30 border-l-4 border-blue-400 p-5 rounded-r-xl">
-                <p class="text-zinc-300 italic">“BREEZE delivered a mission‑critical monitoring system in under 72 hours. Deep async architecture and API design is top‑tier.”</p>
-                <p class="text-sm text-zinc-500 mt-2">— CTO, FinTech Startup</p>
-            </div>
-            <div class="testimonial bg-zinc-900/30 border-l-4 border-blue-400 p-5 rounded-r-xl">
-                <p class="text-zinc-300 italic">“The automation suite handles 50k+ daily requests with zero downtime. Absolutely reliable.”</p>
-                <p class="text-sm text-zinc-500 mt-2">— Head of Ops, SaaS Platform</p>
-            </div>
-            <div class="testimonial bg-zinc-900/30 border-l-4 border-blue-400 p-5 rounded-r-xl">
-                <p class="text-zinc-300 italic">“The Sniper Bot is a game‑changer. My win rate went from 50% to 75% in a month.”</p>
-                <p class="text-sm text-zinc-500 mt-2">— Trader, DeFi Fund</p>
-            </div>
-            <div class="testimonial bg-zinc-900/30 border-l-4 border-blue-400 p-5 rounded-r-xl">
-                <p class="text-zinc-300 italic">“Caught a 2% spread within 5 minutes of setup. Instant alerts and simulation mode gave me confidence.”</p>
-                <p class="text-sm text-zinc-500 mt-2">— Crypto Arbitrageur</p>
-            </div>
-            <div class="testimonial bg-zinc-900/30 border-l-4 border-blue-400 p-5 rounded-r-xl">
-                <p class="text-zinc-300 italic">“Copy trading whales was risky until I used BREEZE's bot. The CVD filter saved me from a fake pump.”</p>
-                <p class="text-sm text-zinc-500 mt-2">— Polymarket Enthusiast</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== ABOUT (unchanged) ===== -->
-    <section id="about" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-800">
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 border-t border-[#14141e]">
         <div class="max-w-3xl">
-            <span class="text-sm text-blue-400 font-semibold uppercase tracking-widest">👤 About</span>
-            <h2 class="text-3xl md:text-4xl font-bold mt-1">Building the Future of Automation</h2>
-            <p class="text-zinc-400 mt-4 leading-relaxed">I'm a Full‑Stack Bot Developer with 4+ years of experience designing high‑performance automation systems and API‑first architectures. I specialize in turning complex business workflows into streamlined, AI‑ready applications that drive revenue and operational efficiency.</p>
-            <p class="text-zinc-400 mt-3 leading-relaxed">From WebSocket‑powered trading bots to NLP pipelines and microservices orchestration, I build systems that are secure, scalable, and built to last.</p>
-            <div class="flex flex-wrap gap-3 mt-6">
-                <span class="px-4 py-2 bg-zinc-800 rounded-full text-sm text-zinc-300 border border-zinc-700">Python / FastAPI</span>
-                <span class="px-4 py-2 bg-zinc-800 rounded-full text-sm text-zinc-300 border border-zinc-700">Microservices</span>
-                <span class="px-4 py-2 bg-zinc-800 rounded-full text-sm text-zinc-300 border border-zinc-700">Telegram / WhatsApp APIs</span>
-                <span class="px-4 py-2 bg-zinc-800 rounded-full text-sm text-zinc-300 border border-zinc-700">NLP & Transformers</span>
-                <span class="px-4 py-2 bg-zinc-800 rounded-full text-sm text-zinc-300 border border-zinc-700">Web3 / Polygon / CLOB</span>
-                <span class="px-4 py-2 bg-zinc-800 rounded-full text-sm text-zinc-300 border border-zinc-700">OAuth & Webhook Security</span>
+            <span class="text-xs sm:text-sm text-[#4f8cf7] font-semibold uppercase tracking-[0.15em]">👤 About</span>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mt-1 text-white">Building the Future of Automation</h2>
+            <p class="text-[#9898b0] mt-4 leading-relaxed text-sm sm:text-base">I'm a Full‑Stack Bot Developer with 4+ years of experience designing high‑performance automation systems and API‑first architectures. I specialize in turning complex business workflows into streamlined, AI‑ready applications that drive revenue and operational efficiency.</p>
+            <p class="text-[#9898b0] mt-3 leading-relaxed text-sm sm:text-base">From WebSocket‑powered trading bots to NLP pipelines and microservices orchestration, I build systems that are secure, scalable, and built to last.</p>
+            <div class="flex flex-wrap gap-2 sm:gap-3 mt-6">
+                <span class="skill-tag">Python / FastAPI</span>
+                <span class="skill-tag">Microservices</span>
+                <span class="skill-tag">Telegram / WhatsApp APIs</span>
+                <span class="skill-tag">NLP & Transformers</span>
+                <span class="skill-tag">Web3 / Polygon / CLOB</span>
+                <span class="skill-tag">OAuth & Webhook Security</span>
             </div>
         </div>
     </section>
 
     <!-- ===== CONTACT ===== -->
-    <section id="contact" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-800">
+    <section id="contact" class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 border-t border-[#14141e]">
         <div class="max-w-2xl">
-            <span class="text-sm text-blue-400 font-semibold uppercase tracking-widest">📬 Connect</span>
-            <h2 class="text-3xl md:text-4xl font-bold mt-1">Let's Build Something</h2>
-            <p class="text-zinc-400 mt-3 leading-relaxed">Ready to automate your trading or build a custom bot? Reach out directly – I respond within a few hours.</p>
-            <div class="flex flex-wrap gap-4 mt-6">
-                <a href="discord://users/0xbreeze" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-zinc-800 rounded-full border border-zinc-700 hover:border-blue-400 transition-colors">
-                    <i class="fab fa-discord text-blue-400"></i> 0xbreeze
-                </a>
-                <a href="https://t.me/breeze0x" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-zinc-800 rounded-full border border-zinc-700 hover:border-blue-400 transition-colors">
-                    <i class="fab fa-telegram-plane text-blue-400"></i> @breeze0x
-                </a>
-                <a href="mailto:juicyblxst@gmail.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-zinc-800 rounded-full border border-zinc-700 hover:border-blue-400 transition-colors">
-                    <i class="fas fa-envelope text-blue-400"></i> Email
-                </a>
+            <span class="text-xs sm:text-sm text-[#4f8cf7] font-semibold uppercase tracking-[0.15em]">📬 Connect</span>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mt-1 text-white">Let's Build Something</h2>
+            <p class="text-[#9898b0] mt-3 leading-relaxed text-sm sm:text-base">Ready to automate your trading or build a custom bot? Reach out directly – I respond within a few hours.</p>
+            <div class="flex flex-wrap gap-3 sm:gap-4 mt-6">
+                <a href="discord://users/0xbreeze" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fa-brands fa-discord"></i> 0xbreeze</a>
+                <a href="https://t.me/breeze0x" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fa-brands fa-telegram"></i> @breeze0x</a>
+                <a href="mailto:juicyblxst@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fa-regular fa-envelope"></i> Email</a>
             </div>
         </div>
     </section>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="border-t border-zinc-800 py-8 text-center text-sm text-zinc-500">
-        <div class="max-w-6xl mx-auto px-6">
+    <footer class="border-t border-[#14141e] py-6 sm:py-8 text-center text-xs sm:text-sm text-[#555577]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <p>© 2025 BREEZE · Built with ❤️ for bots</p>
         </div>
     </footer>
 
     <!-- ===== SCRIPTS ===== -->
     <script>
+        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
         });
 
+        // Mobile menu toggle
         const toggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
-
-        toggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('open');
-        });
-
+        toggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
         mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-            });
+            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
         });
     </script>
 
