@@ -6,6 +6,7 @@
     <title>BREEZE · Bot Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -15,48 +16,57 @@
             background: #0b0e14;
             color: #e8edf5;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             padding: 1rem;
+            -webkit-font-smoothing: antialiased;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
         }
+
+        /* ===== TYPOGRAPHY ===== */
         h1 {
-            font-size: 2.4rem;
+            font-size: 2.6rem;
             background: linear-gradient(135deg, #f0f4ff 0%, #7aa9ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: inline-block;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.2rem;
+            letter-spacing: -0.02em;
         }
         h2 {
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             color: #d6e0f0;
-            margin: 1.8rem 0 1rem;
+            margin: 2rem 0 0.8rem;
             border-left: 4px solid #4f8cf7;
             padding-left: 0.8rem;
+            font-weight: 600;
         }
         .tagline {
             font-size: 1.1rem;
             color: #9aaec9;
-            margin-bottom: 0.5rem;
+            font-weight: 400;
         }
         .subhead {
             font-size: 1rem;
             color: #b0c4de;
-            max-width: 700px;
-            margin: 0.8rem 0 1.2rem;
+            max-width: 680px;
+            margin: 0.5rem 0 1.2rem;
+            line-height: 1.6;
         }
         .section-sub {
             color: #9aaec9;
             margin-bottom: 1.2rem;
             font-size: 0.95rem;
+            font-weight: 400;
         }
+
+        /* ===== CONTACT BAR ===== */
         .contact-bar {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.8rem;
+            gap: 0.7rem;
             margin: 1rem 0 1.5rem;
         }
         .contact-btn {
@@ -64,27 +74,36 @@
             align-items: center;
             gap: 0.6rem;
             background: #1a2635;
-            padding: 0.6rem 1.2rem;
-            border-radius: 30px;
+            padding: 0.65rem 1.3rem;
+            border-radius: 40px;
             color: #c5d5eb;
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
             border: 1px solid #2a384a;
-            transition: background 0.2s, border-color 0.2s, transform 0.1s;
-            flex: 1 1 auto;
-            min-width: 120px;
-            justify-content: center;
+            transition: all 0.25s ease;
+            flex: 0 1 auto;
         }
         .contact-btn:hover {
             background: #243244;
             border-color: #4f8cf7;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 140, 247, 0.15);
         }
         .contact-btn i {
             font-size: 1.2rem;
             color: #8bb8ff;
         }
+        .stat-badge {
+            background: #1a2635;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #b0c4de;
+            border: 1px solid #2a384a;
+        }
+
+        /* ===== PROJECT GRID ===== */
         .projects-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -93,59 +112,81 @@
         }
         .project-card {
             background: #151e2a;
-            border-radius: 16px;
-            padding: 1.2rem;
+            border-radius: 18px;
+            padding: 1.3rem;
             border: 1px solid #283340;
-            transition: transform 0.2s ease, border-color 0.2s;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #4f8cf7, #7aa9ff, #4f8cf7);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .project-card:hover::before {
+            opacity: 1;
         }
         .project-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px);
             border-color: #4f8cf7;
+            box-shadow: 0 8px 30px rgba(79, 140, 247, 0.08);
         }
         .project-card h3 {
             font-size: 1.2rem;
             color: #e0e9f5;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.3rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             flex-wrap: wrap;
+            font-weight: 600;
         }
         .project-card .badge {
             background: #1e7b3c;
             color: #c8f0d8;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 600;
-            padding: 0.15rem 0.6rem;
-            border-radius: 20px;
-            margin-left: 0.3rem;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
             text-transform: uppercase;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.4px;
+            border: 1px solid #2a9d5a;
         }
         .project-card .badge-dev {
             background: #7a5a1a;
             color: #f5e1a0;
+            border-color: #b8860b;
         }
         .project-card .badge-coming {
             background: #3a3f5a;
             color: #b0bcdb;
+            border-color: #4a506a;
         }
         .project-card p {
             color: #bcc9dd;
             font-size: 0.9rem;
-            margin: 0.4rem 0 0.6rem;
+            margin: 0.3rem 0 0.5rem;
             flex: 1;
+            line-height: 1.6;
         }
         .project-card .upgrade {
             background: #0f2a3a;
-            border-left: 4px solid #4f8cf7;
+            border-left: 3px solid #4f8cf7;
             padding: 0.4rem 0.7rem;
             border-radius: 6px;
             font-size: 0.85rem;
             color: #b3d0ff;
-            margin: 0.4rem 0 0.8rem;
+            margin: 0.4rem 0 0.7rem;
+            line-height: 1.5;
         }
         .project-card .upgrade strong {
             color: #8bb8ff;
@@ -153,16 +194,21 @@
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.4rem;
-            margin: 0.5rem 0 0.6rem;
+            gap: 0.3rem;
+            margin: 0.4rem 0 0.5rem;
         }
         .tech-tags span {
             background: #1f2a38;
             color: #a0b8d4;
             font-size: 0.65rem;
-            padding: 0.2rem 0.6rem;
+            padding: 0.15rem 0.6rem;
             border-radius: 30px;
             border: 1px solid #2a384a;
+            transition: all 0.2s;
+        }
+        .tech-tags span:hover {
+            border-color: #4f8cf7;
+            color: #c5d5eb;
         }
         .tech-stack {
             font-size: 0.75rem;
@@ -173,7 +219,10 @@
         }
         .tech-stack i {
             margin-right: 4px;
+            color: #4f8cf7;
         }
+
+        /* ===== BOT ACTIONS ===== */
         .bot-actions {
             display: flex;
             flex-direction: column;
@@ -191,15 +240,17 @@
             align-items: center;
             gap: 0.4rem;
             padding: 0.3rem 0;
+            transition: color 0.2s;
         }
         .bot-actions .tg-btn:hover {
-            text-decoration: underline;
             color: #aac8ff;
+            text-decoration: underline;
         }
         .bot-actions .disclaimer {
             font-size: 0.7rem;
             color: #8a9fb5;
             font-style: italic;
+            opacity: 0.8;
         }
         .project-card .status {
             font-size: 0.7rem;
@@ -210,17 +261,25 @@
             color: #4f8cf7;
             margin-right: 4px;
         }
+
+        /* ===== TESTIMONIALS ===== */
         .testimonial {
             background: #111b26;
-            border-radius: 12px;
-            padding: 1rem 1.2rem;
+            border-radius: 14px;
+            padding: 1rem 1.3rem;
             border-left: 4px solid #4f8cf7;
             margin: 1.2rem 0;
+            transition: all 0.3s;
+        }
+        .testimonial:hover {
+            background: #16212e;
+            border-left-color: #7aa9ff;
         }
         .testimonial p {
             font-style: italic;
             color: #d0def0;
             font-size: 0.95rem;
+            line-height: 1.6;
         }
         .testimonial .attribution {
             font-style: normal;
@@ -229,40 +288,38 @@
             margin-top: 0.3rem;
             font-size: 0.85rem;
         }
+
+        /* ===== FOOTER ===== */
         .footer {
             text-align: center;
             color: #5a6f8a;
             font-size: 0.75rem;
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             border-top: 1px solid #1f2a38;
             padding-top: 1.5rem;
         }
-        /* Badge for stats */
-        .stat-badge {
-            background: #1a2635;
-            padding: 0.3rem 1rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-        }
-        /* Larger touch targets on mobile */
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
-            body { padding: 0.8rem; }
+            body { padding: 0.7rem; }
             h1 { font-size: 2rem; }
-            h2 { font-size: 1.4rem; }
-            .contact-btn { padding: 0.7rem 1rem; font-size: 1rem; min-width: 100%; }
+            h2 { font-size: 1.3rem; margin: 1.5rem 0 0.6rem; }
+            .contact-btn { 
+                padding: 0.7rem 1.2rem; 
+                font-size: 0.95rem; 
+                flex: 1 1 100%; 
+                justify-content: center;
+            }
             .project-card { padding: 1rem; }
-            .project-card h3 { font-size: 1.1rem; }
+            .project-card h3 { font-size: 1.05rem; }
             .tech-tags span { font-size: 0.6rem; }
+            .subhead { font-size: 0.95rem; }
         }
         @media (min-width: 600px) {
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (min-width: 900px) {
-            .projects-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            .projects-grid { grid-template-columns: repeat(3, 1fr); }
             h1 { font-size: 3.2rem; }
             body { padding: 2rem 1.5rem; }
         }
@@ -271,7 +328,7 @@
 <body>
 <div class="container">
 
-    <!-- HERO -->
+    <!-- ===== HERO ===== -->
     <header>
         <h1>BREEZE</h1>
         <p class="tagline">Full-Stack Bot Developer · API &amp; Automation</p>
@@ -280,7 +337,7 @@
             real‑time data pipelines, and intelligent trading infrastructure.
         </p>
 
-        <!-- CONTACT BAR -->
+        <!-- ===== CONTACT BAR ===== -->
         <div class="contact-bar">
             <a class="contact-btn" href="discord://users/0xbreeze" target="_blank" rel="noopener noreferrer" title="Open Discord profile">
                 <i class="fab fa-discord"></i> 0xbreeze
@@ -296,7 +353,7 @@
         </div>
     </header>
 
-    <!-- AVAILABLE TOOLS -->
+    <!-- ===== AVAILABLE TOOLS ===== -->
     <section>
         <h2>🧰 Available Tools</h2>
         <p class="section-sub">Explore my ecosystem of intelligent, Telegram‑controlled trading bots built for 24/7 operation.</p>
@@ -398,7 +455,7 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS -->
+    <!-- ===== TESTIMONIALS ===== -->
     <section>
         <h2>📣 What Clients Say</h2>
 
@@ -429,6 +486,7 @@
 
     </section>
 
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <p>© 2025 BREEZE · Built with ❤️ for bots</p>
     </footer>
