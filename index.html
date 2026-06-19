@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>BREEZE · Bot Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
@@ -16,14 +16,14 @@
             color: #e8edf5;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            padding: 2rem 1.5rem;
+            padding: 1rem;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
         }
         h1 {
-            font-size: 3.2rem;
+            font-size: 2.4rem;
             background: linear-gradient(135deg, #f0f4ff 0%, #7aa9ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -31,40 +31,40 @@
             margin-bottom: 0.25rem;
         }
         h2 {
-            font-size: 2rem;
+            font-size: 1.6rem;
             color: #d6e0f0;
-            margin: 2rem 0 1rem;
+            margin: 1.8rem 0 1rem;
             border-left: 4px solid #4f8cf7;
-            padding-left: 1rem;
+            padding-left: 0.8rem;
         }
         .tagline {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: #9aaec9;
             margin-bottom: 0.5rem;
         }
         .subhead {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #b0c4de;
             max-width: 700px;
-            margin: 1rem 0 1.5rem;
+            margin: 0.8rem 0 1.2rem;
         }
         .section-sub {
             color: #9aaec9;
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
         }
         .contact-bar {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin: 1.2rem 0 1.8rem;
+            gap: 0.8rem;
+            margin: 1rem 0 1.5rem;
         }
         .contact-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
             background: #1a2635;
-            padding: 0.5rem 1.2rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 30px;
             color: #c5d5eb;
             text-decoration: none;
@@ -72,6 +72,9 @@
             font-size: 0.95rem;
             border: 1px solid #2a384a;
             transition: background 0.2s, border-color 0.2s, transform 0.1s;
+            flex: 1 1 auto;
+            min-width: 120px;
+            justify-content: center;
         }
         .contact-btn:hover {
             background: #243244;
@@ -84,25 +87,25 @@
         }
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 1.8rem;
-            margin-top: 1.5rem;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+            margin-top: 1.2rem;
         }
         .project-card {
             background: #151e2a;
             border-radius: 16px;
-            padding: 1.5rem;
+            padding: 1.2rem;
             border: 1px solid #283340;
             transition: transform 0.2s ease, border-color 0.2s;
             display: flex;
             flex-direction: column;
         }
         .project-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
             border-color: #4f8cf7;
         }
         .project-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #e0e9f5;
             margin-bottom: 0.4rem;
             display: flex;
@@ -113,11 +116,11 @@
         .project-card .badge {
             background: #1e7b3c;
             color: #c8f0d8;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 600;
-            padding: 0.15rem 0.7rem;
+            padding: 0.15rem 0.6rem;
             border-radius: 20px;
-            margin-left: 0.5rem;
+            margin-left: 0.3rem;
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
@@ -131,18 +134,18 @@
         }
         .project-card p {
             color: #bcc9dd;
-            font-size: 0.95rem;
-            margin: 0.5rem 0 0.8rem;
+            font-size: 0.9rem;
+            margin: 0.4rem 0 0.6rem;
             flex: 1;
         }
         .project-card .upgrade {
             background: #0f2a3a;
             border-left: 4px solid #4f8cf7;
-            padding: 0.5rem 0.8rem;
+            padding: 0.4rem 0.7rem;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #b3d0ff;
-            margin: 0.5rem 0 1rem;
+            margin: 0.4rem 0 0.8rem;
         }
         .project-card .upgrade strong {
             color: #8bb8ff;
@@ -150,23 +153,23 @@
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 0.6rem 0 0.8rem;
+            gap: 0.4rem;
+            margin: 0.5rem 0 0.6rem;
         }
         .tech-tags span {
             background: #1f2a38;
             color: #a0b8d4;
-            font-size: 0.7rem;
-            padding: 0.2rem 0.7rem;
+            font-size: 0.65rem;
+            padding: 0.2rem 0.6rem;
             border-radius: 30px;
             border: 1px solid #2a384a;
         }
         .tech-stack {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #7d93b0;
             border-top: 1px solid #1f2a38;
-            padding-top: 0.8rem;
-            margin-top: 0.4rem;
+            padding-top: 0.6rem;
+            margin-top: 0.3rem;
         }
         .tech-stack i {
             margin-right: 4px;
@@ -175,9 +178,9 @@
             display: flex;
             flex-direction: column;
             gap: 0.3rem;
-            margin-top: 0.8rem;
+            margin-top: 0.6rem;
             border-top: 1px solid #1f2a38;
-            padding-top: 0.8rem;
+            padding-top: 0.6rem;
         }
         .bot-actions .tg-btn {
             color: #8bb8ff;
@@ -187,18 +190,19 @@
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
+            padding: 0.3rem 0;
         }
         .bot-actions .tg-btn:hover {
             text-decoration: underline;
             color: #aac8ff;
         }
         .bot-actions .disclaimer {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #8a9fb5;
             font-style: italic;
         }
         .project-card .status {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #6c8bb0;
             margin-top: 0.3rem;
         }
@@ -209,32 +213,58 @@
         .testimonial {
             background: #111b26;
             border-radius: 12px;
-            padding: 1.2rem 1.8rem;
+            padding: 1rem 1.2rem;
             border-left: 4px solid #4f8cf7;
-            margin: 1.5rem 0;
+            margin: 1.2rem 0;
         }
         .testimonial p {
             font-style: italic;
             color: #d0def0;
+            font-size: 0.95rem;
         }
         .testimonial .attribution {
             font-style: normal;
             font-weight: 500;
             color: #8babd0;
             margin-top: 0.3rem;
+            font-size: 0.85rem;
         }
         .footer {
             text-align: center;
             color: #5a6f8a;
-            font-size: 0.8rem;
-            margin-top: 3rem;
+            font-size: 0.75rem;
+            margin-top: 2rem;
             border-top: 1px solid #1f2a38;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
         }
-        @media (max-width: 600px) {
-            h1 { font-size: 2.4rem; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .contact-bar { justify-content: center; }
+        /* Badge for stats */
+        .stat-badge {
+            background: #1a2635;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+        }
+        /* Larger touch targets on mobile */
+        @media (max-width: 480px) {
+            body { padding: 0.8rem; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.4rem; }
+            .contact-btn { padding: 0.7rem 1rem; font-size: 1rem; min-width: 100%; }
+            .project-card { padding: 1rem; }
+            .project-card h3 { font-size: 1.1rem; }
+            .tech-tags span { font-size: 0.6rem; }
+        }
+        @media (min-width: 600px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 900px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            h1 { font-size: 3.2rem; }
+            body { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
@@ -260,9 +290,9 @@
             </a>
         </div>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.2rem 0 0.5rem;">
-            <span style="background:#1a2635; padding:0.3rem 1rem; border-radius:30px;">✅ 10+ Production Deployments</span>
-            <span style="background:#1a2635; padding:0.3rem 1rem; border-radius:30px;">🏆 4+ Years Experience</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1rem 0 0.5rem;">
+            <span class="stat-badge">✅ 10+ Production Deployments</span>
+            <span class="stat-badge">🏆 4+ Years Experience</span>
         </div>
     </header>
 
