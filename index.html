@@ -4,10 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BREEZE · Bot Developer</title>
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* ---- Reset & Base ---- */
         * {
             margin: 0;
             padding: 0;
@@ -24,8 +22,6 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-
-        /* ---- Typography ---- */
         h1 {
             font-size: 3.2rem;
             background: linear-gradient(135deg, #f0f4ff 0%, #7aa9ff 100%);
@@ -57,8 +53,6 @@
             margin-bottom: 1.5rem;
             font-size: 1.05rem;
         }
-
-        /* ---- Contact Bar ---- */
         .contact-bar {
             display: flex;
             flex-wrap: wrap;
@@ -88,8 +82,6 @@
             font-size: 1.2rem;
             color: #8bb8ff;
         }
-
-        /* ---- Project Cards ---- */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -116,6 +108,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            flex-wrap: wrap;
         }
         .project-card .badge {
             background: #1e7b3c;
@@ -178,6 +171,33 @@
         .tech-stack i {
             margin-right: 4px;
         }
+        /* --- NEW: Telegram button + disclaimer row --- */
+        .bot-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            margin-top: 0.8rem;
+            border-top: 1px solid #1f2a38;
+            padding-top: 0.8rem;
+        }
+        .bot-actions .tg-btn {
+            color: #8bb8ff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .bot-actions .tg-btn:hover {
+            text-decoration: underline;
+            color: #aac8ff;
+        }
+        .bot-actions .disclaimer {
+            font-size: 0.75rem;
+            color: #8a9fb5;
+            font-style: italic;
+        }
         .project-card .status {
             font-size: 0.75rem;
             color: #6c8bb0;
@@ -187,8 +207,6 @@
             color: #4f8cf7;
             margin-right: 4px;
         }
-
-        /* ---- Testimonials & Resume ---- */
         .testimonial {
             background: #111b26;
             border-radius: 12px;
@@ -241,8 +259,6 @@
             border-top: 1px solid #1f2a38;
             padding-top: 2rem;
         }
-
-        /* ---- Responsive ---- */
         @media (max-width: 600px) {
             h1 { font-size: 2.4rem; }
             .projects-grid { grid-template-columns: 1fr; }
@@ -265,11 +281,9 @@
 
         <!-- ===== CONTACT BAR ===== -->
         <div class="contact-bar">
-            <!-- Discord: deep-link to profile -->
             <a class="contact-btn" href="discord://users/0xbreeze" target="_blank" rel="noopener noreferrer" title="Open Discord profile">
                 <i class="fab fa-discord"></i> 0xbreeze
             </a>
-            <!-- Telegram: direct link -->
             <a class="contact-btn" href="https://t.me/breeze0x" target="_blank" rel="noopener noreferrer" title="Open Telegram">
                 <i class="fab fa-telegram-plane"></i> @breeze0x
             </a>
@@ -281,14 +295,14 @@
         </div>
     </header>
 
-    <!-- ===== AVAILABLE TOOLS (Bots Section) ===== -->
+    <!-- ===== AVAILABLE TOOLS ===== -->
     <section>
         <h2>🧰 Available Tools</h2>
-        <p class="section-sub">Explore my ecosystem of intelligent, Telegram-controlled trading bots built for 24/7 operation.</p>
+        <p class="section-sub">Explore my ecosystem of intelligent, Telegram‑controlled trading bots built for 24/7 operation.</p>
 
         <div class="projects-grid">
 
-            <!-- Sniper Bot -->
+            <!-- 1. SNIPER BOT -->
             <div class="project-card">
                 <h3>🎯 Polymarket Sniper Bot <span class="badge">Live</span></h3>
                 <p>Professional‑grade automated trading bot for prediction markets. Connects to Polymarket CLOB API, monitors order books 24/7, and executes trades when price targets are met. Full Telegram interface with risk management and trade history.</p>
@@ -297,19 +311,27 @@
                     <span>Real‑Time Sniping</span><span>Telegram Interface</span><span>Multi‑Market</span><span>Risk Management</span><span>SQLite DB</span><span>Web3.py</span>
                 </div>
                 <div class="tech-stack"><i class="fab fa-python"></i> Python · py‑clob‑client · Web3.py · python‑telegram‑bot · SQLite</div>
+                <div class="bot-actions">
+                    <a class="tg-btn" href="https://t.me/Krrisssss_bot" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> View in Telegram</a>
+                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
+                </div>
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- Crypto Sentinel -->
+            <!-- 2. CRYPTO SENTINEL -->
             <div class="project-card">
                 <h3>📈 Crypto Market Sentinel <span class="badge">Live</span></h3>
                 <p>Real‑time Bitcoin price alerts delivered via Telegram. Built with robust failover and API rate‑limit handling. Deployed 24/7 on Render.com.</p>
                 <div class="tech-tags"><span>Price Alerts</span><span>Telegram</span><span>Failover</span></div>
                 <div class="tech-stack"><i class="fab fa-python"></i> Python · CoinGecko API · Telegram Bot API</div>
+                <!-- No Telegram button for this one (custom alerts, not a public bot) -->
+                <div class="bot-actions">
+                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
+                </div>
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- Arbitrage Scanner -->
+            <!-- 3. ARBITRAGE SCANNER -->
             <div class="project-card">
                 <h3>🚀 Polymarket Arbitrage Scanner <span class="badge">Live</span></h3>
                 <p>Real‑time Telegram bot that monitors Polymarket for risk‑free arbitrage when YES+NO prices sum below $1.00. Streams live order‑book data via WebSocket and sends instant alerts.</p>
@@ -318,10 +340,14 @@
                     <span>Real‑time Arbitrage</span><span>WebSocket Streaming</span><span>Multi‑Market Scan</span><span>Telegram Interface</span><span>Simulation Mode</span><span>SQLite Logging</span>
                 </div>
                 <div class="tech-stack"><i class="fab fa-python"></i> Python · websockets · python‑telegram‑bot · SQLite · asyncio</div>
+                <div class="bot-actions">
+                    <a class="tg-btn" href="https://t.me/PollymarkArb_bot" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> View in Telegram</a>
+                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
+                </div>
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- LP Farmer -->
+            <!-- 4. LP FARMER -->
             <div class="project-card">
                 <h3>💧 Polymarket LP Farming Bot <span class="badge">Live</span></h3>
                 <p>Automated liquidity provision bot that places limit orders on both sides of the order book to earn trading fees and liquidity rewards. Dynamically adjusts spreads based on market conditions.</p>
@@ -330,10 +356,14 @@
                     <span>Automated Limit Orders</span><span>Dynamic Spread Adjustment</span><span>Multi‑Market Support</span><span>Simulation Mode</span><span>Telegram Interface</span><span>SQLite Trade History</span>
                 </div>
                 <div class="tech-stack"><i class="fab fa-python"></i> Python · websockets · py‑clob‑client · python‑telegram‑bot · SQLite · web3.py</div>
+                <div class="bot-actions">
+                    <a class="tg-btn" href="https://t.me/PollymarkLPF_bot" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> View in Telegram</a>
+                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
+                </div>
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- Copy Trading -->
+            <!-- 5. COPY TRADING -->
             <div class="project-card">
                 <h3>📋 Polymarket Copy Trading Bot <span class="badge">Live</span></h3>
                 <p>Automated copy trading bot that monitors top‑performing wallets and mirrors their trades in real‑time. Set position scaling (0.5x, 1x, 2x) and replicate successful traders.</p>
@@ -342,10 +372,14 @@
                     <span>Multi‑Wallet Tracking</span><span>Real‑Time Trade Mirroring</span><span>Position Scaling</span><span>Max Position Limits</span><span>Simulation Mode</span><span>Telegram Interface</span>
                 </div>
                 <div class="tech-stack"><i class="fab fa-python"></i> Python · py‑clob‑client · python‑telegram‑bot · SQLite · web3.py</div>
+                <div class="bot-actions">
+                    <a class="tg-btn" href="https://t.me/PollymarkC_bot" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> View in Telegram</a>
+                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
+                </div>
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- Kalshi Arb -->
+            <!-- 6. KALSHI ARB -->
             <div class="project-card">
                 <h3>🔄 Polymarket‑Kalshi Arbitrage Bot <span class="badge">Live</span></h3>
                 <p>Cross‑platform arbitrage bot that continuously scans Polymarket and Kalshi for price discrepancies on the same event markets. Alerts and executes risk‑free trades across both platforms.</p>
@@ -354,40 +388,59 @@
                     <span>Cross‑Platform Scanning</span><span>Real‑Time Price Comparison</span><span>Configurable Profit Threshold</span><span>Market Pair Management</span><span>Simulation Mode</span><span>Telegram Interface</span>
                 </div>
                 <div class="tech-stack"><i class="fab fa-python"></i> Python · py‑clob‑client · Kalshi REST API · python‑telegram‑bot · SQLite</div>
+                <div class="bot-actions">
+                    <a class="tg-btn" href="https://t.me/pollymarkKA_bot" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> View in Telegram</a>
+                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
+                </div>
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- In Development / Coming Soon -->
+            <!-- 7. DOCUMENT Q&A (Dev) -->
             <div class="project-card">
                 <h3>🧠 Generative Document Q&amp;A <span class="badge badge-dev">Dev</span></h3>
                 <p>RAG (Retrieval-Augmented Generation) pipeline that answers complex queries from 100+ page business PDFs.</p>
                 <div class="tech-tags"><span>RAG</span><span>PyPDF2</span><span>ChromaDB</span><span>HuggingFace</span></div>
                 <div class="tech-stack"><i class="fab fa-python"></i> Python · PyPDF2 · ChromaDB · HuggingFace</div>
+                <div class="bot-actions">
+                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
+                </div>
                 <div class="status"><i class="fas fa-spinner fa-spin"></i> In Development</div>
             </div>
 
+            <!-- 8. NOTIFIER (Dev) -->
             <div class="project-card">
                 <h3>📱 Omni‑Channel Notifier <span class="badge badge-dev">Dev</span></h3>
                 <p>Secure WhatsApp Business API integration for delivering critical time‑based reminders and alerts.</p>
                 <div class="tech-tags"><span>WhatsApp API</span><span>Webhooks</span><span>SQLite</span></div>
                 <div class="tech-stack"><i class="fab fa-python"></i> Python · Meta API · Webhooks · SQLite</div>
+                <div class="bot-actions">
+                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
+                </div>
                 <div class="status"><i class="fas fa-spinner fa-spin"></i> In Development</div>
             </div>
 
+            <!-- 9. AGGREGATOR (Coming) -->
             <div class="project-card">
                 <h3>📰 Curated Knowledge Aggregator <span class="badge badge-coming">Coming</span></h3>
                 <p>Intelligent RSS feed filtering that delivers only the top 3 most relevant articles based on user interests.</p>
                 <div class="tech-tags"><span>RSS</span><span>FeedParser</span><span>NLP Ranking</span></div>
                 <div class="tech-stack"><i class="fab fa-python"></i> Python · FeedParser · NLP Ranking</div>
+                <div class="bot-actions">
+                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
+                </div>
                 <div class="status"><i class="fas fa-hourglass-half"></i> Coming Soon</div>
             </div>
 
+            <!-- 10. COMMAND CENTER (Coming) -->
             <div class="project-card">
                 <h3>🎮 Unified Command Center <span class="badge badge-coming">Coming</span></h3>
                 <p>Central orchestrator providing a unified Telegram dashboard to control and query all underlying microservices.</p>
                 <div class="upgrade">⚡ <strong>Upgrade:</strong> Unified control plane – manage all bots, view health, and trigger restarts from one Telegram dashboard.</div>
                 <div class="tech-tags"><span>Microservices</span><span>Webhook Aggregation</span><span>Telegram</span></div>
                 <div class="tech-stack"><i class="fab fa-python"></i> Python · Microservices · Webhook Aggregation</div>
+                <div class="bot-actions">
+                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
+                </div>
                 <div class="status"><i class="fas fa-hourglass-half"></i> Coming Soon</div>
             </div>
 
