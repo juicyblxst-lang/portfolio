@@ -12,54 +12,137 @@
             padding: 0;
             box-sizing: border-box;
         }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             background: #0b0e14;
             color: #e8edf5;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.7;
-            padding: 1rem;
+            padding-top: 70px;
             -webkit-font-smoothing: antialiased;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 1.2rem;
         }
 
-        /* ===== TYPOGRAPHY ===== */
-        h1 {
-            font-size: 2.6rem;
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(11, 14, 20, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid #1f2a38;
+            padding: 0 1.5rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-brand {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f0f4ff 0%, #7aa9ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .nav-links {
+            display: flex;
+            gap: 0.2rem;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #9aaec9;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.4rem 0.9rem;
+            border-radius: 30px;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: #e8edf5;
+            background: #1a2635;
+        }
+        .nav-links a.active {
+            color: #e8edf5;
+            background: #1a2635;
+        }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #9aaec9;
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 0.2rem;
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid #1a2432;
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+        .section-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #4f8cf7;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        h2 {
+            font-size: 1.8rem;
+            color: #d6e0f0;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+        .section-desc {
+            color: #9aaec9;
+            font-size: 0.95rem;
+            max-width: 650px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== HERO ===== */
+        #home {
+            padding: 1.5rem 0 2.5rem;
+            border-bottom: none;
+        }
+        #home h1 {
+            font-size: 2.8rem;
             background: linear-gradient(135deg, #f0f4ff 0%, #7aa9ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: inline-block;
-            margin-bottom: 0.2rem;
             letter-spacing: -0.02em;
-        }
-        h2 {
-            font-size: 1.7rem;
-            color: #d6e0f0;
-            margin: 2rem 0 0.8rem;
-            border-left: 4px solid #4f8cf7;
-            padding-left: 0.8rem;
-            font-weight: 600;
+            margin-bottom: 0.2rem;
         }
         .tagline {
             font-size: 1.1rem;
             color: #9aaec9;
             font-weight: 400;
         }
-        .subhead {
+        .hero-desc {
             font-size: 1rem;
             color: #b0c4de;
-            max-width: 680px;
+            max-width: 620px;
             margin: 0.5rem 0 1.2rem;
-            line-height: 1.6;
-        }
-        .section-sub {
-            color: #9aaec9;
-            margin-bottom: 1.2rem;
-            font-size: 0.95rem;
-            font-weight: 400;
+            line-height: 1.7;
         }
 
         /* ===== CONTACT BAR ===== */
@@ -67,40 +150,40 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.7rem;
-            margin: 1rem 0 1.5rem;
+            margin: 1rem 0 1.2rem;
         }
         .contact-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
             background: #1a2635;
-            padding: 0.65rem 1.3rem;
+            padding: 0.6rem 1.3rem;
             border-radius: 40px;
             color: #c5d5eb;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             border: 1px solid #2a384a;
             transition: all 0.25s ease;
-            flex: 0 1 auto;
         }
         .contact-btn:hover {
             background: #243244;
             border-color: #4f8cf7;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(79, 140, 247, 0.15);
+            box-shadow: 0 6px 20px rgba(79, 140, 247, 0.12);
         }
         .contact-btn i {
-            font-size: 1.2rem;
             color: #8bb8ff;
         }
         .stat-badge {
             background: #1a2635;
-            padding: 0.25rem 1rem;
+            padding: 0.2rem 1rem;
             border-radius: 30px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #b0c4de;
             border: 1px solid #2a384a;
+            display: inline-block;
+            margin-right: 0.5rem;
         }
 
         /* ===== PROJECT GRID ===== */
@@ -108,42 +191,26 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.2rem;
-            margin-top: 1.2rem;
+            margin-top: 0.8rem;
         }
         .project-card {
-            background: #151e2a;
-            border-radius: 18px;
+            background: #141e2a;
+            border-radius: 16px;
             padding: 1.3rem;
-            border: 1px solid #283340;
+            border: 1px solid #1f2a38;
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             display: flex;
             flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #4f8cf7, #7aa9ff, #4f8cf7);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .project-card:hover::before {
-            opacity: 1;
         }
         .project-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
             border-color: #4f8cf7;
-            box-shadow: 0 8px 30px rgba(79, 140, 247, 0.08);
+            box-shadow: 0 8px 30px rgba(79, 140, 247, 0.06);
         }
         .project-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: #e0e9f5;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
             display: flex;
             align-items: center;
             gap: 0.4rem;
@@ -153,7 +220,7 @@
         .project-card .badge {
             background: #1e7b3c;
             color: #c8f0d8;
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             font-weight: 600;
             padding: 0.1rem 0.6rem;
             border-radius: 30px;
@@ -161,19 +228,9 @@
             letter-spacing: 0.4px;
             border: 1px solid #2a9d5a;
         }
-        .project-card .badge-dev {
-            background: #7a5a1a;
-            color: #f5e1a0;
-            border-color: #b8860b;
-        }
-        .project-card .badge-coming {
-            background: #3a3f5a;
-            color: #b0bcdb;
-            border-color: #4a506a;
-        }
         .project-card p {
             color: #bcc9dd;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             margin: 0.3rem 0 0.5rem;
             flex: 1;
             line-height: 1.6;
@@ -181,11 +238,11 @@
         .project-card .upgrade {
             background: #0f2a3a;
             border-left: 3px solid #4f8cf7;
-            padding: 0.4rem 0.7rem;
+            padding: 0.35rem 0.7rem;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: #b3d0ff;
-            margin: 0.4rem 0 0.7rem;
+            margin: 0.3rem 0 0.6rem;
             line-height: 1.5;
         }
         .project-card .upgrade strong {
@@ -195,51 +252,44 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.3rem;
-            margin: 0.4rem 0 0.5rem;
+            margin: 0.3rem 0 0.4rem;
         }
         .tech-tags span {
-            background: #1f2a38;
+            background: #1a2635;
             color: #a0b8d4;
-            font-size: 0.65rem;
-            padding: 0.15rem 0.6rem;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.6rem;
             border-radius: 30px;
             border: 1px solid #2a384a;
-            transition: all 0.2s;
-        }
-        .tech-tags span:hover {
-            border-color: #4f8cf7;
-            color: #c5d5eb;
         }
         .tech-stack {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: #7d93b0;
-            border-top: 1px solid #1f2a38;
-            padding-top: 0.6rem;
+            border-top: 1px solid #1a2432;
+            padding-top: 0.5rem;
             margin-top: 0.3rem;
         }
         .tech-stack i {
             margin-right: 4px;
             color: #4f8cf7;
         }
-
-        /* ===== BOT ACTIONS ===== */
         .bot-actions {
             display: flex;
             flex-direction: column;
-            gap: 0.3rem;
-            margin-top: 0.6rem;
-            border-top: 1px solid #1f2a38;
-            padding-top: 0.6rem;
+            gap: 0.2rem;
+            margin-top: 0.5rem;
+            border-top: 1px solid #1a2432;
+            padding-top: 0.5rem;
         }
         .bot-actions .tg-btn {
             color: #8bb8ff;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            padding: 0.3rem 0;
+            padding: 0.2rem 0;
             transition: color 0.2s;
         }
         .bot-actions .tg-btn:hover {
@@ -247,15 +297,15 @@
             text-decoration: underline;
         }
         .bot-actions .disclaimer {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             color: #8a9fb5;
             font-style: italic;
             opacity: 0.8;
         }
         .project-card .status {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             color: #6c8bb0;
-            margin-top: 0.3rem;
+            margin-top: 0.2rem;
         }
         .status i {
             color: #4f8cf7;
@@ -263,12 +313,16 @@
         }
 
         /* ===== TESTIMONIALS ===== */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
         .testimonial {
             background: #111b26;
-            border-radius: 14px;
+            border-radius: 12px;
             padding: 1rem 1.3rem;
-            border-left: 4px solid #4f8cf7;
-            margin: 1.2rem 0;
+            border-left: 3px solid #4f8cf7;
             transition: all 0.3s;
         }
         .testimonial:hover {
@@ -278,219 +332,360 @@
         .testimonial p {
             font-style: italic;
             color: #d0def0;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             line-height: 1.6;
         }
         .testimonial .attribution {
             font-style: normal;
             font-weight: 500;
             color: #8babd0;
-            margin-top: 0.3rem;
-            font-size: 0.85rem;
+            margin-top: 0.2rem;
+            font-size: 0.82rem;
+        }
+
+        /* ===== ABOUT ===== */
+        #about p {
+            color: #bcc9dd;
+            max-width: 700px;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+        }
+        .skill-tags span {
+            background: #1a2635;
+            color: #b0c4de;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            border: 1px solid #2a384a;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        #contact .contact-bar {
+            margin-top: 0;
+        }
+        #contact p {
+            color: #bcc9dd;
+            margin-bottom: 0.8rem;
         }
 
         /* ===== FOOTER ===== */
-        .footer {
+        footer {
             text-align: center;
             color: #5a6f8a;
-            font-size: 0.75rem;
-            margin-top: 2.5rem;
-            border-top: 1px solid #1f2a38;
-            padding-top: 1.5rem;
+            font-size: 0.72rem;
+            padding: 1.8rem 0;
+            border-top: 1px solid #1a2432;
+            margin-top: 0.5rem;
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 480px) {
-            body { padding: 0.7rem; }
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.3rem; margin: 1.5rem 0 0.6rem; }
-            .contact-btn { 
-                padding: 0.7rem 1.2rem; 
-                font-size: 0.95rem; 
-                flex: 1 1 100%; 
-                justify-content: center;
+        @media (max-width: 640px) {
+            .nav-toggle {
+                display: block;
             }
-            .project-card { padding: 1rem; }
-            .project-card h3 { font-size: 1.05rem; }
-            .tech-tags span { font-size: 0.6rem; }
-            .subhead { font-size: 0.95rem; }
+            .nav-links {
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(11, 14, 20, 0.98);
+                backdrop-filter: blur(12px);
+                padding: 0.8rem 1.5rem 1.2rem;
+                gap: 0.1rem;
+                border-bottom: 1px solid #1f2a38;
+                display: none;
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .nav-links a {
+                padding: 0.6rem 0.8rem;
+                width: 100%;
+                border-radius: 8px;
+            }
+            #home h1 { font-size: 2.1rem; }
+            h2 { font-size: 1.4rem; }
+            .container { padding: 0 1rem; }
+            section { padding: 2rem 0; }
+            .contact-btn { flex: 1 1 100%; justify-content: center; }
+            .stat-badge { font-size: 0.7rem; }
         }
-        @media (min-width: 600px) {
+        @media (min-width: 641px) and (max-width: 900px) {
             .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonial-grid { grid-template-columns: repeat(2, 1fr); }
         }
-        @media (min-width: 900px) {
+        @media (min-width: 901px) {
             .projects-grid { grid-template-columns: repeat(3, 1fr); }
-            h1 { font-size: 3.2rem; }
-            body { padding: 2rem 1.5rem; }
+            .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
+            #home h1 { font-size: 3.2rem; }
+            body { padding-top: 76px; }
+            .container { padding: 0 2rem; }
         }
     </style>
 </head>
 <body>
-<div class="container">
 
-    <!-- ===== HERO ===== -->
-    <header>
-        <h1>BREEZE</h1>
-        <p class="tagline">Full-Stack Bot Developer · API &amp; Automation</p>
-        <p class="subhead">
-            Building scalable bot ecosystems – high‑performance automation,
-            real‑time data pipelines, and intelligent trading infrastructure.
-        </p>
+    <!-- ===== NAVIGATION ===== -->
+    <nav>
+        <a href="#home" class="nav-brand">BREEZE</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-        <!-- ===== CONTACT BAR ===== -->
-        <div class="contact-bar">
-            <a class="contact-btn" href="discord://users/0xbreeze" target="_blank" rel="noopener noreferrer" title="Open Discord profile">
-                <i class="fab fa-discord"></i> 0xbreeze
-            </a>
-            <a class="contact-btn" href="https://t.me/breeze0x" target="_blank" rel="noopener noreferrer" title="Open Telegram">
-                <i class="fab fa-telegram-plane"></i> @breeze0x
-            </a>
+    <!-- ===== HOME ===== -->
+    <section id="home">
+        <div class="container">
+            <div class="section-label">✦ Full-Stack Bot Developer</div>
+            <h1>BREEZE</h1>
+            <p class="tagline">API · Automation · Trading Infrastructure</p>
+            <p class="hero-desc">
+                Building high‑performance automation systems, real‑time data pipelines, 
+                and intelligent bot ecosystems. I turn complex workflows into streamlined, 
+                API‑first applications that drive revenue and efficiency.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0.5rem 0 0.8rem;">
+                <span class="stat-badge">✅ 10+ Deployments</span>
+                <span class="stat-badge">🏆 4+ Years</span>
+            </div>
+            <div class="contact-bar">
+                <a class="contact-btn" href="discord://users/0xbreeze" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-discord"></i> 0xbreeze
+                </a>
+                <a class="contact-btn" href="https://t.me/breeze0x" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-telegram-plane"></i> @breeze0x
+                </a>
+            </div>
         </div>
+    </section>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1rem 0 0.5rem;">
-            <span class="stat-badge">✅ 10+ Production Deployments</span>
-            <span class="stat-badge">🏆 4+ Years Experience</span>
-        </div>
-    </header>
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-label">🧰 Portfolio</div>
+            <h2>Available Tools</h2>
+            <p class="section-desc">Telegram‑controlled trading bots built for 24/7 operation, each with simulation mode, risk management, and order‑flow analytics.</p>
 
-    <!-- ===== AVAILABLE TOOLS ===== -->
-    <section>
-        <h2>🧰 Available Tools</h2>
-        <p class="section-sub">Explore my ecosystem of intelligent, Telegram‑controlled trading bots built for 24/7 operation.</p>
+            <div class="projects-grid">
 
-        <div class="projects-grid">
-
-            <!-- SNIPER BOT -->
-            <div class="project-card">
-                <h3>🎯 Polymarket Sniper Bot <span class="badge">Live</span></h3>
-                <p>Professional‑grade automated trading bot for prediction markets. Connects to Polymarket CLOB API, monitors order books 24/7, and executes trades when price targets are met. Full Telegram interface with risk management and trade history.</p>
-                <div class="upgrade">⚡ <strong>Upgrade:</strong> Now with OBI/CVD order‑flow analytics – reads order book pressure, not just price, for smarter entries.</div>
-                <div class="tech-tags">
-                    <span>Real‑Time Sniping</span><span>Telegram Interface</span><span>Multi‑Market</span><span>Risk Management</span><span>SQLite DB</span><span>Web3.py</span>
+                <!-- SNIPER -->
+                <div class="project-card">
+                    <h3>🎯 Sniper Bot <span class="badge">Live</span></h3>
+                    <p>Automated sniping for Polymarket. Monitors order books and executes trades when price targets are met. Full Telegram interface with risk controls.</p>
+                    <div class="upgrade">⚡ <strong>Upgrade:</strong> OBI/CVD order‑flow analytics – reads book pressure, not just price.</div>
+                    <div class="tech-tags">
+                        <span>Sniping</span><span>Telegram</span><span>Multi‑Market</span><span>Web3.py</span>
+                    </div>
+                    <div class="tech-stack"><i class="fab fa-python"></i> Python · py‑clob‑client · Web3.py · SQLite</div>
+                    <div class="bot-actions">
+                        <a class="tg-btn" href="https://t.me/Krrisssss_bot" target="_blank"><i class="fab fa-telegram"></i> View in Telegram</a>
+                        <span class="disclaimer">⚠️ Demo version – fully customizable for your strategy.</span>
+                    </div>
+                    <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
                 </div>
-                <div class="tech-stack"><i class="fab fa-python"></i> Python · py‑clob‑client · Web3.py · python‑telegram‑bot · SQLite</div>
-                <div class="bot-actions">
-                    <a class="tg-btn" href="https://t.me/Krrisssss_bot" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> View in Telegram</a>
-                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
+
+                <!-- KALSHI ARB -->
+                <div class="project-card">
+                    <h3>🔄 Kalshi Arbitrage <span class="badge">Live</span></h3>
+                    <p>Cross‑platform arbitrage scanning Polymarket and Kalshi for price discrepancies. Alerts and executes risk‑free trades across both platforms.</p>
+                    <div class="upgrade">⚡ <strong>Upgrade:</strong> Micro‑price validation avoids stale‑quote traps.</div>
+                    <div class="tech-tags">
+                        <span>Cross‑Platform</span><span>Arbitrage</span><span>Telegram</span><span>Kalshi API</span>
+                    </div>
+                    <div class="tech-stack"><i class="fab fa-python"></i> Python · py‑clob‑client · Kalshi REST · SQLite</div>
+                    <div class="bot-actions">
+                        <a class="tg-btn" href="https://t.me/pollymarkKA_bot" target="_blank"><i class="fab fa-telegram"></i> View in Telegram</a>
+                        <span class="disclaimer">⚠️ Demo version – fully customizable for your strategy.</span>
+                    </div>
+                    <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
                 </div>
-                <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
+
+                <!-- ARB SCANNER -->
+                <div class="project-card">
+                    <h3>🚀 Arbitrage Scanner <span class="badge">Live</span></h3>
+                    <p>Real‑time Telegram bot that monitors Polymarket for risk‑free arbitrage when YES+NO prices sum below $1.00. WebSocket streaming.</p>
+                    <div class="upgrade">⚡ <strong>Upgrade:</strong> CVD filter – only signals when real volume backs the mispricing.</div>
+                    <div class="tech-tags">
+                        <span>Arbitrage</span><span>WebSocket</span><span>Multi‑Market</span><span>asyncio</span>
+                    </div>
+                    <div class="tech-stack"><i class="fab fa-python"></i> Python · websockets · SQLite · asyncio</div>
+                    <div class="bot-actions">
+                        <a class="tg-btn" href="https://t.me/PollymarkArb_bot" target="_blank"><i class="fab fa-telegram"></i> View in Telegram</a>
+                        <span class="disclaimer">⚠️ Demo version – fully customizable for your strategy.</span>
+                    </div>
+                    <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
+                </div>
+
+                <!-- LP FARMER -->
+                <div class="project-card">
+                    <h3>💧 LP Farming Bot <span class="badge">Live</span></h3>
+                    <p>Automated liquidity provision – places limit orders on both sides of the book to earn trading fees and liquidity rewards.</p>
+                    <div class="upgrade">⚡ <strong>Upgrade:</strong> OBI‑driven skew – adapts to market pressure, reduces adverse selection.</div>
+                    <div class="tech-tags">
+                        <span>LP Farming</span><span>Limit Orders</span><span>Dynamic Spread</span><span>web3.py</span>
+                    </div>
+                    <div class="tech-stack"><i class="fab fa-python"></i> Python · websockets · py‑clob‑client · SQLite · web3.py</div>
+                    <div class="bot-actions">
+                        <a class="tg-btn" href="https://t.me/PollymarkLPF_bot" target="_blank"><i class="fab fa-telegram"></i> View in Telegram</a>
+                        <span class="disclaimer">⚠️ Demo version – fully customizable for your strategy.</span>
+                    </div>
+                    <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
+                </div>
+
+                <!-- COPY TRADING -->
+                <div class="project-card">
+                    <h3>📋 Copy Trading Bot <span class="badge">Live</span></h3>
+                    <p>Mirrors top Polymarket wallets in real‑time. Set position scaling (0.5x, 1x, 2x) and replicate successful traders automatically.</p>
+                    <div class="upgrade">⚡ <strong>Upgrade:</strong> CVD filter – mirrors only high‑conviction moves, avoids whale bluffs.</div>
+                    <div class="tech-tags">
+                        <span>Copy Trading</span><span>Wallet Tracking</span><span>Scaling</span><span>Telegram</span>
+                    </div>
+                    <div class="tech-stack"><i class="fab fa-python"></i> Python · py‑clob‑client · SQLite · web3.py</div>
+                    <div class="bot-actions">
+                        <a class="tg-btn" href="https://t.me/PollymarkC_bot" target="_blank"><i class="fab fa-telegram"></i> View in Telegram</a>
+                        <span class="disclaimer">⚠️ Demo version – fully customizable for your strategy.</span>
+                    </div>
+                    <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
+                </div>
+
+                <!-- CRYPTO SENTINEL -->
+                <div class="project-card">
+                    <h3>📈 Crypto Sentinel <span class="badge">Live</span></h3>
+                    <p>Real‑time Bitcoin price alerts via Telegram. Robust failover and API rate‑limit handling, deployed 24/7 on Render.com.</p>
+                    <div class="tech-tags">
+                        <span>Alerts</span><span>Telegram</span><span>Failover</span><span>CoinGecko</span>
+                    </div>
+                    <div class="tech-stack"><i class="fab fa-python"></i> Python · CoinGecko API · Telegram Bot API</div>
+                    <div class="bot-actions">
+                        <span class="disclaimer">⚠️ Demo version – fully customizable for your strategy.</span>
+                    </div>
+                    <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
+                </div>
+
             </div>
-
-            <!-- KALSHI ARBITRAGE -->
-            <div class="project-card">
-                <h3>🔄 Polymarket‑Kalshi Arbitrage Bot <span class="badge">Live</span></h3>
-                <p>Cross‑platform arbitrage bot that continuously scans Polymarket and Kalshi for price discrepancies on the same event markets. Alerts and executes risk‑free trades across both platforms.</p>
-                <div class="upgrade">⚡ <strong>Upgrade:</strong> Cross‑validates with micro‑price (volume‑weighted mid) to avoid quote‑stale traps.</div>
-                <div class="tech-tags">
-                    <span>Cross‑Platform Scanning</span><span>Real‑Time Price Comparison</span><span>Configurable Profit Threshold</span><span>Market Pair Management</span><span>Simulation Mode</span><span>Telegram Interface</span>
-                </div>
-                <div class="tech-stack"><i class="fab fa-python"></i> Python · py‑clob‑client · Kalshi REST API · python‑telegram‑bot · SQLite</div>
-                <div class="bot-actions">
-                    <a class="tg-btn" href="https://t.me/pollymarkKA_bot" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> View in Telegram</a>
-                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
-                </div>
-                <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
-            </div>
-
-            <!-- ARBITRAGE SCANNER -->
-            <div class="project-card">
-                <h3>🚀 Polymarket Arbitrage Scanner <span class="badge">Live</span></h3>
-                <p>Real‑time Telegram bot that monitors Polymarket for risk‑free arbitrage when YES+NO prices sum below $1.00. Streams live order‑book data via WebSocket and sends instant alerts.</p>
-                <div class="upgrade">⚡ <strong>Upgrade:</strong> Uses CVD to filter stale quotes – only signals when real volume backs the mispricing.</div>
-                <div class="tech-tags">
-                    <span>Real‑time Arbitrage</span><span>WebSocket Streaming</span><span>Multi‑Market Scan</span><span>Telegram Interface</span><span>Simulation Mode</span><span>SQLite Logging</span>
-                </div>
-                <div class="tech-stack"><i class="fab fa-python"></i> Python · websockets · python‑telegram‑bot · SQLite · asyncio</div>
-                <div class="bot-actions">
-                    <a class="tg-btn" href="https://t.me/PollymarkArb_bot" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> View in Telegram</a>
-                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
-                </div>
-                <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
-            </div>
-
-            <!-- LP FARMER -->
-            <div class="project-card">
-                <h3>💧 Polymarket LP Farming Bot <span class="badge">Live</span></h3>
-                <p>Automated liquidity provision bot that places limit orders on both sides of the order book to earn trading fees and liquidity rewards. Dynamically adjusts spreads based on market conditions.</p>
-                <div class="upgrade">⚡ <strong>Upgrade:</strong> Dynamically skews quotes using OBI – protects against aggressive takers and improves fill quality.</div>
-                <div class="tech-tags">
-                    <span>Automated Limit Orders</span><span>Dynamic Spread Adjustment</span><span>Multi‑Market Support</span><span>Simulation Mode</span><span>Telegram Interface</span><span>SQLite Trade History</span>
-                </div>
-                <div class="tech-stack"><i class="fab fa-python"></i> Python · websockets · py‑clob‑client · python‑telegram‑bot · SQLite · web3.py</div>
-                <div class="bot-actions">
-                    <a class="tg-btn" href="https://t.me/PollymarkLPF_bot" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> View in Telegram</a>
-                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
-                </div>
-                <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
-            </div>
-
-            <!-- COPY TRADING -->
-            <div class="project-card">
-                <h3>📋 Polymarket Copy Trading Bot <span class="badge">Live</span></h3>
-                <p>Automated copy trading bot that monitors top‑performing wallets and mirrors their trades in real‑time. Set position scaling (0.5x, 1x, 2x) and replicate successful traders.</p>
-                <div class="upgrade">⚡ <strong>Upgrade:</strong> Filters copied trades with CVD – avoids mimicking whale bluffs, mirrors only real moves.</div>
-                <div class="tech-tags">
-                    <span>Multi‑Wallet Tracking</span><span>Real‑Time Trade Mirroring</span><span>Position Scaling</span><span>Max Position Limits</span><span>Simulation Mode</span><span>Telegram Interface</span>
-                </div>
-                <div class="tech-stack"><i class="fab fa-python"></i> Python · py‑clob‑client · python‑telegram‑bot · SQLite · web3.py</div>
-                <div class="bot-actions">
-                    <a class="tg-btn" href="https://t.me/PollymarkC_bot" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> View in Telegram</a>
-                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
-                </div>
-                <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
-            </div>
-
-            <!-- CRYPTO SENTINEL -->
-            <div class="project-card">
-                <h3>📈 Crypto Market Sentinel <span class="badge">Live</span></h3>
-                <p>Real‑time Bitcoin price alerts delivered via Telegram. Built with robust failover and API rate‑limit handling. Deployed 24/7 on Render.com.</p>
-                <div class="tech-tags"><span>Price Alerts</span><span>Telegram</span><span>Failover</span></div>
-                <div class="tech-stack"><i class="fab fa-python"></i> Python · CoinGecko API · Telegram Bot API</div>
-                <div class="bot-actions">
-                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
-                </div>
-                <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
-            </div>
-
         </div>
     </section>
 
     <!-- ===== TESTIMONIALS ===== -->
-    <section>
-        <h2>📣 What Clients Say</h2>
-
-        <div class="testimonial">
-            <p>“BREEZE delivered a mission‑critical monitoring system in under 72 hours. Deep async architecture and API design is top‑tier.”</p>
-            <div class="attribution">— CTO, FinTech Startup</div>
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-label">📣 Social Proof</div>
+            <h2>What Clients Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>“BREEZE delivered a mission‑critical monitoring system in under 72 hours. Deep async architecture and API design is top‑tier.”</p>
+                    <div class="attribution">— CTO, FinTech Startup</div>
+                </div>
+                <div class="testimonial">
+                    <p>“The automation suite handles 50k+ daily requests with zero downtime. Absolutely reliable.”</p>
+                    <div class="attribution">— Head of Ops, SaaS Platform</div>
+                </div>
+                <div class="testimonial">
+                    <p>“The Sniper Bot is a game‑changer. My win rate went from 50% to 75% in a month. The order‑flow analytics actually work.”</p>
+                    <div class="attribution">— Trader, DeFi Fund</div>
+                </div>
+                <div class="testimonial">
+                    <p>“Caught a 2% spread within 5 minutes of setup. Instant alerts and simulation mode gave me confidence to go live. Highly recommend.”</p>
+                    <div class="attribution">— Crypto Arbitrageur</div>
+                </div>
+                <div class="testimonial">
+                    <p>“Copy trading whales was risky until I used BREEZE's bot. The CVD filter saved me from a fake pump. Now I mirror only high‑conviction moves.”</p>
+                    <div class="attribution">— Polymarket Enthusiast</div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="testimonial">
-            <p>“The automation suite handles 50k+ daily requests with zero downtime. Absolutely reliable.”</p>
-            <div class="attribution">— Head of Ops, SaaS Platform</div>
+    <!-- ===== ABOUT ===== -->
+    <section id="about">
+        <div class="container">
+            <div class="section-label">👤 About</div>
+            <h2>Building the Future of Automation</h2>
+            <p>I'm a Full‑Stack Bot Developer with 4+ years of experience designing high‑performance automation systems and API‑first architectures. I specialize in turning complex business workflows into streamlined, AI‑ready applications that drive revenue and operational efficiency.</p>
+            <p>From WebSocket‑powered trading bots to NLP pipelines and microservices orchestration, I build systems that are secure, scalable, and built to last.</p>
+            <div class="skill-tags">
+                <span>Python / FastAPI</span>
+                <span>Microservices</span>
+                <span>Telegram / WhatsApp APIs</span>
+                <span>NLP &amp; Transformers</span>
+                <span>Web3 / Polygon / CLOB</span>
+                <span>OAuth &amp; Webhook Security</span>
+            </div>
         </div>
+    </section>
 
-        <div class="testimonial">
-            <p>“The Polymarket Sniper Bot is a game-changer. I've been using it for a month and my win rate has gone from 50% to 75%. The order‑flow analytics actually work. BREEZE delivered exactly what I needed.”</p>
-            <div class="attribution">— Trader, DeFi Fund</div>
+    <!-- ===== CONTACT ===== -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-label">📬 Connect</div>
+            <h2>Let's Build Something</h2>
+            <p>Ready to automate your trading or build a custom bot? Reach out directly – I respond within a few hours.</p>
+            <div class="contact-bar">
+                <a class="contact-btn" href="discord://users/0xbreeze" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-discord"></i> 0xbreeze
+                </a>
+                <a class="contact-btn" href="https://t.me/breeze0x" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-telegram-plane"></i> @breeze0x
+                </a>
+                <a class="contact-btn" href="mailto:juicyblxst@gmail.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
         </div>
-
-        <div class="testimonial">
-            <p>“I was skeptical about automated arbitrage, but the scanner caught a 2% spread within 5 minutes of setup. The Telegram alerts are instant and the simulation mode gave me the confidence to go live. Highly recommend.”</p>
-            <div class="attribution">— Crypto Arbitrageur</div>
-        </div>
-
-        <div class="testimonial">
-            <p>“Copy trading whales was risky until I used BREEZE's bot. The CVD filter saved me from copying a fake pump. Now I mirror only the high‑conviction moves. Solid work.”</p>
-            <div class="attribution">— Polymarket Enthusiast</div>
-        </div>
-
     </section>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <p>© 2025 BREEZE · Built with ❤️ for bots</p>
+    <footer>
+        <div class="container">
+            <p>© 2025 BREEZE · Built with ❤️ for bots</p>
+        </div>
     </footer>
 
-</div>
+    <!-- ===== NAV TOGGLE SCRIPT ===== -->
+    <script>
+        const toggle = document.getElementById('navToggle');
+        const links = document.getElementById('navLinks');
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('open');
+        });
+        // Close on link click (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                links.classList.remove('open');
+            });
+        });
+        // Active link highlight on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        window.addEventListener('scroll', () => {
+            let current = 'home';
+            sections.forEach(section => {
+                const top = section.offsetTop - 120;
+                if (window.scrollY >= top) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
