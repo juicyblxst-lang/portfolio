@@ -24,7 +24,7 @@
         .tagline { font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin-bottom: 2rem; }
 
         /* ---- LAYOUT & CARDS ---- */
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.8rem; margin-top: 1rem; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.8rem; margin-top: 1rem; }
         .card {
             background: #141b2b;
             border: 1px solid #1e293b;
@@ -54,6 +54,8 @@
         .card p { color: #cbd5e1; margin: 0.5rem 0 1rem 0; flex-grow: 1; }
         .card .tech { font-size: 0.75rem; color: #60a5fa; font-weight: 500; letter-spacing: 0.02em; border-top: 1px solid #1e293b; padding-top: 0.8rem; margin-top: 0.5rem; }
         .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .tag-group { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.5rem 0; }
+        .tag { background: #1e293b; padding: 0.15rem 0.6rem; border-radius: 12px; font-size: 0.65rem; color: #94a3b8; }
 
         /* ---- ABOUT & TESTIMONIALS ---- */
         .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; background: #0f1626; padding: 2rem; border-radius: 16px; border: 1px solid #1e293b; margin-top: 1rem; }
@@ -73,7 +75,6 @@
             transition: background 0.2s ease, transform 0.1s ease;
             border: none;
             font-size: 0.9rem;
-            margin-right: 0.8rem;
             margin-top: 0.5rem;
         }
         .btn:hover { background: #2563eb; transform: scale(1.02); }
@@ -81,6 +82,22 @@
         .btn-outline:hover { background: #1e293b; }
         .btn-success { background: #22c55e; }
         .btn-success:hover { background: #16a34a; }
+
+        /* ---- VIDEO EMBED ---- */
+        .video-wrapper {
+            margin: 0.5rem 0 0.5rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: none;
+        }
 
         /* ---- FOOTER ---- */
         .footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #1e293b; display: flex; justify-content: space-between; flex-wrap: wrap; color: #64748b; font-size: 0.9rem; }
@@ -117,13 +134,13 @@
             <div>
                 <h2 style="margin-top:0; border-bottom: none; padding-bottom:0;">Building Scalable Bot Ecosystems</h2>
                 <p style="color: #cbd5e1; font-size: 1.1rem;">
-                    I am a Full-Stack Bot Developer specializing in creating high-performance automation systems, 
-                    real-time data pipelines, and intelligent bot ecosystems. I transform complex business workflows 
+                    I am a Full-Stack Bot Developer specializing in creating high-performance automation systems,
+                    real-time data pipelines, and intelligent bot ecosystems. I transform complex business workflows
                     into streamlined, API-first applications that drive revenue and operational efficiency.
                 </p>
                 <p style="color: #94a3b8; margin-top: 0.8rem;">
-                    <strong>Expertise:</strong> Python, Telegram/WhatsApp APIs, Web Scraping, NLP, 
-                    Cloud Deployment (Render/AWS), and Secure OAuth integrations.
+                    <strong>Expertise:</strong> Python, Telegram/WhatsApp APIs, Web Scraping, NLP,
+                    Cloud Deployment (Render/AWS), Web3/Polygon, and Secure OAuth integrations.
                 </p>
                 <div style="margin-top: 1rem;">
                     <span style="background:#1e293b; padding:0.3rem 1rem; border-radius:20px; font-size:0.8rem; margin-right:0.5rem;">✅ 10+ Production Deployments</span>
@@ -132,12 +149,12 @@
             </div>
             <div>
                 <div class="testimonial">
-                    <p>"Daniel delivered a mission-critical monitoring system in under 72 hours. 
+                    <p>"Daniel delivered a mission-critical monitoring system in under 72 hours.
                     His deep understanding of async architectures and API design is top-tier."</p>
                     <div class="author">— CTO, FinTech Startup</div>
                 </div>
                 <div class="testimonial" style="border-left-color: #a78bfa;">
-                    <p>"The automation suite he built for us handles 50k+ daily requests with 
+                    <p>"The automation suite he built for us handles 50k+ daily requests with
                     zero downtime. Absolutely reliable."</p>
                     <div class="author">— Head of Ops, SaaS Platform</div>
                 </div>
@@ -151,24 +168,39 @@
 
     <div class="project-grid">
 
-        <!-- BOT #2: Crypto (LIVE) -->
+        <!-- BOT #1: Polymarket Sniper Bot (LIVE) -->
+        <div class="card">
+            <span class="status live">● Live in Production</span>
+            <h3>🎯 Polymarket Sniper Bot</h3>
+            <p>Professional-grade automated trading bot for prediction markets. Connects to Polymarket's CLOB API, monitors order books 24/7, and automatically executes trades when price targets are met. Full Telegram interface with risk management, trade history, and real USDC balance checking.</p>
+            <div class="tag-group">
+                <span class="tag">Real-Time Sniping</span>
+                <span class="tag">Telegram Interface</span>
+                <span class="tag">Multi-Market</span>
+                <span class="tag">Risk Management</span>
+                <span class="tag">SQLite DB</span>
+                <span class="tag">Web3.py</span>
+            </div>
+            <div class="tech">Python · py-clob-client · Web3.py · python-telegram-bot · SQLite</div>
+            <div class="btn-group">
+                <a href="https://github.com/juicyblxst-lang/polymarket-sniper-bot-KrissBot-" target="_blank" class="btn btn-outline">📂 View Source Code</a>
+            </div>
+        </div>
+
+        <!-- BOT #2: Crypto Whisperer (LIVE) -->
         <div class="card">
             <span class="status live">● Live in Production</span>
             <h3>🪙 Crypto Market Sentinel</h3>
             <p>Real-time Bitcoin price alerts delivered via Telegram. Built with robust failover mechanisms and API rate-limit handling. Deployed 24/7 on Render.com.</p>
+            <!-- VIDEO DEMO - Replace YOUR_VIDEO_ID_HERE with your actual YouTube Video ID -->
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            </div>
             <div class="tech">Python · CoinGecko API · Telegram Bot API</div>
             <div class="btn-group">
                 <a href="https://t.me/Testingxxxx_bot" target="_blank" class="btn btn-success">🚀 Try it on Telegram</a>
                 <a href="https://github.com/juicyblxst-lang/crypto-whisperer-bot" target="_blank" class="btn btn-outline">📂 Source Code</a>
             </div>
-        </div>
-
-        <!-- BOT #1: Job Scout -->
-        <div class="card">
-            <span class="status dev">● In Development</span>
-            <h3>🧑‍💻 Talent Acquisition Engine</h3>
-            <p>Automated web scraping and semantic matching for high-value job listings, triggering instant email notifications.</p>
-            <div class="tech">Python · BeautifulSoup · Selenium · SMTP</div>
         </div>
 
         <!-- BOT #3: Meeting Magician -->
@@ -244,7 +276,7 @@
             <div><strong style="font-size:1.8rem;">Daniel Obia</strong><br><span style="color:#94a3b8;">Full-Stack Bot Developer</span></div>
             <div style="text-align:right; color:#94a3b8;">📧 juicyblxst@gmail.com<br>📍 Remote · Global</div>
         </div>
-        
+
         <h3 style="font-size:1.1rem; color:#60a5fa;">Summary</h3>
         <p>Results-driven Full-Stack Bot Developer with 4+ years of experience designing high-performance automation systems and API-first architectures. Proven track record of delivering enterprise-grade solutions that scale to 100k+ daily requests.</p>
 
@@ -256,6 +288,7 @@
                     <li>✓ Microservices & Orchestration</li>
                     <li>✓ Telegram / WhatsApp APIs</li>
                     <li>✓ NLP & Transformers (HuggingFace)</li>
+                    <li>✓ Web3 / Polygon / CLOB APIs</li>
                     <li>✓ OAuth / JWT / Webhook Security</li>
                 </ul>
             </div>
@@ -279,7 +312,7 @@
     <div class="footer">
         <span>© 2026 Daniel Obia · Built with 🧠 and ☕</span>
         <span>
-            <a href="https://github.com/juicyblxst-lang" style="color:#60a5fa; text-decoration:none;">GitHub</a> · 
+            <a href="https://github.com/juicyblxst-lang" style="color:#60a5fa; text-decoration:none;">GitHub</a> ·
             <a href="#" style="color:#60a5fa; text-decoration:none;">LinkedIn</a>
         </span>
     </div>
