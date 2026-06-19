@@ -171,7 +171,6 @@
         .tech-stack i {
             margin-right: 4px;
         }
-        /* --- NEW: Telegram button + disclaimer row --- */
         .bot-actions {
             display: flex;
             flex-direction: column;
@@ -270,7 +269,7 @@
 <body>
 <div class="container">
 
-    <!-- ===== HERO ===== -->
+    <!-- HERO -->
     <header>
         <h1>BREEZE</h1>
         <p class="tagline">Full-Stack Bot Developer · API &amp; Automation</p>
@@ -279,7 +278,7 @@
             real‑time data pipelines, and intelligent trading infrastructure.
         </p>
 
-        <!-- ===== CONTACT BAR ===== -->
+        <!-- CONTACT BAR -->
         <div class="contact-bar">
             <a class="contact-btn" href="discord://users/0xbreeze" target="_blank" rel="noopener noreferrer" title="Open Discord profile">
                 <i class="fab fa-discord"></i> 0xbreeze
@@ -295,7 +294,7 @@
         </div>
     </header>
 
-    <!-- ===== AVAILABLE TOOLS ===== -->
+    <!-- AVAILABLE TOOLS -->
     <section>
         <h2>🧰 Available Tools</h2>
         <p class="section-sub">Explore my ecosystem of intelligent, Telegram‑controlled trading bots built for 24/7 operation.</p>
@@ -318,14 +317,17 @@
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- 2. CRYPTO SENTINEL -->
+            <!-- 2. KALSHI ARBITRAGE (SWAPPED UP) -->
             <div class="project-card">
-                <h3>📈 Crypto Market Sentinel <span class="badge">Live</span></h3>
-                <p>Real‑time Bitcoin price alerts delivered via Telegram. Built with robust failover and API rate‑limit handling. Deployed 24/7 on Render.com.</p>
-                <div class="tech-tags"><span>Price Alerts</span><span>Telegram</span><span>Failover</span></div>
-                <div class="tech-stack"><i class="fab fa-python"></i> Python · CoinGecko API · Telegram Bot API</div>
-                <!-- No Telegram button for this one (custom alerts, not a public bot) -->
+                <h3>🔄 Polymarket‑Kalshi Arbitrage Bot <span class="badge">Live</span></h3>
+                <p>Cross‑platform arbitrage bot that continuously scans Polymarket and Kalshi for price discrepancies on the same event markets. Alerts and executes risk‑free trades across both platforms.</p>
+                <div class="upgrade">⚡ <strong>Upgrade:</strong> Cross‑validates with micro‑price (volume‑weighted mid) to avoid quote‑stale traps.</div>
+                <div class="tech-tags">
+                    <span>Cross‑Platform Scanning</span><span>Real‑Time Price Comparison</span><span>Configurable Profit Threshold</span><span>Market Pair Management</span><span>Simulation Mode</span><span>Telegram Interface</span>
+                </div>
+                <div class="tech-stack"><i class="fab fa-python"></i> Python · py‑clob‑client · Kalshi REST API · python‑telegram‑bot · SQLite</div>
                 <div class="bot-actions">
+                    <a class="tg-btn" href="https://t.me/pollymarkKA_bot" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> View in Telegram</a>
                     <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
                 </div>
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
@@ -379,75 +381,22 @@
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- 6. KALSHI ARB -->
+            <!-- 6. CRYPTO SENTINEL (SWAPPED DOWN) -->
             <div class="project-card">
-                <h3>🔄 Polymarket‑Kalshi Arbitrage Bot <span class="badge">Live</span></h3>
-                <p>Cross‑platform arbitrage bot that continuously scans Polymarket and Kalshi for price discrepancies on the same event markets. Alerts and executes risk‑free trades across both platforms.</p>
-                <div class="upgrade">⚡ <strong>Upgrade:</strong> Cross‑validates with micro‑price (volume‑weighted mid) to avoid quote‑stale traps.</div>
-                <div class="tech-tags">
-                    <span>Cross‑Platform Scanning</span><span>Real‑Time Price Comparison</span><span>Configurable Profit Threshold</span><span>Market Pair Management</span><span>Simulation Mode</span><span>Telegram Interface</span>
-                </div>
-                <div class="tech-stack"><i class="fab fa-python"></i> Python · py‑clob‑client · Kalshi REST API · python‑telegram‑bot · SQLite</div>
+                <h3>📈 Crypto Market Sentinel <span class="badge">Live</span></h3>
+                <p>Real‑time Bitcoin price alerts delivered via Telegram. Built with robust failover and API rate‑limit handling. Deployed 24/7 on Render.com.</p>
+                <div class="tech-tags"><span>Price Alerts</span><span>Telegram</span><span>Failover</span></div>
+                <div class="tech-stack"><i class="fab fa-python"></i> Python · CoinGecko API · Telegram Bot API</div>
                 <div class="bot-actions">
-                    <a class="tg-btn" href="https://t.me/pollymarkKA_bot" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> View in Telegram</a>
                     <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
                 </div>
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- 7. DOCUMENT Q&A (Dev) -->
-            <div class="project-card">
-                <h3>🧠 Generative Document Q&amp;A <span class="badge badge-dev">Dev</span></h3>
-                <p>RAG (Retrieval-Augmented Generation) pipeline that answers complex queries from 100+ page business PDFs.</p>
-                <div class="tech-tags"><span>RAG</span><span>PyPDF2</span><span>ChromaDB</span><span>HuggingFace</span></div>
-                <div class="tech-stack"><i class="fab fa-python"></i> Python · PyPDF2 · ChromaDB · HuggingFace</div>
-                <div class="bot-actions">
-                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
-                </div>
-                <div class="status"><i class="fas fa-spinner fa-spin"></i> In Development</div>
-            </div>
-
-            <!-- 8. NOTIFIER (Dev) -->
-            <div class="project-card">
-                <h3>📱 Omni‑Channel Notifier <span class="badge badge-dev">Dev</span></h3>
-                <p>Secure WhatsApp Business API integration for delivering critical time‑based reminders and alerts.</p>
-                <div class="tech-tags"><span>WhatsApp API</span><span>Webhooks</span><span>SQLite</span></div>
-                <div class="tech-stack"><i class="fab fa-python"></i> Python · Meta API · Webhooks · SQLite</div>
-                <div class="bot-actions">
-                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
-                </div>
-                <div class="status"><i class="fas fa-spinner fa-spin"></i> In Development</div>
-            </div>
-
-            <!-- 9. AGGREGATOR (Coming) -->
-            <div class="project-card">
-                <h3>📰 Curated Knowledge Aggregator <span class="badge badge-coming">Coming</span></h3>
-                <p>Intelligent RSS feed filtering that delivers only the top 3 most relevant articles based on user interests.</p>
-                <div class="tech-tags"><span>RSS</span><span>FeedParser</span><span>NLP Ranking</span></div>
-                <div class="tech-stack"><i class="fab fa-python"></i> Python · FeedParser · NLP Ranking</div>
-                <div class="bot-actions">
-                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
-                </div>
-                <div class="status"><i class="fas fa-hourglass-half"></i> Coming Soon</div>
-            </div>
-
-            <!-- 10. COMMAND CENTER (Coming) -->
-            <div class="project-card">
-                <h3>🎮 Unified Command Center <span class="badge badge-coming">Coming</span></h3>
-                <p>Central orchestrator providing a unified Telegram dashboard to control and query all underlying microservices.</p>
-                <div class="upgrade">⚡ <strong>Upgrade:</strong> Unified control plane – manage all bots, view health, and trigger restarts from one Telegram dashboard.</div>
-                <div class="tech-tags"><span>Microservices</span><span>Webhook Aggregation</span><span>Telegram</span></div>
-                <div class="tech-stack"><i class="fab fa-python"></i> Python · Microservices · Webhook Aggregation</div>
-                <div class="bot-actions">
-                    <span class="disclaimer">⚠️ This is a demo version. Can be fully optimized for your specific strategy.</span>
-                </div>
-                <div class="status"><i class="fas fa-hourglass-half"></i> Coming Soon</div>
-            </div>
-
         </div>
     </section>
 
-    <!-- ===== TESTIMONIALS ===== -->
+    <!-- TESTIMONIALS -->
     <section>
         <h2>📣 What Clients Say</h2>
         <div class="testimonial">
@@ -460,7 +409,7 @@
         </div>
     </section>
 
-    <!-- ===== RESUME ===== -->
+    <!-- RESUME -->
     <section class="resume-section">
         <h2>📄 Professional Resume</h2>
         <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
