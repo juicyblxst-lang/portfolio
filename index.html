@@ -7,7 +7,6 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* ---- Reset & Base ---- */
         * {
             margin: 0;
             padding: 0;
@@ -23,12 +22,6 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-        }
-
-        /* ---- Typography ---- */
-        h1, h2, h3 {
-            font-weight: 600;
-            letter-spacing: -0.02em;
         }
         h1 {
             font-size: 3.2rem;
@@ -55,6 +48,44 @@
             color: #b0c4de;
             max-width: 700px;
             margin: 1rem 0 1.5rem;
+        }
+
+        /* ---- Contact Bar (new) ---- */
+        .contact-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.2rem 0 1.8rem;
+        }
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #1a2635;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            color: #c5d5eb;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid #2a384a;
+            transition: background 0.2s, border-color 0.2s, transform 0.1s;
+        }
+        .contact-btn:hover {
+            background: #243244;
+            border-color: #4f8cf7;
+            transform: translateY(-2px);
+        }
+        .contact-btn i {
+            font-size: 1.2rem;
+            color: #8bb8ff;
+        }
+        .contact-btn .badge-copy {
+            background: #2a384a;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 30px;
+            color: #7d93b0;
         }
 
         /* ---- Cards ---- */
@@ -222,12 +253,11 @@
             border-top: 1px solid #1f2a38;
             padding-top: 2rem;
         }
-
-        /* ---- Responsive ---- */
         @media (max-width: 600px) {
             h1 { font-size: 2.4rem; }
             .projects-grid { grid-template-columns: 1fr; }
             .resume-grid { grid-template-columns: 1fr; }
+            .contact-bar { justify-content: center; }
         }
     </style>
 </head>
@@ -242,6 +272,20 @@
             Building scalable bot ecosystems – high‑performance automation,
             real‑time data pipelines, and intelligent trading infrastructure.
         </p>
+
+        <!-- ===== CONTACT BAR (NEW) ===== -->
+        <div class="contact-bar">
+            <!-- Discord: copies username to clipboard -->
+            <a class="contact-btn" href="#" onclick="copyDiscord(); return false;" title="Click to copy Discord username">
+                <i class="fab fa-discord"></i> 0xbreeze
+                <span class="badge-copy">copy</span>
+            </a>
+            <!-- Telegram: direct link -->
+            <a class="contact-btn" href="https://t.me/breeze0x" target="_blank" rel="noopener noreferrer" title="Open Telegram">
+                <i class="fab fa-telegram-plane"></i> @breeze0x
+            </a>
+        </div>
+
         <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.2rem 0 0.5rem;">
             <span style="background:#1a2635; padding:0.3rem 1rem; border-radius:30px;">✅ 10+ Production Deployments</span>
             <span style="background:#1a2635; padding:0.3rem 1rem; border-radius:30px;">🏆 4+ Years Experience</span>
@@ -416,5 +460,24 @@
     </footer>
 
 </div>
+
+<!-- JavaScript for Discord copy -->
+<script>
+function copyDiscord() {
+    const username = '0xbreeze';
+    navigator.clipboard.writeText(username).then(() => {
+        alert('Discord username copied: ' + username);
+    }).catch(() => {
+        // fallback
+        const el = document.createElement('textarea');
+        el.value = username;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        alert('Discord username copied: ' + username);
+    });
+}
+</script>
 </body>
 </html>
