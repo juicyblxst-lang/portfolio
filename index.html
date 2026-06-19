@@ -206,26 +206,6 @@
             color: #4f8cf7;
             margin-right: 4px;
         }
-
-        /* ----- Platform logo badges ----- */
-        .platform-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            background: #1a2635;
-            padding: 0.1rem 0.6rem 0.1rem 0.4rem;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: #b0c4de;
-            border: 1px solid #2a384a;
-        }
-        .platform-badge svg {
-            display: block;
-            width: 16px;
-            height: 16px;
-        }
-
         .testimonial {
             background: #111b26;
             border-radius: 12px;
@@ -295,12 +275,7 @@
 
             <!-- SNIPER BOT -->
             <div class="project-card">
-                <h3>
-                    <span class="platform-badge">
-                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#4F8CF7"/><path d="M7 17V7H11.5C13.5 7 14.5 8 14.5 9.5C14.5 11 13.5 12 11.5 12H9.5V17H7ZM9.5 10.5H11C11.8 10.5 12 10.2 12 9.5C12 8.8 11.8 8.5 11 8.5H9.5V10.5Z" fill="white"/></svg>
-                    </span>
-                    Polymarket Sniper Bot <span class="badge">Live</span>
-                </h3>
+                <h3>🎯 Polymarket Sniper Bot <span class="badge">Live</span></h3>
                 <p>Professional‑grade automated trading bot for prediction markets. Connects to Polymarket CLOB API, monitors order books 24/7, and executes trades when price targets are met. Full Telegram interface with risk management and trade history.</p>
                 <div class="upgrade">⚡ <strong>Upgrade:</strong> Now with OBI/CVD order‑flow analytics – reads order book pressure, not just price, for smarter entries.</div>
                 <div class="tech-tags">
@@ -314,17 +289,9 @@
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- KALSHI ARBITRAGE (both logos) -->
+            <!-- KALSHI ARBITRAGE -->
             <div class="project-card">
-                <h3>
-                    <span class="platform-badge">
-                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#4F8CF7"/><path d="M7 17V7H11.5C13.5 7 14.5 8 14.5 9.5C14.5 11 13.5 12 11.5 12H9.5V17H7ZM9.5 10.5H11C11.8 10.5 12 10.2 12 9.5C12 8.8 11.8 8.5 11 8.5H9.5V10.5Z" fill="white"/></svg>
-                    </span>
-                    <span class="platform-badge">
-                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#F5A623"/><path d="M7 7L14.5 12L7 17V7Z" fill="white"/><path d="M17 7L14.5 12L17 17V7Z" fill="white"/></svg>
-                    </span>
-                    Polymarket‑Kalshi Arbitrage Bot <span class="badge">Live</span>
-                </h3>
+                <h3>🔄 Polymarket‑Kalshi Arbitrage Bot <span class="badge">Live</span></h3>
                 <p>Cross‑platform arbitrage bot that continuously scans Polymarket and Kalshi for price discrepancies on the same event markets. Alerts and executes risk‑free trades across both platforms.</p>
                 <div class="upgrade">⚡ <strong>Upgrade:</strong> Cross‑validates with micro‑price (volume‑weighted mid) to avoid quote‑stale traps.</div>
                 <div class="tech-tags">
@@ -340,12 +307,7 @@
 
             <!-- ARBITRAGE SCANNER -->
             <div class="project-card">
-                <h3>
-                    <span class="platform-badge">
-                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#4F8CF7"/><path d="M7 17V7H11.5C13.5 7 14.5 8 14.5 9.5C14.5 11 13.5 12 11.5 12H9.5V17H7ZM9.5 10.5H11C11.8 10.5 12 10.2 12 9.5C12 8.8 11.8 8.5 11 8.5H9.5V10.5Z" fill="white"/></svg>
-                    </span>
-                    Polymarket Arbitrage Scanner <span class="badge">Live</span>
-                </h3>
+                <h3>🚀 Polymarket Arbitrage Scanner <span class="badge">Live</span></h3>
                 <p>Real‑time Telegram bot that monitors Polymarket for risk‑free arbitrage when YES+NO prices sum below $1.00. Streams live order‑book data via WebSocket and sends instant alerts.</p>
                 <div class="upgrade">⚡ <strong>Upgrade:</strong> Uses CVD to filter stale quotes – only signals when real volume backs the mispricing.</div>
                 <div class="tech-tags">
@@ -361,12 +323,7 @@
 
             <!-- LP FARMER -->
             <div class="project-card">
-                <h3>
-                    <span class="platform-badge">
-                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#4F8CF7"/><path d="M7 17V7H11.5C13.5 7 14.5 8 14.5 9.5C14.5 11 13.5 12 11.5 12H9.5V17H7ZM9.5 10.5H11C11.8 10.5 12 10.2 12 9.5C12 8.8 11.8 8.5 11 8.5H9.5V10.5Z" fill="white"/></svg>
-                    </span>
-                    Polymarket LP Farming Bot <span class="badge">Live</span>
-                </h3>
+                <h3>💧 Polymarket LP Farming Bot <span class="badge">Live</span></h3>
                 <p>Automated liquidity provision bot that places limit orders on both sides of the order book to earn trading fees and liquidity rewards. Dynamically adjusts spreads based on market conditions.</p>
                 <div class="upgrade">⚡ <strong>Upgrade:</strong> Dynamically skews quotes using OBI – protects against aggressive takers and improves fill quality.</div>
                 <div class="tech-tags">
@@ -382,12 +339,7 @@
 
             <!-- COPY TRADING -->
             <div class="project-card">
-                <h3>
-                    <span class="platform-badge">
-                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#4F8CF7"/><path d="M7 17V7H11.5C13.5 7 14.5 8 14.5 9.5C14.5 11 13.5 12 11.5 12H9.5V17H7ZM9.5 10.5H11C11.8 10.5 12 10.2 12 9.5C12 8.8 11.8 8.5 11 8.5H9.5V10.5Z" fill="white"/></svg>
-                    </span>
-                    Polymarket Copy Trading Bot <span class="badge">Live</span>
-                </h3>
+                <h3>📋 Polymarket Copy Trading Bot <span class="badge">Live</span></h3>
                 <p>Automated copy trading bot that monitors top‑performing wallets and mirrors their trades in real‑time. Set position scaling (0.5x, 1x, 2x) and replicate successful traders.</p>
                 <div class="upgrade">⚡ <strong>Upgrade:</strong> Filters copied trades with CVD – avoids mimicking whale bluffs, mirrors only real moves.</div>
                 <div class="tech-tags">
@@ -401,7 +353,7 @@
                 <div class="status"><i class="fas fa-circle" style="color:#2e7d32;"></i> Live in Production</div>
             </div>
 
-            <!-- CRYPTO SENTINEL (no logo – it’s general crypto) -->
+            <!-- CRYPTO SENTINEL -->
             <div class="project-card">
                 <h3>📈 Crypto Market Sentinel <span class="badge">Live</span></h3>
                 <p>Real‑time Bitcoin price alerts delivered via Telegram. Built with robust failover and API rate‑limit handling. Deployed 24/7 on Render.com.</p>
